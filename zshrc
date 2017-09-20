@@ -26,4 +26,13 @@ fi
 export VISUAL=vim
 export EDITOR="${VISUAL}"
 
-source ~/bin/gruvbox_256palette_osx.sh
+GRUVBOX_VIM=~/bin/gruvbox_256palette.sh
+GRUVBOX_VIM_MAC=~/bin/gruvbox_256palette_osx.sh
+
+if [[ `uname` == "Linux" && -f ${GRUVBOX_VIM} ]]; then
+   . ${GRUVBOX_VIM}
+elif [[ `uname` == "Darwin" && -f ${GRUVBOX_VIM_MAC} ]]; then
+   . ${GRUVBOX_VIM_MAC}
+fi
+
+
