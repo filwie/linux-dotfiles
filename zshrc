@@ -35,4 +35,4 @@ elif [[ `uname` == "Darwin" && -f ${GRUVBOX_VIM_MAC} ]]; then
    . ${GRUVBOX_VIM_MAC}
 fi
 
-
+alias tmux=`tmux -2`
