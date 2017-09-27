@@ -1,0 +1,38 @@
+function start_and_attach_tmux () {
+    if [[ -x "$(command -v tmux)" ]]; then
+        if [[ -z "${TMUX}" ]] ;then
+            ID="`tmux ls | grep -vm1 attached | cut -d: -f1`"
+            if [[ -z "${ID}" ]] ;then
+                tmux new-session
+            else
+                tmux attach-session -t "${ID}"
+            fi
+        fi
+    fi
+}
+
+function set_vim_gruvbox_theme () {
+    local path_linux=~/bin/gruvbox_256palette.sh
+    local path_mac=~/bin/gruvbox_256palette_osx.sh
+
+    if [[ `uname` == "Linux" && -f ${path_linux} ]]; then
+       . ${path_linux}
+    elif [[ `uname` == "Darwin" && -f ${path_mac} ]]; then
+       . ${path_mac}
+    fi
+}
+
+function main () {
+    export ZSH=~/.oh-my-zsh
+    export VISUAL=vim
+    export EDITOR="${VISUAL}"
+    ZSH_THEME="arrow"
+    plugins=(git osx brew brew-cask z)
+    source ${ZSH}/oh-my-zsh.sh
+
+    start_and_attach_tmux
+    set_vim_gruvbox_theme
+}
+
+
+main
