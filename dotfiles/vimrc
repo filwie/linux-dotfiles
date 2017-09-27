@@ -13,11 +13,9 @@ Plugin 'VundleVim/Vundle.vim'
 " directory tree
 Plugin 'scrooloose/nerdtree'
 
-" icons for nerdtree
-Plugin 'ryanoasis/vim-devicons'
-
 " airline statusline with themes
 Plugin 'itchyny/lightline.vim'
+Plugin 'taohex/lightline-buffer'
 
 " silver searcher
 Plugin 'rking/ag.vim'
@@ -25,13 +23,8 @@ Plugin 'rking/ag.vim'
 " tagbar showing classes/functions/variables etc - requires exuberant-ctags
 Plugin 'majutsushi/tagbar'
 
-" buffer explorer - tablike plugin for vim buffers
-" Plugin 'fholgado/minibufexpl.vim'
-Plugin 'taohex/lightline-buffer'
-
 " Completion engine plugin for Python
 Plugin 'Valloric/YouCompleteMe'
-
 
 " removes trailing whitespaces
 Plugin 'bronson/vim-trailing-whitespace'
@@ -70,45 +63,11 @@ let g:lightline = {
         \ 'bufferinfo': 'lightline#buffer#bufferinfo',
         \ },
     \ }
-
-" lightline-buffer ui settings
-" replace these symbols with ascii characters if your environment does not
-" support unicode
-let g:lightline_buffer_logo = ' '
-let g:lightline_buffer_readonly_icon = ''
-let g:lightline_buffer_modified_icon = '✭'
-let g:lightline_buffer_git_icon = ' '
-let g:lightline_buffer_ellipsis_icon = '..'
-let g:lightline_buffer_expand_left_icon = '◀ '
-let g:lightline_buffer_expand_right_icon = ' ▶'
-let g:lightline_buffer_active_buffer_left_icon = ''
-let g:lightline_buffer_active_buffer_right_icon = ''
-let g:lightline_buffer_separator_icon = '%'
-
-" lightline-buffer function settings
-let g:lightline_buffer_show_bufnr = 1
-let g:lightline_buffer_rotate = 0
-let g:lightline_buffer_fname_mod = ':t'
-let g:lightline_buffer_excludes = ['vimfiler']
-
-let g:lightline_buffer_maxflen = 30
-let g:lightline_buffer_maxfextlen = 3
-let g:lightline_buffer_minflen = 16
-let g:lightline_buffer_minfextlen = 3
-let g:lightline_buffer_reservelen = 20
 " ------- /LIGHTLINE CONFIG --------
-
-
 
 " -------- TAGBAR CONFIG --------
 map <F8> :TagbarToggle<CR>
 " ------- /TAGBAR CONFIG --------
-
-
-" -------- MINIBUFFER CONFIG --------
-" map <C-B> :MBEToggle<CR>
-" -----------------------------------
-
 
 " -------- AG CONFIG --------
 let g:unite_source_history_yank_enable = 1
@@ -127,19 +86,18 @@ nnoremap <space><space> :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
 " ======== OTHER CONFIG ========
 
 " mark 80th column with different color depending on mode (INSERT/NORMAL)
-" highlight ColorColumn ctermbg=2
-" if (exists('+colorcolumn'))
-" set colorcolumn=80
-" au InsertEnter * highlight ColorColumn ctermbg=3
-"     au InsertLeave * highlight ColorColumn ctermbg=2
-" endif
+highlight ColorColumn ctermbg=2
+if (exists('+colorcolumn'))
+set colorcolumn=80
+au InsertEnter * highlight ColorColumn ctermbg=3
+    au InsertLeave * highlight ColorColumn ctermbg=2
+endif
 
 " 4 spaces instead of a tab
 :set tabstop=4 shiftwidth=4 expandtab
 
 " 256 terminal colours:
 :set t_Co=256
-
 
 " display line numbers
 set number
@@ -154,5 +112,4 @@ filetype plugin on
 set backspace=2
 " vsplit opens second file on the right instead of left
 set splitright
-
 
