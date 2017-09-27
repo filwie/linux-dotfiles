@@ -5,15 +5,15 @@ function main () {
     local dotfiles_repo="https://github.com/philowisp/dotfiles"
     local destination=~/.dotfiles
 
-    if [[ -f ${destination} ]];
+    if [[ -d ${destination} ]];
     then
         rm -rf ${destination}
-    fi
+        fi
 
     git clone ${dotfiles_repo} ${destination} &&
         for dotfile in ${destination}/dotfiles/*
         do
-            echo "${dotfile}"
+            ln ${dotfile} ~/.$(basename ${dotfile})
         done
 }
 
