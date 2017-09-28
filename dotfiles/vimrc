@@ -41,9 +41,6 @@ map <C-n> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " after a re-source, fix syntax matching issues (concealing brackets):
-if exists('g:loaded_webdevicons')
-    call webdevicons#refresh()
-endif
 " ------- /NERDTREE CONFIG --------
 
 
@@ -70,7 +67,7 @@ function! MyFiletype()
   endfunction
 
   function! MyFileformat()
-        return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+        return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : '  '
     endfunction
 " ------- /LIGHTLINE CONFIG --------
 
@@ -93,8 +90,27 @@ nnoremap <space><space> :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
 
 " -------- DEVICONS CONFIG --------
 set guifont=mononoki-Regular\ Nerd\ Font\ Complete\ Mono.ttf
-let g:webdevicons_conceal_nerdtree_brackets = 0
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+let g:WebDevIconsNerdTreeAfterGlyphPadding = '    '
+" NERDTress File highlighting only the glyph/icon
+" test highlight just the glyph (icons) in nerdtree:
+autocmd filetype nerdtree highlight haskell_icon ctermbg=none ctermfg=Red
+guifg=#ffa500
+autocmd filetype nerdtree highlight html_icon ctermbg=none ctermfg=Red
+guifg=#ffa500
+autocmd filetype nerdtree highlight go_icon ctermbg=none ctermfg=Red
+guifg=#ffa500
+
+autocmd filetype nerdtree syn match haskell_icon ##
+containedin=NERDTreeFile
+" if you are using another syn highlight for a given line (e.g.
+" NERDTreeHighlightFile) need to give that name in the 'containedin' for
+this
+" other highlight to work with it
+autocmd filetype nerdtree syn match html_icon ##
+containedin=NERDTreeFile,html
+autocmd filetype nerdtree syn match go_icon ## containedin=NERDTreeFile
 " ------- /DEVICONS CONFIG --------
 
 " ======== OTHER CONFIG ========
