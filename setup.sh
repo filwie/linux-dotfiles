@@ -12,9 +12,9 @@ function main () {
     git clone ${dotfiles_repo} ${destination} &&
     for file in ${destination}/dotfiles/*
     do
-        local dotfile=~/.$(basename ${file})
+        local dotfile=~/."$(basename ${file})"
         [[ -f "${dotfile}" ]] && rm "${dotfile}"
-        ln "${dotfile}" "${file}"
+        ln "${file}" "${dotfile}" 
     done
 }
 
