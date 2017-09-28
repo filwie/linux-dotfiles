@@ -14,7 +14,7 @@ function main () {
         for file in ${destination}/dotfiles/*
         do
             local dotfile=~/.$(basename ${dotfile})
-            if [[ -f ${dotfile} ]]; then; rm ${dotfile}; fi
+            if [[ -f ${dotfile} ]]; then rm ${dotfile}; fi
             ln ${file} ${dotfile}
         done
 }
