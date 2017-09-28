@@ -23,11 +23,8 @@ Plugin 'rking/ag.vim'
 " tagbar showing classes/functions/variables etc - requires exuberant-ctags
 Plugin 'majutsushi/tagbar'
 
-" filetype icons 
+" filetype icons
 Plugin 'ryanoasis/vim-devicons'
-
-" completion engine plugin for Python
-Plugin 'Valloric/YouCompleteMe'
 
 " removes trailing whitespaces
 Plugin 'bronson/vim-trailing-whitespace'
