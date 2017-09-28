@@ -13,7 +13,7 @@ function main () {
     git clone ${dotfiles_repo} ${destination} &&
         for file in ${destination}/dotfiles/*
         do
-            local dotfile=~/.$(basename ${dotfile})
+            local dotfile=~/.$(basename ${file})
             if [[ -f "${dotfile}" ]]; then rm "${dotfile}"; fi
             ln "${file}" "${dotfile}"
         done
