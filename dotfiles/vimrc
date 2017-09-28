@@ -88,9 +88,8 @@ nnoremap <space><space> :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
 " mark 80th column with different color depending on mode (INSERT/NORMAL)
 highlight ColorColumn ctermbg=2
 if (exists('+colorcolumn'))
-set colorcolumn=80
-au InsertEnter * highlight ColorColumn ctermbg=1
-    au InsertLeave * highlight ColorColumn ctermbg=8
+    set colorcolumn=80
+    au InsertEnter * highlight ColorColumn ctermbg=1
 endif
 
 " 4 spaces instead of a tab
