@@ -5,7 +5,7 @@ function main () {
     local dotfiles_repo="https://github.com/philowisp/dotfiles"
     local destination=~/.dotfiles
 
-    [[ -d ${destination} ]] && rm "${destination}"
+    [[ -d ${destination} ]] && rm -rf "${destination}"
 
         git clone ${dotfiles_repo} ${destination} &&
         for file in ${destination}/dotfiles/*
