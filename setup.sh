@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+set -e
 
 function main () {
     local dotfiles_repo="https://github.com/philowisp/dotfiles"
