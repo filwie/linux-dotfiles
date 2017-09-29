@@ -29,7 +29,7 @@ function main () {
     ZSH_THEME="arrow"
     plugins=(git osx brew brew-cask z)
     source ${ZSH}/oh-my-zsh.sh
-
+    alias tmux="tmux -2"
     start_and_attach_tmux
     set_vim_gruvbox_theme
 }
