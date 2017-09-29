@@ -1,54 +1,26 @@
-" ========  VUNDLE CONFIG ========
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" -------- PLUGINS --------
-
-" vundle - plugin manager
 Plugin 'VundleVim/Vundle.vim'
-
-" directory tree
 Plugin 'scrooloose/nerdtree'
-
-" airline statusline with themes
 Plugin 'itchyny/lightline.vim'
 Plugin 'taohex/lightline-buffer'
-
-" silver searcher
 Plugin 'rking/ag.vim'
-
-" tagbar showing classes/functions/variables etc - requires exuberant-ctags
 Plugin 'majutsushi/tagbar'
-
-" filetype icons
 Plugin 'ryanoasis/vim-devicons'
-
-" removes trailing whitespaces
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'bronson/vim-trailing-whitespace'
-
-" ------- /PLUGINS --------
 call vundle#end()            " required
 filetype plugin indent on    " required
-" ======= /VUNDLE CONFIG ========
-
-
-" -------- NERDTREE CONFIG --------
 map <C-n> :NERDTreeToggle<CR>
-" open NERDTree if vim starts up with no specified file:
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" after a re-source, fix syntax matching issues (concealing brackets):
-" ------- /NERDTREE CONFIG --------
-
-
-" -------- LIGHTLINE CONFIG --------
 set hidden  " allow buffer switching without saving
 set showtabline=2  " always show tabline
 set laststatus=2
 
+" Lightline
 let g:lightline = {
     \ 'colorscheme': 'seoul256',
     \ 'component_type': {
@@ -63,19 +35,16 @@ let g:lightline = {
         \ },
     \ }
 function! MyFiletype()
-      return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-  endfunction
+    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+function! MyFileformat()
+    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : '  '
+endfunction
 
-  function! MyFileformat()
-        return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : '  '
-    endfunction
-" ------- /LIGHTLINE CONFIG --------
-
-" -------- TAGBAR CONFIG --------
+" Tagbar
 map <F8> :TagbarToggle<CR>
-" ------- /TAGBAR CONFIG --------
 
-" -------- AG CONFIG --------
+" Silver Searcher
 let g:unite_source_history_yank_enable = 1
 try
   let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
@@ -86,15 +55,13 @@ endtry
 nnoremap <space><space> :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
 " reset not it is <C-l> normally
 :nnoremap <space>r <Plug>(unite_restart)
-" ------- /AG CONFIG --------
 
-" -------- DEVICONS CONFIG --------
+" Devicons
 set guifont=mononoki-Regular\ Nerd\ Font\ Complete\ Mono.ttf
 let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-let g:WebDevIconsUnicodeDecorateFolderNodes = 0
-let g:DevIconsEnableFoldersOpenClose = 0
-" ------- /DEVICONS CONFIG --------
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
 
 " ======== OTHER CONFIG ========
 
