@@ -3,9 +3,9 @@ function start_and_attach_tmux () {
         if [[ -z "${TMUX}" ]] ;then
             ID="`tmux ls | grep -vm1 attached | cut -d: -f1`"
             if [[ -z "${ID}" ]] ;then
-                tmux new-session
+                tmux -2 new-session
             else
-                tmux attach-session -t "${ID}"
+                tmux -2 attach-session -t "${ID}"
             fi
         fi
     fi
@@ -29,7 +29,7 @@ function main () {
     ZSH_THEME="arrow"
     plugins=(git osx brew brew-cask z)
     source ${ZSH}/oh-my-zsh.sh
-    alias tmux="tmux -2"
+    # alias tmux="tmux -2"
     start_and_attach_tmux
     set_vim_gruvbox_theme
 }

@@ -15,7 +15,7 @@ function main () {
     do
         local dotfile=~/."$(basename ${file})"
         [[ -f "${dotfile}" ]] && rm "${dotfile}"
-        ln "${file}" "${dotfile}" 
+        ln "${file}" "${dotfile}"
     done
 }
 
