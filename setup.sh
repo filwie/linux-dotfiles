@@ -27,6 +27,7 @@ function main () {
         [[ -f "${dotfile}" ]] && rm "${dotfile}"
         ln "${file}" "${dotfile}"
     done
+    vim +PluginInstall +qall
 }
 
 main
