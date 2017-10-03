@@ -9,6 +9,7 @@ Plugin 'taohex/lightline-buffer'
 Plugin 'rking/ag.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'morhetz/gruvbox'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'bronson/vim-trailing-whitespace'
 call vundle#end()            " required
