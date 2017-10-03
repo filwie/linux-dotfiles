@@ -5,7 +5,7 @@ set -e
 
 function install_vundle_if_needed () {
     local vundle_path=~/.vim/bundle/Vundle.vim
-    [[ -f "${vundle_path}" ]] || git clone \
+    [[ -d "${vundle_path}" ]] || git clone \
         https://github.com/VundleVim/Vundle.vim.git "${vundle_path}"
 }
 
