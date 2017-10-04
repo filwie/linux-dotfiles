@@ -27,7 +27,7 @@ function main () {
     export VISUAL=vim
     export EDITOR="${VISUAL}"
     ZSH_THEME="arrow"
-    plugins=(git osx brew brew-cask z)
+    plugins=(git)
     source ${ZSH}/oh-my-zsh.sh
     # alias tmux="tmux -2"
     start_and_attach_tmux
