@@ -23,7 +23,7 @@ set laststatus=2
 
 " Lightline
 let g:lightline = {
-    \ 'colorscheme': 'seoul256',
+    \ 'colorscheme': 'gruvbox',
     \ 'component_type': {
         \ 'buffercurrent': 'tabsel',
         \ },
@@ -93,4 +93,4 @@ filetype plugin on
 set backspace=2
 " vsplit opens second file on the right instead of left
 set splitright
-
+colorscheme gruvbox
