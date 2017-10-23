@@ -67,11 +67,11 @@ let g:DevIconsEnableFoldersOpenClose = 1
 " ======== OTHER CONFIG ========
 
 " mark 80th column with different color depending on mode (INSERT/NORMAL)
-highlight ColorColumn ctermbg=8
+highlight ColorColumn ctermbg=237
 if (exists('+colorcolumn'))
     set colorcolumn=80
     au InsertEnter * highlight ColorColumn ctermbg=1
-    au InsertLeave * highlight ColorColumn ctermbg=8
+    au InsertLeave * highlight ColorColumn ctermbg=237
 endif
 
 " 4 spaces instead of a tab
@@ -94,3 +94,4 @@ set backspace=2
 " vsplit opens second file on the right instead of left
 set splitright
 colorscheme gruvbox
+set background=dark
