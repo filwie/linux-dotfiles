@@ -22,12 +22,18 @@ function set_vim_gruvbox_theme () {
     fi
 }
 
+function set_plugins_for_os () {
+    if [[ `uname` == "Darwin" ]]; then
+        plugins=(git osx brew brew-cask)
+    fi
+}
+
 function main () {
     export ZSH=~/.oh-my-zsh
     export VISUAL=vim
     export EDITOR="${VISUAL}"
+    set_plugins_for_os
     ZSH_THEME="arrow"
-    plugins=(git osx brew brew-cask z)
     source ${ZSH}/oh-my-zsh.sh
     start_and_attach_tmux
     set_vim_gruvbox_theme

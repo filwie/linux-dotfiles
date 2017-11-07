@@ -1,5 +1,5 @@
 # Dotfiles
-
+Config files for Vim, Tmux, Zsh.
 
 ## Quickstart
 Execute command below:

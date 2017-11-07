@@ -1,85 +1,23 @@
+" Plugins and Vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'itchyny/lightline.vim'
-Plugin 'taohex/lightline-buffer'
-Plugin 'rking/ag.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'morhetz/gruvbox'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plugin 'bronson/vim-trailing-whitespace'
-call vundle#end()            " required
-filetype plugin indent on    " required
+Plugin 'VundleVim/Vundle.vim' " plugin manager
+Plugin 'scrooloose/nerdtree'  " file tree
+Plugin 'morhetz/gruvbox'      " favourite colorscheme
+Plugin 'majutsushi/tagbar'    " tags, file structure overview
+call vundle#end()             " required
+filetype plugin indent on     " required
+
+" Key mapping
 map <C-n> :NERDTreeToggle<CR>
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-set hidden  " allow buffer switching without saving
-set showtabline=2  " always show tabline
-set laststatus=2
-
-" Lightline
-let g:lightline = {
-    \ 'colorscheme': 'gruvbox',
-    \ 'component_type': {
-        \ 'buffercurrent': 'tabsel',
-        \ },
-    \ 'component_function': {
-        \ 'bufferbefore': 'lightline#buffer#bufferbefore',
-        \ 'bufferafter': 'lightline#buffer#bufferafter',
-        \ 'bufferinfo': 'lightline#buffer#bufferinfo',
-        \ 'filetype': 'MyFiletype',
-        \ 'fileformat': 'MyFileformat',
-        \ },
-    \ }
-function! MyFiletype()
-    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction
-function! MyFileformat()
-    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : '  '
-endfunction
-
-" Tagbar
 map <F8> :TagbarToggle<CR>
-
-" Silver Searcher
-let g:unite_source_history_yank_enable = 1
-try
-  let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
-  call unite#filters#matcher_default#use(['matcher_fuzzy'])
-catch
-endtry
-" search a file in the filetree
-nnoremap <space><space> :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
-" reset not it is <C-l> normally
-:nnoremap <space>r <Plug>(unite_restart)
-
-" Devicons
-set guifont=mononoki-Regular\ Nerd\ Font\ Complete\ Mono.ttf
-let g:webdevicons_conceal_nerdtree_brackets = 1
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:DevIconsEnableFoldersOpenClose = 1
-
-" ======== OTHER CONFIG ========
-
-" mark 80th column with different color depending on mode (INSERT/NORMAL)
-highlight ColorColumn ctermbg=237
-if (exists('+colorcolumn'))
-    set colorcolumn=80
-    au InsertEnter * highlight ColorColumn ctermbg=1
-    au InsertLeave * highlight ColorColumn ctermbg=237
-endif
 
 " 4 spaces instead of a tab
 :set tabstop=4 shiftwidth=4 expandtab
-
 " 256 terminal colours:
 :set t_Co=256
-
 " display line numbers
 set number
 " colorize sytanx
