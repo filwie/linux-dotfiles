@@ -33,10 +33,13 @@ function main () {
     export VISUAL=vim
     export EDITOR="${VISUAL}"
     set_plugins_for_os
-    ZSH_THEME="arrow"
+    # ZSH_THEME="arrow"
+    # ZSH_THEME="bureau"
+    ZSH_THEME="frisk"
     source ${ZSH}/oh-my-zsh.sh
     start_and_attach_tmux
     set_vim_gruvbox_theme
+    PATH=$PATH:~/bin
 }
 
 
