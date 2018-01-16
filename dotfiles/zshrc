@@ -11,9 +11,9 @@ function start_and_attach_tmux () {
     fi
 }
 
-function set_vim_gruvbox_theme () {
-    local path_linux=~/bin/gruvbox_256palette.sh
-    local path_mac=~/bin/gruvbox_256palette_osx.sh
+function gruvbox () {
+    local path_linux=~/.vim/bundle/gruvbox/gruvbox_256palette.sh
+    local path_mac=~/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh
 
     if [[ `uname` == "Linux" && -f ${path_linux} ]]; then
        . ${path_linux}
@@ -41,12 +41,10 @@ function main () {
     export VISUAL=vim
     export EDITOR="${VISUAL}"
     set_plugins_for_os
-    # ZSH_THEME="arrow"
-    # ZSH_THEME="bureau"
     ZSH_THEME="wisp"
     source ${ZSH}/oh-my-zsh.sh
     start_and_attach_tmux
-    set_vim_gruvbox_theme
+    gruvbox
     PATH=$PATH:~/bin
 }
 
