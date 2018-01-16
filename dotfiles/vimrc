@@ -15,11 +15,9 @@ map <C-n> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
 
 " 4 spaces instead of a tab
-:set tabstop=4 shiftwidth=4 expandtab
+set tabstop=4 shiftwidth=4 expandtab
 " 256 terminal colours:
-:set t_Co=256
-" display line numbers
-set number
+set t_Co=256
 " colorize sytanx
 syntax on
 " set text encoding to UTF8
