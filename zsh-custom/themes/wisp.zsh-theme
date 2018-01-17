@@ -1,5 +1,5 @@
 PROMPT=$'%{$FG[003]%}%/%{$reset_color%} $(git_prompt_info)$(bzr_prompt_info)%{$FG[008]%}[%n@%m]%{$reset_color%} %{$FG[008]%}[%T]%{$reset_color%}
-%{$fg_bold[black]%}>%{$reset_color%} '
+%{$FG[001]%}>%{$reset_color%} '
 
 PROMPT2="%{$FG[001]%}%_> %{$reset_color%}"
 
