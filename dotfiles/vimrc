@@ -30,4 +30,11 @@ set backspace=2
 " vsplit opens second file on the right instead of left
 set splitright
 colorscheme gruvbox
-set background=dark
+set background=light
+set termguicolors
+
+if &term =~# '^screen'
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+
