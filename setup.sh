@@ -14,7 +14,8 @@ function install_vundle_if_needed () {
 function main () {
     local dotfiles_repo="https://github.com/philowisp/dotfiles"
     local destination=~/.dotfiles
-
+    
+    cd
     if [[ -d ${destination} ]]; then
         rm -rf ${destination}
     fi

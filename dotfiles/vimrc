@@ -82,7 +82,7 @@ set copyindent
 
 " ----- Theming, visual tweaks -----
 set background=light
-let g:gruvbox_contrast_light='medium'
+let g:gruvbox_contrast_light='soft'
 silent colorscheme gruvbox
 
 if &term =~# '^screen'
