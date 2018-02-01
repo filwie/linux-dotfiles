@@ -3,21 +3,57 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim' " plugin manager
-Plugin 'scrooloose/nerdtree'  " file tree
-Plugin 'morhetz/gruvbox'      " favourite colorscheme
-Plugin 'majutsushi/tagbar'    " tags, file structure overview
-call vundle#end()             " required
-filetype plugin indent on     " required
+Plugin 'VundleVim/Vundle.vim'        " plugin manager
+Plugin 'scrooloose/nerdtree'         " file tree
+Plugin 'majutsushi/tagbar'           " tags, file structure overview
+Plugin 'ctrlpvim/ctrlp.vim'          " fuzzy file, buffr, ... finder
+Plugin 'morhetz/gruvbox'             " favourite colorscheme
+Plugin 'tell-k/vim-autopep8'         " auto pep8 format
+Plugin 'vim-syntastic/syntastic'     " check syntax on save
+Plugin 'bkad/CamelCaseMotion'        " using b, w, e works better with camelCase
+Plugin 'b3niup/numbers.vim'          " smarter relative numbers
+Plugin 'mhinz/vim-signify'           " mark git diff
+Plugin 'Valloric/YouCompleteMe'      " code completion
+Plugin 'tpope/vim-fugitive'          " git wrapper (ex. :Gstatus, :Gdiff)
+call vundle#end()                    " required
+filetype plugin indent on            " required
 
+" ----- Plugin settings -----
+" let g:autopep8_ignore="E501,W293"  " ignore specific PEP8 
+" let g:numbers_exclude = ['nerdtree', 'html']  " exclude filetype, plugin
+
+" Syntastic
+let g:syntastic_python_checkers = ['flake8']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" NerdTree
 " Open Nerd tree if opening a directory
 let g:NERDTreeHijackNetrw = 1
 au VimEnter NERD_tree_1 enew | execute 'NERDTree '.argv()[0]
 
-" Key mapping
+" Autopep8
+let g:autopep8_disable_show_diff=1
+
+" ----- Key mapping -----
 map <C-n> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
+inoremap <C-c> <Esc><Esc>
 
+" ----- Command mapping -----
+com! FormatJSON %!python -m json.tool
+com! FormatPython call Autopep8()
+
+" ----- General options -----
+" Disable automatic insertion of comment character
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+set hlsearch  " enables highlighting word with *, highlights on search
 " 4 spaces instead of a tab
 set tabstop=4 shiftwidth=4 expandtab
 " 256 terminal colours:
@@ -25,6 +61,8 @@ set t_Co=256
 " colorize sytanx
 syntax on
 " set text encoding to UTF8
+set termencoding=utf-8
+set fileencoding=utf-8
 set encoding=utf8
 " set indent depending on file type
 filetype plugin indent on
@@ -33,7 +71,16 @@ filetype plugin on
 set backspace=2
 " vsplit opens second file on the right instead of left
 set splitright
+" numbering relative to current line (to jump easily using :+/-N)
+set relativenumber
+" display line number and location percentage
+set ruler
+" disable .swp files
+set noswapfile
+set copyindent
 
+
+" ----- Theming, visual tweaks -----
 set background=light
 let g:gruvbox_contrast_light='medium'
 silent colorscheme gruvbox
