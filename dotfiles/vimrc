@@ -15,6 +15,7 @@ Plugin 'b3niup/numbers.vim'          " smarter relative numbers
 Plugin 'mhinz/vim-signify'           " mark git diff
 Plugin 'Valloric/YouCompleteMe'      " code completion
 Plugin 'tpope/vim-fugitive'          " git wrapper (ex. :Gstatus, :Gdiff)
+Plugin 'ap/vim-buftabline'           " buffers as tabs on top
 call vundle#end()                    " required
 filetype plugin indent on            " required
 
