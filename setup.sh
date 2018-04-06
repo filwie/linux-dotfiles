@@ -12,7 +12,7 @@ function install_vundle_if_needed () {
 
 
 function main () {
-    local dotfiles_repo="git@github.com:philowisp/Dotfiles.git"
+    local dotfiles_repo="https://gitlab.com/filip.wiechec/dotfiles.git"
     local destination=~/.dotfiles
     
     cd
