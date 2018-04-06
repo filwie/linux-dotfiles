@@ -46,6 +46,7 @@ function main () {
     start_and_attach_tmux
     gruvbox
     PATH=/usr/local/sbin:$PATH:~/bin
+    [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 }
 
 
