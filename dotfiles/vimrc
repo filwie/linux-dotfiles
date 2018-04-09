@@ -40,9 +40,14 @@ au VimEnter NERD_tree_1 enew | execute 'NERDTree '.argv()[0]
 " Autopep8
 let g:autopep8_disable_show_diff=1
 
+
+
+" Lightline
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ }
+set noshowmode
+set laststatus=2
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
@@ -52,6 +57,7 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 " ----- Key mapping -----
 map <C-n> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
+autocmd! FileType python nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
 inoremap <C-c> <Esc><Esc>
 
 " ----- Command mapping -----
@@ -93,7 +99,6 @@ set copyindent
 set autoindent
 set showmode
 set smarttab
-set laststatus=2
 
 set showcmd
 set wildmenu
