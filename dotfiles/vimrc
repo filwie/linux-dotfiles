@@ -13,7 +13,8 @@ Plugin 'vim-syntastic/syntastic'     " check syntax on save
 Plugin 'bkad/CamelCaseMotion'        " using b, w, e works better with camelCase
 Plugin 'Valloric/YouCompleteMe'      " code completion
 Plugin 'ap/vim-buftabline'           " buffers as tabs on top
-Plugin 'airblade/vim-gitgutter'      " git indicators 
+Plugin 'airblade/vim-gitgutter'      " git indicators
+Plugin 'itchyny/lightline.vim'       " light status bar at bottom
 call vundle#end()                    " required
 filetype plugin indent on            " required
 
@@ -39,6 +40,9 @@ au VimEnter NERD_tree_1 enew | execute 'NERDTree '.argv()[0]
 " Autopep8
 let g:autopep8_disable_show_diff=1
 
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ }
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
