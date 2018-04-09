@@ -11,10 +11,7 @@ Plugin 'morhetz/gruvbox'             " favourite colorscheme
 Plugin 'tell-k/vim-autopep8'         " auto pep8 format
 Plugin 'vim-syntastic/syntastic'     " check syntax on save
 Plugin 'bkad/CamelCaseMotion'        " using b, w, e works better with camelCase
-Plugin 'b3niup/numbers.vim'          " smarter relative numbers
-Plugin 'mhinz/vim-signify'           " mark git diff
 Plugin 'Valloric/YouCompleteMe'      " code completion
-Plugin 'tpope/vim-fugitive'          " git wrapper (ex. :Gstatus, :Gdiff)
 Plugin 'ap/vim-buftabline'           " buffers as tabs on top
 Plugin 'airblade/vim-gitgutter'      " git indicators 
 call vundle#end()                    " required
@@ -42,6 +39,12 @@ au VimEnter NERD_tree_1 enew | execute 'NERDTree '.argv()[0]
 " Autopep8
 let g:autopep8_disable_show_diff=1
 
+
+" CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+
 " ----- Key mapping -----
 map <C-n> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
@@ -61,25 +64,41 @@ set tabstop=4 shiftwidth=4 expandtab
 " 256 terminal colours:
 set t_Co=256
 " colorize sytanx
-syntax on
+if has('syntax') && !exists('g:syntax_on')
+  syntax enable
+endif
+" show line numbers
+set number
 " set text encoding to UTF8
 set termencoding=utf-8
 set fileencoding=utf-8
 set encoding=utf8
 " set indent depending on file type
-filetype plugin indent on
-filetype plugin on
+if has('autocmd')
+  filetype plugin indent on
+endif
 " make backspace work like most other apps
 set backspace=2
 " vsplit opens second file on the right instead of left
 set splitright
-" numbering relative to current line (to jump easily using :+/-N)
-set relativenumber
 " display line number and location percentage
 set ruler
 " disable .swp files
 set noswapfile
 set copyindent
+set autoindent
+set showmode
+set smarttab
+set laststatus=2
+
+set showcmd
+set wildmenu
+
+set autoread
+
+if has('mouse')
+  set mouse=a
+endif
 
 
 " ----- Theming, visual tweaks -----
