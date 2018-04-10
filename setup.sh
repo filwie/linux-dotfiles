@@ -30,6 +30,8 @@ function main () {
         ln "${file}" "${dotfile}"
     done
     vim +PluginInstall +qall
+    echo "Installing below packages in used virtualenv might be required"
+    echo -e "- flake8\n- pylint\n- autopep8"
 }
 
 main
