@@ -24,7 +24,7 @@ let g:autopep8_disable_show_diff=0
 let g:autopep8_ignore="E501"  " ignore specific PEP8 (line too long,)
 
 " Syntastic - static code analysis
-let g:syntastic_python_checkers = ['flake8', 'pylint']
+let g:syntastic_python_checkers = ['flake8'] ", 'pylint']
 let g:syntastic_python_flake8_args = '--ignore=W401'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
