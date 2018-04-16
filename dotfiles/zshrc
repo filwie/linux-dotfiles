@@ -47,6 +47,7 @@ function main () {
     gruvbox
     PATH=/usr/local/sbin:$PATH:~/bin
     [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+    [[ -f ~/.python/3.6/bin/activate ]] && source ~/.python/3.6/bin/activate
 }
 
 
