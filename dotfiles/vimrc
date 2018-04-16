@@ -15,6 +15,7 @@ Plugin 'Valloric/YouCompleteMe'      " code completion
 Plugin 'ap/vim-buftabline'           " buffers as tabs on top
 Plugin 'airblade/vim-gitgutter'      " git indicators
 Plugin 'itchyny/lightline.vim'       " light status bar at bottom
+Plugin 'pearofducks/ansible-vim'     " Support for ansible
 call vundle#end()                    " required
 filetype plugin indent on            " required
 
