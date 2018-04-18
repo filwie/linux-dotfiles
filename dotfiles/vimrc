@@ -25,7 +25,7 @@ let g:autopep8_disable_show_diff=0
 let g:autopep8_ignore="E501"  " ignore specific PEP8 (line too long,)
 
 " Syntastic - static code analysis
-let g:syntastic_python_checkers = ['flake8'] ", 'pylint']
+let g:syntastic_python_checkers = ['flake8', 'pylint']
 let g:syntastic_python_flake8_args = '--ignore=W401'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -97,10 +97,6 @@ set number
 set termencoding=utf-8
 set fileencoding=utf-8
 set encoding=utf8
-" set indent depending on file type
-if has('autocmd')
-  filetype plugin indent on
-endif
 " make backspace work like most other apps
 set backspace=2
 " vsplit opens second file on the right instead of left
@@ -109,11 +105,12 @@ set splitright
 set ruler
 " disable .swp files
 set noswapfile
-set copyindent
-set autoindent
 set showmode
 set smarttab
 
+set copyindent
+set autoindent
+autocmd Filetype yaml setlocal ts=2 sw=2 sts=2 expandtab
 set showcmd
 set wildmenu
 
