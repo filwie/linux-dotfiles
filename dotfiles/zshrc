@@ -40,6 +40,7 @@ function main () {
     export ZSH_CUSTOM=~/.dotfiles/zsh-custom/themes
     export VISUAL=vim
     export EDITOR="${VISUAL}"
+    export BROWSER=firefox
     set_plugins_for_os
     ZSH_THEME="wisp"
     source ${ZSH}/oh-my-zsh.sh
