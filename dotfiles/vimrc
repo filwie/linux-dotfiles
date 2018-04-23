@@ -122,8 +122,9 @@ endif
 
 
 " ----- Theming, visual tweaks -----
-set background=light
-let g:gruvbox_contrast_light='soft'
+set background=light  " light dark
+let g:gruvbox_contrast_light='soft'  " soft medium hard
+let g:gruvbox_contrast_dark='hard'
 silent colorscheme gruvbox
 
 if &term =~# '^screen'
