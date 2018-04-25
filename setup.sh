@@ -25,10 +25,23 @@ function main () {
     git clone ${dotfiles_repo} ${destination} &&
     for file in ${destination}/dotfiles/*
     do
-        local dotfile=~/."$(basename ${file})"
-        [[ -f "${dotfile}" ]] && rm "${dotfile}"
-        ln "${file}" "${dotfile}"
+        if [ -f "${file}" ]; then
+            local dotfile=~/."$(basename ${file})"
+            [[ -f "${dotfile}" ]] && rm "${dotfile}"
+            ln "${file}" "${dotfile}" && echo "Linked $(basename ${file})"
+        fi
+        if [ -d "${file}"]; then
+            local app="$(basename ${file})"
+            local config_dir=~/.config/"$(basename ${file})"
+
+            mkdir -p "${config_dir}" \
+                && echo "Created directory for ${app} config" \
+                || echo "Directory for ${app} config already existed"
+
+            ln "${file}/*" "${config_dir}/" && echo "Linked config files for ${app}"
+        fi
     done
+
     vim +PluginInstall +qall
     echo "Installing below packages in used virtualenv might be required"
     echo -e "- flake8\n- pylint\n- autopep8"
