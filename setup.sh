@@ -30,7 +30,7 @@ function main () {
             [[ -f "${dotfile}" ]] && rm "${dotfile}"
             ln "${file}" "${dotfile}" && echo "Linked $(basename ${file})"
         fi
-        if [ -d "${file}"]; then
+        if [ -d "${file}"] && [[ "$(uname -a)" = "*inux*" ]]; then
             local app="$(basename ${file})"
             local config_dir=~/.config/"$(basename ${file})"
 
