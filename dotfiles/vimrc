@@ -137,3 +137,8 @@ set termguicolors
 
 " Enable italics in comments (important - put after colorscheme)
 highlight Comment cterm=italic
+
+" GUI settings
+set guioptions=
+set guifont=mononoki:h14
+
