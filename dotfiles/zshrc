@@ -46,9 +46,14 @@ function main () {
     source ${ZSH}/oh-my-zsh.sh
     start_and_attach_tmux
     gruvbox
-    PATH=/usr/local/sbin:$PATH:~/bin
+    path=(
+        '/usr/local/sbin'
+        $path
+        ~/bin
+    )
     [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
     [[ -f ~/.python/3.6/bin/activate ]] && source ~/.python/3.6/bin/activate
+    export PATH
 }
 
 
