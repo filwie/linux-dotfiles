@@ -4,9 +4,10 @@ set -e
 
 
 function install_vundle_if_needed () {
+    local branch=dev
     local vundle_path=~/.vim/bundle/Vundle.vim
     if ! [[ -d ${vundle_path} ]]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git ${vundle_path}
+    git clone https://github.com/VundleVim/Vundle.vim.git ${vundle_path} -b ${branch}
     fi
 }
 
@@ -45,7 +46,7 @@ function main () {
     vim +PluginInstall +qall
     echo "Installing below packages in used virtualenv might be required"
     echo -e "- flake8\n- pylint\n- autopep8"
-    tic ./utils/screen-256color-italic.terminfo # load screen with italics to TERM database
+    tic ${destination}/utils/screen-256color-italic.terminfo # load screen with italics to TERM database
 }
 
 main
