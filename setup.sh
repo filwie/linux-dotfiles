@@ -7,7 +7,8 @@ function install_vundle_if_needed () {
     local branch=master
     local vundle_path=~/.vim/bundle/Vundle.vim
     if ! [[ -d ${vundle_path} ]]; then
-    git clone git@gitlab.com:filip.wiechec/dotfiles.git ${vundle_path} -b ${branch}
+    timeout 10 git clone git@gitlab.com:filip.wiechec/dotfiles.git ${vundle_path} -b ${branch} || \
+        git clone https://gitlab.com/filip.wiechec/dotfiles.git ${vundle_path} -b ${branch}
     fi
 }
 
