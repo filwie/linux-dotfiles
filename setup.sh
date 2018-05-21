@@ -47,7 +47,9 @@ function main () {
     vim +GoInstallBinaries +qall
     echo "Installing below packages in used virtualenv might be required"
     echo -e "- flake8\n- pylint\n- autopep8"
-    tic ${destination}/utils/screen-256color-italic.terminfo # load screen with italics to TERM database
+    
+    tic -x ${destination}/utils/xterm-256color-italic.terminfo
+    tic -x ${destination}/utils/tmux-256color.terminfo
 }
 
 main
