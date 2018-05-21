@@ -8,7 +8,9 @@ Plugin 'scrooloose/nerdtree'         " file tree
 Plugin 'majutsushi/tagbar'           " tags, file structure overview
 Plugin 'ctrlpvim/ctrlp.vim'          " fuzzy file, buffr, ... finder
 Plugin 'morhetz/gruvbox'             " favourite colorscheme
+Plugin 'tell-k/vim-autopep8'         " auto pep8 format
 Plugin 'vim-syntastic/syntastic'     " check syntax on save
+Plugin 'bkad/CamelCaseMotion'        " using b, w, e works better with camelCase
 Plugin 'Valloric/YouCompleteMe'      " code completion
 Plugin 'ap/vim-buftabline'           " buffers as tabs on top
 Plugin 'airblade/vim-gitgutter'      " git indicators
@@ -18,6 +20,9 @@ call vundle#end()                    " required
 filetype plugin indent on            " required
 
 " ----- Plugin settings -----
+" Autopep8 - formatting python code
+let g:autopep8_disable_show_diff=0
+let g:autopep8_ignore="E501"  " ignore specific PEP8 (line too long,)
 
 " Syntastic - static code analysis
 let g:syntastic_python_checkers = ['flake8', 'pylint']
@@ -35,7 +40,7 @@ let g:syntastic_check_on_wq = 0
 let g:NERDTreeHijackNetrw = 1
 au VimEnter NERD_tree_1 enew | execute 'NERDTree '.argv()[0]
 
-" Buftabline - navigate using tab numbers
+" Buftabline - set navigation like in firefox
 let g:buftabline_numbers = 2
 nmap <leader>1 <Plug>BufTabLine.Go(1)
 nmap <leader>2 <Plug>BufTabLine.Go(2)
@@ -117,9 +122,8 @@ endif
 
 
 " ----- Theming, visual tweaks -----
-set background=light  " light dark
-let g:gruvbox_contrast_light='soft'  " soft medium hard
-let g:gruvbox_contrast_dark='hard'
+set background=light
+let g:gruvbox_contrast_light='soft'
 silent colorscheme gruvbox
 
 if &term =~# '^screen'
@@ -128,3 +132,6 @@ if &term =~# '^screen'
 endif
 
 set termguicolors
+
+" Enable italics in comments (important - put after colorscheme)
+highlight Comment cterm=italic
