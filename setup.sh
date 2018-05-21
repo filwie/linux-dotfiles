@@ -4,9 +4,10 @@ set -e
 
 
 function install_vundle_if_needed () {
+    local branch=dev
     local vundle_path=~/.vim/bundle/Vundle.vim
     if ! [[ -d ${vundle_path} ]]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git ${vundle_path}
+    git clone https://github.com/VundleVim/Vundle.vim.git ${vundle_path} -b ${branch}
     fi
 }
 
