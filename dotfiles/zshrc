@@ -51,6 +51,7 @@ function main () {
         $path
         ~/bin
     )
+    alias ssh='TERM=xterm-256color ssh'
     [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
     [[ -f ~/.python/3.6/bin/activate ]] && source ~/.python/3.6/bin/activate
     export PATH

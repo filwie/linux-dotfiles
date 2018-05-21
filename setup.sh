@@ -26,7 +26,7 @@ function main () {
     git clone ${dotfiles_repo} ${destination} &&
     for file in ${destination}/dotfiles/*
     do
-        if [ -f "${file}" ]; then
+        if [[ -f "${file}" ]]; then
             local dotfile=~/."$(basename ${file})"
             [[ -f "${dotfile}" ]] && rm "${dotfile}"
             ln "${file}" "${dotfile}" && echo "Linked $(basename ${file})"
