@@ -45,6 +45,7 @@ function main () {
     vim +PluginInstall +qall
     echo "Installing below packages in used virtualenv might be required"
     echo -e "- flake8\n- pylint\n- autopep8"
+    tic ./utils/screen-256color-italic.terminfo # load screen with italics to TERM database
 }
 
 main
