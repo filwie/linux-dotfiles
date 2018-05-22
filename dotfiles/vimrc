@@ -140,5 +140,5 @@ highlight Comment cterm=italic
 
 " GUI settings
 set guioptions=
-set guifont=mononoki:h14
+set guifont=mononoki\ 14
 
