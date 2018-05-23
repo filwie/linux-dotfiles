@@ -78,12 +78,22 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
+"  ansible-vim
+let g:ansible_unindent_after_newline = 1
+
 " ----- Key mapping -----
 map <C-n> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
-autocmd! FileType python nnoremap <buffer> <F9> :exec '!clear; python' shellescape(@%, 1)<CR>
-inoremap <F10> :exec '!clear;  pytest -v'<CR>
-nnoremap <F10> <Esc>:exec '!clear;  pytest -v'<CR>
+" Run Python code
+autocmd! FileType python inoremap <buffer> <F10> :exec '!clear; python' shellescape(@%, 1)<CR>
+autocmd! FileType python nnoremap <buffer> <F10> <Esc>:exec '!clear; python' shellescape(@%, 1)<CR>
+" Run pytest
+autocmd! FileType python inoremap <buffer> <F9> :exec '!clear;  pytest -v'<CR>
+autocmd! FileType python nnoremap <buffer> <F9> <Esc>:exec '!clear;  pytest -v'<CR>
+" Run Ansible playbook
+autocmd! FileType yaml.ansible inoremap <buffer> <F10> :exec '!clear; ansible-playbook' shellescape(@%, 1)<CR> 
+autocmd! FileType yaml.ansible nnoremap <buffer> <F10> <Esc>:exec '!clear; ansible-playbook' shellescape(@%, 1)<CR> 
+" Leave INSERT mode using C-c
 inoremap <C-c> <Esc><Esc>
 
 " ----- Command mapping -----
