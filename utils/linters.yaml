@@ -1,0 +1,19 @@
+---
+brew:
+    - checkstyle
+    - yamllint
+    - shellcheck
+
+pip:
+    - flake8
+    - pylint
+    - vim-vint
+
+npm:
+    - jslint
+    - sass-lint
+
+
+provided_with_language:
+    - golint
+    - ansible-lint
