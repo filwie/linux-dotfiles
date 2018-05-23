@@ -9,7 +9,7 @@ Plugin 'majutsushi/tagbar'           " tags, file structure overview
 Plugin 'ctrlpvim/ctrlp.vim'          " fuzzy file, buffr, ... finder
 Plugin 'morhetz/gruvbox'             " favourite colorscheme
 Plugin 'tell-k/vim-autopep8'         " auto pep8 format
-Plugin 'vim-syntastic/syntastic'     " check syntax on save
+Plugin 'w0rp/ale'                    " asynchronous syntax checking (replaced syntastic)
 Plugin 'bkad/CamelCaseMotion'        " using b, w, e works better with camelCase
 Plugin 'Valloric/YouCompleteMe'      " code completion
 Plugin 'ap/vim-buftabline'           " buffers as tabs on top
@@ -29,24 +29,17 @@ filetype plugin indent on            " required
 let g:autopep8_disable_show_diff=0
 let g:autopep8_ignore="E501"  " ignore specific PEP8 (line too long,)
 
-" Syntastic - static code analysis
-let g:syntastic_python_checkers = ['flake8', 'pylint']
-" Match Samsung code style requirements
-let g:syntastic_python_flake8_args = '--ignore=W401'
-let g:syntastic_python_pylint_args = '--disable all --enable E0001,E0011,E0012,E0100,E0101,E0102,E0103,E0104,E0105,E0107,E0108,E0110,E0111,E0112,E0113,E0114,E0115,E0116,E0117,E0202,E0203,E0213,E0236,E0237,E0238,E0239,E0240,E0241,E0303,E0402,E0601,E0602,E0603,E0604,E0632,E0701,E0702,E0703,E0704,E0710,E0711,E0712,E1003,E1111,E1121,E1124,E1125,E1126,E1127,E1128,E1130,E1131,E1132,E1133,E1134,E1135,E1137,E1138,E1139,E1200,E1201,E1205,E1206,E1300,E1301,E1302,E1303,E1304,E1305,E1306,E1310,W0101,W0102,W0104,W0105,W0106,W0107,W0108,W0109,W0111,W0120,W0122,W0123,W0124,W0150,W0199,W0211,W0221,W0222,W0231,W0232,W0233,W0402,W0404,W0406,W0410,W0601,W0602,W0603,W0604,W0622,W0623,W0640,W0702,W0705,W0711,W1201,W1202,W1300,W1301,W1302,W1303,W1304,W1305,W1306,W1307,W1401,W1402,W1501,W1502,W1505'
+" ale
 
-let g:syntastic_ansible_checkers = ['anisble_lint']
-let g:syntastic_cpp_checkers = ['gcc']
-let g:syntastic_c_checkers = ['gcc']
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_check_on_w = 1
+let g:ale_lint_delay = 500
+let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_enter = 0
+let g:ale_sign_column_always = 1
+let g:ale_sign_warning = '∎'
+let g:ale_sign_error = '✖'
+let g:ale_echo_msg_format = '[%linter%] %s'
 
 " NerdTree
 " Open Nerd tree if opening a directory
