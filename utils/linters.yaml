@@ -3,15 +3,19 @@ brew:
     - checkstyle
     - yamllint
     - shellcheck
+    - oclint
+    - cppcheck
 
 pip:
     - flake8
     - pylint
     - vim-vint
+    - gitlint
 
 npm:
     - jslint
     - sass-lint
+    - htmlhint
 
 
 provided_with_language:
