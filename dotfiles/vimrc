@@ -21,6 +21,7 @@ Plugin 'glench/vim-jinja2-syntax'    " Jinja2 template syntax
 Plugin 'syngan/vim-vimlint'          " Linter for viml
 Plugin 'ekalinin/Dockerfile.vim'     " Dockerfile syntax
 Plugin 'fatih/vim-go'                " golang support. Example: :GoLint, :GoCompile (REQUIRES: :GoInstallBinaries)
+Plugin 'skywind3000/asyncrun.vim'    " Async execute shell comands
 call vundle#end()                    " required
 filetype plugin indent on            " required
 
@@ -83,6 +84,16 @@ autocmd! FileType python nnoremap <buffer> <F9> <Esc>:exec '!clear;  pytest -v'<
 " Run Ansible playbook
 autocmd! FileType yaml.ansible inoremap <buffer> <F10> :exec '!clear; ansible-playbook' shellescape(@%, 1)<CR> 
 autocmd! FileType yaml.ansible nnoremap <buffer> <F10> <Esc>:exec '!clear; ansible-playbook' shellescape(@%, 1)<CR> 
+
+" Compile and run c++ code
+
+
+
+autocmd! FileType cpp inoremap nnoremap <silent> <F9> :AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
+autocmd! FileType cpp nnoremap nnoremap <silent> <F9> <Esc>:AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
+autocmd! FileType cpp inoremap <silent> <F5> :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+autocmd! FileType cpp nnoremap <silent> <F5> <Esc>:AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+
 " Leave INSERT mode using C-c
 inoremap <C-c> <Esc><Esc>
 
