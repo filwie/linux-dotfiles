@@ -84,8 +84,8 @@ autocmd! FileType python nnoremap <buffer> <F10> <Esc>:exec '!clear; python' she
 autocmd! FileType python inoremap <buffer> <F9> :exec '!clear;  pytest -v'<CR>
 autocmd! FileType python nnoremap <buffer> <F9> <Esc>:exec '!clear;  pytest -v'<CR>
 " Run Ansible playbook
-autocmd! FileType yaml.ansible inoremap <buffer> <F10> :AsyncRun '!clear; ansible-playbook' shellescape(@%, 1)<CR> 
-autocmd! FileType yaml.ansible nnoremap <buffer> <F10> <Esc>:AsyncRun '!clear; ansible-playbook' shellescape(@%, 1)<CR> 
+autocmd! FileType yaml.ansible inoremap <buffer> <F10> :exec '!clear; ansible-playbook' shellescape(@%, 1)<CR> 
+autocmd! FileType yaml.ansible nnoremap <buffer> <F10> <Esc>:exec '!clear; ansible-playbook' shellescape(@%, 1)<CR> 
 
 " Compile and run c++ code
 
