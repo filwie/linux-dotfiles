@@ -30,9 +30,9 @@ function main () {
         if [[ -f "${file}" ]]; then
             local dotfile=~/."$(basename ${file})"
             [[ -f "${dotfile}" ]] && rm "${dotfile}"
-            ln "${file}" "${dotfile}" && echo "Linked $(basename ${file})"
+            ln "${file}" "${dotfile}" && echo "Linked $(basename "${file}")"
         fi
-        if [ -d "${file}"] && [[ "$(uname -a)" = "*inux*" ]]; then
+        if [ -d "${file}" ] && [[ "$(uname -a)" = "*inux*" ]]; then
             local app="$(basename ${file})"
             local config_dir=~/.config/"$(basename ${file})"
 
@@ -47,10 +47,11 @@ function main () {
     vim +PluginInstall +qall
     vim +GoInstallBinaries +qall
     echo "Installing below packages in used virtualenv might be required"
-    echo -e "- flake8\n- pylint\n- autopep8"
+    echo -e "- flake8\\n- pylint\\n- autopep8"
     
     tic -x ${destination}/utils/xterm-256color-italic.terminfo
     tic -x ${destination}/utils/tmux-256color.terminfo
+    wget https://raw.githubusercontent.com/Valloric/ycmd/3ad0300e94edc13799e8bf7b831de8b57153c5aa/cpp/ycm/.ycm_extra_conf.py ~/.ycm_extra_conf.py 
 }
 
 main

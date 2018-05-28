@@ -75,6 +75,8 @@ let g:ansible_unindent_after_newline = 1
 " ----- Key mapping -----
 map <C-n> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
+map <F7> :source ~/.vimrc<CR>
+
 " Run Python code
 autocmd! FileType python inoremap <buffer> <F10> :exec '!clear; python' shellescape(@%, 1)<CR>
 autocmd! FileType python nnoremap <buffer> <F10> <Esc>:exec '!clear; python' shellescape(@%, 1)<CR>
@@ -82,17 +84,17 @@ autocmd! FileType python nnoremap <buffer> <F10> <Esc>:exec '!clear; python' she
 autocmd! FileType python inoremap <buffer> <F9> :exec '!clear;  pytest -v'<CR>
 autocmd! FileType python nnoremap <buffer> <F9> <Esc>:exec '!clear;  pytest -v'<CR>
 " Run Ansible playbook
-autocmd! FileType yaml.ansible inoremap <buffer> <F10> :exec '!clear; ansible-playbook' shellescape(@%, 1)<CR> 
-autocmd! FileType yaml.ansible nnoremap <buffer> <F10> <Esc>:exec '!clear; ansible-playbook' shellescape(@%, 1)<CR> 
+autocmd! FileType yaml.ansible inoremap <buffer> <F10> :AsyncRun '!clear; ansible-playbook' shellescape(@%, 1)<CR> 
+autocmd! FileType yaml.ansible nnoremap <buffer> <F10> <Esc>:AsyncRun '!clear; ansible-playbook' shellescape(@%, 1)<CR> 
 
 " Compile and run c++ code
 
 
 
-autocmd! FileType cpp inoremap nnoremap <silent> <F9> :AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
-autocmd! FileType cpp nnoremap nnoremap <silent> <F9> <Esc>:AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
-autocmd! FileType cpp inoremap <silent> <F5> :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
-autocmd! FileType cpp nnoremap <silent> <F5> <Esc>:AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+autocmd! FileType cpp inoremap <buffer> <F9> :AsyncRun g++ -Wall -pedantic "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
+autocmd! FileType cpp nnoremap <buffer> <F9> <Esc>:AsyncRun g++ -Wall -pedantic "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
+autocmd! FileType cpp inoremap <buffer> <F10> :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+autocmd! FileType cpp nnoremap <buffer> <F10> <Esc>:AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
 
 " Leave INSERT mode using C-c
 inoremap <C-c> <Esc><Esc>
