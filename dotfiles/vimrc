@@ -162,6 +162,10 @@ set termguicolors
 highlight Comment cterm=italic
 
 " GUI settings
-set guioptions=
-set guifont=mononoki\ 14
+if has('gui')
+    set guioptions=
+    set guifont=mononoki\ 14
+    set autochdir
+    set shell=/bin/zsh
+endif
 
