@@ -75,7 +75,11 @@ let g:ansible_unindent_after_newline = 1
 " ----- Key mapping -----
 map <C-n> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
-map <F7> :source ~/.vimrc<CR>
+
+" maps for sourcing, opening and autosourcing .vimrc
+map <leader>vs :source $MYVIMRC<CR>
+map <leader>v :vsplit $MYVIMRC<CR>
+autocmd BufWritePost .vimrc source $MYVIMRC
 
 " Run Python code
 autocmd! FileType python inoremap <buffer> <F10> :exec '!clear; python' shellescape(@%, 1)<CR>
