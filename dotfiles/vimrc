@@ -31,7 +31,6 @@ let g:autopep8_disable_show_diff=0
 let g:autopep8_ignore="E501"  " ignore specific PEP8 (line too long,)
 
 " ale
-
 let g:ale_lint_delay = 500
 let g:ale_lint_on_text_changed = 1
 let g:ale_lint_on_insert_leave = 1
@@ -72,37 +71,68 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 "  ansible-vim
 let g:ansible_unindent_after_newline = 1
 
+
+" AsyncRun
+" set the quickfix window 6 lines height.
+let g:asyncrun_open = 6
+" ring the bell to notify you job finished
+let g:asyncrun_bell = 1
+
 " ----- Key mapping -----
 map <C-n> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
 
+" toggle quickfix window
+nnoremap <leader>q :call asyncrun#quickfix_toggle(6)<CR>
+
 " maps for sourcing, opening and autosourcing .vimrc
 map <leader>vs :source $MYVIMRC<CR>
 map <leader>v :vsplit $MYVIMRC<CR>
-autocmd BufWritePost .vimrc source $MYVIMRC
 
-" Run Python code
-autocmd! FileType python inoremap <buffer> <F10> :exec '!clear; python' shellescape(@%, 1)<CR>
-autocmd! FileType python nnoremap <buffer> <F10> <Esc>:exec '!clear; python' shellescape(@%, 1)<CR>
-" Run pytest
-autocmd! FileType python inoremap <buffer> <F9> :exec '!clear;  pytest -v'<CR>
-autocmd! FileType python nnoremap <buffer> <F9> <Esc>:exec '!clear;  pytest -v'<CR>
-" Run Ansible playbook
-autocmd! FileType yaml.ansible inoremap <buffer> <F10> :exec '!clear; ansible-playbook' shellescape(@%, 1)<CR> 
-autocmd! FileType yaml.ansible nnoremap <buffer> <F10> <Esc>:exec '!clear; ansible-playbook' shellescape(@%, 1)<CR> 
 
-" Compile and run c++ code
-autocmd! FileType cpp inoremap <buffer> <F9> :AsyncRun g++ -Wall -pedantic "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
-autocmd! FileType cpp nnoremap <buffer> <F9> <Esc>:AsyncRun g++ -Wall -pedantic "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
-autocmd! FileType cpp inoremap <buffer> <F10> :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
-autocmd! FileType cpp nnoremap <buffer> <F10> <Esc>:AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
 
-" Run vim script
-autocmd! Filetype vim inoremap <buffer> <F10> :exec '!clear' <bar> source % <CR>
-autocmd! Filetype vim nnoremap <buffer> <F10> <Esc> :exec '!clear' <bar> source % <CR> 
+augroup python
+    autocmd!
+    " Run Python code
+    autocmd FileType python nmap <buffer> <F10> :exec '!clear; python' shellescape(@%, 1)<CR>
+    autocmd FileType python imap <buffer> <F10> <Esc>:exec '!clear; python' shellescape(@%, 1)<CR>
+    " Run pytest
+    autocmd FileType python nmap <buffer> <F9> :exec '!clear;  pytest -v'<CR>
+    autocmd FileType python imap <buffer> <F9> <Esc>:exec '!clear;  pytest -v'<CR>
+augroup END
+
+augroup ansible
+    autocmd!
+    " Run Ansible playbook
+    autocmd FileType yaml.ansible nmap <buffer> <F10> :exec '!clear; ansible-playbook' shellescape(@%, 1)<CR>
+    autocmd FileType yaml.ansible imap <buffer> <F10> <Esc>:exec '!clear; ansible-playbook' shellescape(@%, 1)<CR>
+augroup END
+
+augroup ccpp
+    autocmd!
+    " Compile C
+    autocmd FileType c nmap <silent> <F9> :AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
+    autocmd FileType c imap <silent> <F9> <Esc>:AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
+    " Compile
+    autocmd FileType cpp nmap <F9> :AsyncRun g++ -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
+    autocmd FileType cpp imap <F9> <Esc>:AsyncRun g++ -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
+    " Execute
+    autocmd FileType c,cpp nmap <buffer> <F10> :exec '!clear; %:p:h/%:r' <CR>
+    autocmd FileType c,cpp imap <buffer> <F10> <Esc> :exec '!clear; %:p:h/%:r' <CR>
+augroup END
+
+augroup vimscript
+    autocmd!
+    " Source .vimrc on write
+    autocmd BufWritePost .vimrc source $MYVIMRC
+    " Run vim script
+    autocmd Filetype vim nmap <buffer> <F10> :exec '!clear' <bar> source % <CR>
+    autocmd Filetype vim imap <buffer> <F10> <Esc> :exec '!clear' <bar> source % <CR>
+augroup END
+
 
 " Leave INSERT mode using C-c
-inoremap <C-c> <Esc><Esc>
+imap <C-c> <Esc><Esc>
 
 " ----- Command mapping -----
 " Format and Sort JSON
