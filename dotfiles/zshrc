@@ -46,16 +46,10 @@ function main () {
     source ${ZSH}/oh-my-zsh.sh
     start_and_attach_tmux
     gruvbox
-    path=(
-        '/usr/local/sbin'
-        $path
-        ~/bin
-    )
+    export GOPATH=$(go env GOPATH)
     alias ssh='TERM=xterm-256color ssh'
     [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
     [[ -f ~/.python/3.6/bin/activate ]] && source ~/.python/3.6/bin/activate
-    export PATH
 }
-
 
 main
