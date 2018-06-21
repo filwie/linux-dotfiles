@@ -26,6 +26,7 @@ function main () {
 
     git clone ${dotfiles_repo} ${destination} &&
     for file in ${destination}/dotfiles/*
+    #TODO: utilize link_dotfiles script instead of below
     do
         if [[ -f "${file}" ]]; then
             local dotfile=~/."$(basename ${file})"
