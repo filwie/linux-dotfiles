@@ -41,6 +41,8 @@ function main () {
     export VISUAL=vim
     export EDITOR="${VISUAL}"
     export BROWSER=firefox
+    [[ "$(uname -a)" = *"ARCH"* ]] && export TERMINAL=termite
+
     set_plugins_for_os
     ZSH_THEME="wisp"
     source ${ZSH}/oh-my-zsh.sh
