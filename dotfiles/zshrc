@@ -29,11 +29,18 @@ function set_plugins_for_os () {
 }
 
 # Show all 256 colors with color number
-function spectrum_ls() {
+function spectrum_ls () {
   for code in {000..255}; do
       print -P -- "$code: %{$FG[$code]%}$ZSH_SPECTRUM_TEXT%{$reset_color%}"
-        done
-        }
+  done
+}
+
+function source_fzf () {
+    local fzf_paths=(~/.fzf.sh /usr/share/fzf/key-bindings.zsh /usr/share/completion.zsh)
+    for fzf_path in "${fzf_paths[@]}"; do
+        [[ -f "${fzf_path}" ]] && source ${fzf_path}
+    done
+}
 
 function main () {
     export ZSH=~/.oh-my-zsh
@@ -41,17 +48,16 @@ function main () {
     export VISUAL=vim
     export EDITOR="${VISUAL}"
     export BROWSER=firefox
+    export GOPATH=$(go env GOPATH)
+    
     [[ "$(uname -a)" = *"ARCH"* ]] && export TERMINAL=termite
-
     set_plugins_for_os
     ZSH_THEME="wisp"
     source ${ZSH}/oh-my-zsh.sh
     start_and_attach_tmux
     gruvbox
-    export GOPATH=$(go env GOPATH)
+    source_fzf
     alias ssh='TERM=xterm-256color ssh'
-    [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
-    [[ -f ~/.python/3.6/bin/activate ]] && source ~/.python/3.6/bin/activate
 }
 
 main
