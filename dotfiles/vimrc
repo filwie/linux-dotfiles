@@ -181,6 +181,11 @@ if has('mouse')
   set mouse=a
 endif
 
+"enable clipboard intergration, copying to clipboard
+
+nnoremap y "+y
+vnoremap y "+y
+set clipboard=unnamedplus
 
 " ----- Theming, visual tweaks -----
 set background=light
