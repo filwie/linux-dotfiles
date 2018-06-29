@@ -18,8 +18,8 @@ ZSH_THEME_SCM_PROMPT_PREFIX=${git_info_color}${start_italics}
 ZSH_THEME_GIT_PROMPT_PREFIX=$ZSH_THEME_SCM_PROMPT_PREFIX
 ZSH_THEME_GIT_PROMPT_SUFFIX=${end_italics}
 
-ZSH_THEME_GIT_PROMPT_DIRTY=${warning_color}"⮠%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_CLEAN="✓%{$reset_color%} "
+ZSH_THEME_GIT_PROMPT_DIRTY=${warning_color}"✗%{$reset_color%} "
+ZSH_THEME_GIT_PROMPT_CLEAN="✔%{$reset_color%} "
 
 
 local path_short=${path_color}'%2~%{$reset_color%}'
