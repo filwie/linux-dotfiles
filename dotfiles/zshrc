@@ -36,7 +36,7 @@ function spectrum_ls () {
 }
 
 function source_fzf () {
-    local fzf_paths=(~/.fzf.sh /usr/share/fzf/key-bindings.zsh /usr/share/completion.zsh)
+    local fzf_paths=(~/.fzf.zsh /usr/share/fzf/key-bindings.zsh /usr/share/completion.zsh)
     for fzf_path in "${fzf_paths[@]}"; do
         [[ -f "${fzf_path}" ]] && source ${fzf_path}
     done
