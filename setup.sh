@@ -24,26 +24,9 @@ function main () {
     #TODO: install vim, tmux,zsh if not installed, along with oh-my-zsh
     install_vundle_if_needed
 
-    git clone ${dotfiles_repo} ${destination} &&
-    for file in ${destination}/dotfiles/*
-    #TODO: utilize link_dotfiles script instead of below
-    do
-        if [[ -f "${file}" ]]; then
-            local dotfile=~/."$(basename ${file})"
-            [[ -f "${dotfile}" ]] && rm "${dotfile}"
-            ln "${file}" "${dotfile}" && echo "Linked $(basename "${file}")"
-        fi
-        if [ -d "${file}" ] && [[ "$(uname -a)" = "*inux*" ]]; then
-            local app="$(basename ${file})"
-            local config_dir=~/.config/"$(basename ${file})"
+    git clone ${dotfiles_repo} ${destination}
 
-            mkdir -p "${config_dir}" \
-                && echo "Created directory for ${app} config" \
-                || echo "Directory for ${app} config already existed"
-
-            ln "${file}/*" "${config_dir}/" && echo "Linked config files for ${app}"
-        fi
-    done
+    bash "{destination}/utils/utils/link_dotfiles.sh"
 
     vim +PluginInstall +qall
     vim +GoInstallBinaries +qall
