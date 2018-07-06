@@ -9,6 +9,10 @@ set $mod Mod1
 # thin borders
 hide_edge_borders both
 
+# no titlebar
+for_window [class=".*"] border pixel 1
+for_window [class="albert"] border pixel 0
+
 # Before i3 v4.8, we used to recommend this one as the default:
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -227,7 +231,6 @@ bindsym $mod+F8 exec mocp --next
 # App shortcuts
 bindsym $mod+w exec --no-startup-id "chromium"
 bindsym $mod+n exec --no-startup-id "thunar"
-bindsym $mod+d exec
 
 # Autostart apps
 exec --no-startup-id "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
