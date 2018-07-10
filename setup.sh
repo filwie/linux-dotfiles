@@ -28,7 +28,7 @@ function main () {
 
     bash "${destination}/utils/link_dotfiles.sh"
 
-    [[ -d ~/bin]] || mkdir ~/bin
+    [[ -d ~/bin ]] || mkdir ~/bin
     ln -s "${destination}/utils/link_dotfiles.sh" ~/bin/link_dotfiles
 
     vim +PluginInstall +qall
