@@ -26,7 +26,10 @@ function main () {
 
     git clone ${dotfiles_repo} ${destination}
 
-    bash "{destination}/utils/utils/link_dotfiles.sh"
+    bash "${destination}/utils/link_dotfiles.sh"
+
+    [[ -d ~/bin]] || mkdir ~/bin
+    ln -s "${destination}/utils/link_dotfiles.sh" ~/bin/link_dotfiles
 
     vim +PluginInstall +qall
     vim +GoInstallBinaries +qall
