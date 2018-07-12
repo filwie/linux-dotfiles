@@ -11,10 +11,7 @@ local distinct_color=${rgb_prefix}"7;102;120"${rgb_suffix}
 local warning_color=${rgb_prefix}"225;148;59"${rgb_suffix}
 local critical_color=${rgb_prefix}"177;63;32"${rgb_suffix}
 
-# Sometimes useful unicode characters
-# ➤ ⌘ ⮡ ⮠ ⤽ ￩ ￫ 𝌡 ✗ 🗴 ✓ ✔
-
-ZSH_THEME_SCM_PROMPT_PREFIX=${git_info_color}${start_italics}
+ZSH_THEME_SCM_PROMPT_PREFIX=${git_info_color}" "${start_italics}
 ZSH_THEME_GIT_PROMPT_PREFIX=$ZSH_THEME_SCM_PROMPT_PREFIX
 ZSH_THEME_GIT_PROMPT_SUFFIX=${end_italics}
 
@@ -24,7 +21,7 @@ ZSH_THEME_GIT_PROMPT_CLEAN="✔%{$reset_color%} "
 
 local path_short=${path_color}'%2~%{$reset_color%}'
 local git_prompt=$' $(git_prompt_info)$(bzr_prompt_info)'
-local ret_status="%(?:"${path_color}"➤:"${critical_color}"➤)"$'%{$reset_color%} '
+local ret_status="%(?:"${path_color}":"${critical_color}")"$'%{$reset_color%} '
 
 PROMPT=${path_short}${git_prompt}${ret_status}
 GIT_CB="git::"

@@ -51,6 +51,8 @@ function main () {
     export GOPATH=$(go env GOPATH)
     
     [[ "$(uname -a)" = *"ARCH"* ]] && export TERMINAL=termite
+    [[ "$(hostname)" = *"x240"* ]] && export GDK_SCALE=1.25
+
     set_plugins_for_os
     ZSH_THEME="wisp"
     source ${ZSH}/oh-my-zsh.sh

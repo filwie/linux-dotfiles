@@ -9,17 +9,14 @@ set $mod Mod1
 # thin borders
 hide_edge_borders both
 
+# gaps
+gaps inner 4
+
 # no titlebar
 for_window [class=".*"] border pixel 1
 for_window [class="albert"] border pixel 0
 
-# Before i3 v4.8, we used to recommend this one as the default:
-#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
-font pango:Roboto Regular 9
+font pango:Noto Regular 7
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -35,7 +32,7 @@ bindsym $mod+Shift+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id albert toggle
+bindsym $mod+d exec rofi -show drun
 
 # change focus
 # configured for vim-like keys
@@ -117,12 +114,11 @@ bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # lock
-bindsym $mod+Shift+x exec i3lock --color 475263
+bindsym $mod+Ctrl+l exec "i3lock --color 475263"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -150,10 +146,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $bg-color            #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676e7d
+set $bg-color            #282828
+set $inactive-bg-color   #303030
+set $text-color          #F2E5BC
+set $inactive-text-color #D5C4A1
 set $urgent-bg-color     #e53935
 set $indicator-color     #a0a0a0
 
@@ -168,15 +164,17 @@ client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color       
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+    height 25
 	status_command i3status
-	font pango:Mononoki 10
+	font pango:Noto Sans Condensed 7
 	position top
 
-	separator_symbol " "
+	separator_symbol "|"
 	workspace_buttons yes
 	colors {
 		background $bg-color
-	    	separator #757575
+	    separator #757575
+	    statusline #ebdbb2
 		#                  border             background         text
 		focused_workspace  $bg-color          $bg-color          $text-color
 		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
@@ -191,9 +189,6 @@ for_window [class="nm-applet"] floating enable
 for_window [class="Gpick"] floating enable
 for_window [class="albert"] floating enable
 for_window [class="feh"] floating enable
-
-
-
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -232,6 +227,9 @@ bindsym $mod+F8 exec mocp --next
 bindsym $mod+w exec --no-startup-id "chromium"
 bindsym $mod+n exec --no-startup-id "thunar"
 
+# DPI
+exec xrandr --dpi 120
+
 # Autostart apps
 exec --no-startup-id "compton --config ~/.compton.conf -b"
 exec --no-startup-id "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
@@ -239,5 +237,7 @@ exec --no-startup-id "dropbox"
 exec --no-startup-id "nm-applet"
 exec --no-startup-id "nitrogen --restore"
 exec --no-startup-id "sleep 5s && kalu"
-exec --no-startup-id "albert"
+exec --no-startup-id "xscreensaver"
+exec --no-startup-id "xfce4-power-manager"
+exec --no-startup-id feh --bg-scale ~/Dropbox/Pictures/Wallpapers/creative_hand_surrealism_car_clock_pineapple_cat_96125_1920x1080.jpg
 
