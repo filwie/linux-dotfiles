@@ -16,6 +16,7 @@ gaps inner 4
 for_window [class=".*"] border pixel 1
 for_window [class="albert"] border pixel 0
 
+# font for window titles etc.
 font pango:Noto Regular 7
 
 # Use Mouse+$mod to drag floating windows to their wanted position
