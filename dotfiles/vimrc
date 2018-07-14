@@ -90,7 +90,8 @@ nnoremap <leader>q :call asyncrun#quickfix_toggle(6)<CR>
 map <leader>vs :source $MYVIMRC<CR>
 map <leader>v :vsplit $MYVIMRC<CR>
 
-
+" map for reloading the config and restarting i3
+map <leader>i3 :exec '!i3-msg reload; i3-msg restart'<CR>
 
 augroup python
     autocmd!
