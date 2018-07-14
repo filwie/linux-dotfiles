@@ -230,6 +230,9 @@ bindsym $mod+n exec --no-startup-id "thunar"
 # DPI
 exec xrandr --dpi 120
 
+# Ctrl instead of CapsLock
+exec --no-startup-id setxkbmap -option ctrl:nocaps
+
 # Autostart apps
 exec --no-startup-id "compton --config ~/.compton.conf -b"
 exec --no-startup-id "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
