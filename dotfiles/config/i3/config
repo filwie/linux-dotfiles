@@ -32,7 +32,7 @@ bindsym $mod+Shift+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec rofi -show drun
+bindsym $mod+d exec "rofi -combi-modi window,drun,ssh -show combi"
 
 # change focus
 # configured for vim-like keys
