@@ -109,6 +109,12 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+# Move floating container to the center of all outputs
+bindsym $mod+c move absolute position center
+
+# Move container to the current position of the cursor
+bindsym $mod+m move position mouse
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
@@ -184,11 +190,16 @@ bar {
 
 # floating windows
 for_window [class="Pavucontrol"] floating enable
-for_window [class="Kalu"] floating enable
 for_window [class="nm-applet"] floating enable
 for_window [class="Gpick"] floating enable
-for_window [class="albert"] floating enable
 for_window [class="feh"] floating enable
+for_window [class="Blueman-manager"] floating enable
+for_window [class="Nm-connection-editor"] floating enable
+
+# floating windows settings
+floating_minimum_size 240 x 100
+floating_maximum_size 1280 x 768
+
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
