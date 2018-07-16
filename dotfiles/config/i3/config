@@ -172,7 +172,8 @@ client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color       
 bar {
     height 25
 	status_command i3status
-	font pango:Noto Sans Condensed 7
+	font pango:Noto Sans Condensed 12
+
 	position top
 
 	separator_symbol "|"
@@ -239,7 +240,10 @@ bindsym $mod+w exec --no-startup-id "chromium"
 bindsym $mod+n exec --no-startup-id "thunar"
 
 # DPI
-exec xrandr --dpi 120
+# for x240 (12.5" FHD)
+# exec xrandr --dpi 120
+# for workstation (2x 22" FHD)
+exec xrandr --dpi 96
 
 # Ctrl instead of CapsLock
 exec --no-startup-id setxkbmap -option ctrl:nocaps
