@@ -6,7 +6,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'        " plugin manager
 Plugin 'scrooloose/nerdtree'         " file tree
 Plugin 'majutsushi/tagbar'           " tags, file structure overview
-Plugin 'ctrlpvim/ctrlp.vim'          " fuzzy file, buffr, ... finder
 Plugin 'morhetz/gruvbox'             " favourite colorscheme
 Plugin 'tell-k/vim-autopep8'         " auto pep8 format
 Plugin 'w0rp/ale'                    " asynchronous syntax checking (replaced syntastic)
@@ -23,6 +22,8 @@ Plugin 'ekalinin/Dockerfile.vim'     " Dockerfile syntax
 Plugin 'fatih/vim-go'                " golang support. Example: :GoLint, :GoCompile (REQUIRES: :GoInstallBinaries)
 Plugin 'skywind3000/asyncrun.vim'    " Async execute shell comands
 Plugin 'ryanoasis/vim-devicons'      " Filetype icons
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'            " fzf in vim
 call vundle#end()                    " required
 filetype plugin indent on            " required
 
@@ -67,11 +68,6 @@ let g:lightline = {
 set noshowmode
 set laststatus=2
 
-" CtrlP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
-
 "  ansible-vim
 let g:ansible_unindent_after_newline = 1
 
@@ -83,6 +79,10 @@ let g:asyncrun_open = 6
 let g:asyncrun_bell = 1
 
 " ----- Key mapping -----
+" Map familiar C-p to use fzf
+map <C-p> :FZF<CR>
+map <leader>p :Commands<CR>
+
 map <C-n> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
 
