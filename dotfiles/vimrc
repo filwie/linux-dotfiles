@@ -6,6 +6,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'        " plugin manager
 Plugin 'scrooloose/nerdtree'         " file tree
 Plugin 'majutsushi/tagbar'           " tags, file structure overview
+Plugin 'nathanaelkane/vim-indent-guides'  " indent lines
 Plugin 'morhetz/gruvbox'             " favourite colorscheme
 Plugin 'tell-k/vim-autopep8'         " auto pep8 format
 Plugin 'w0rp/ale'                    " asynchronous syntax checking (replaced syntastic)
