@@ -44,6 +44,9 @@ let g:ale_echo_msg_format = '[%linter%] %s %code%'
 let g:NERDTreeHijackNetrw = 1
 au VimEnter NERD_tree_1 enew | execute 'NERDTree '.argv()[0]
 
+let NERDTreeDirArrowExpandable = ""
+let NERDTreeDirArrowCollapsible = ""
+
 " Buftabline - set navigation like in firefox
 let g:buftabline_numbers = 2
 nmap <leader>1 <Plug>BufTabLine.Go(1)
@@ -206,7 +209,7 @@ highlight Comment cterm=italic
 " GUI settings
 if has('gui')
     set guioptions=
-    set guifont=mononoki\ 14
+    set guifont=mononoki\ Nerd\ Font\ 14
     set autochdir
     set shell=/bin/zsh
 endif
