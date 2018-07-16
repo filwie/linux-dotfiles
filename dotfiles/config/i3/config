@@ -196,7 +196,7 @@ for_window [class="Gpick"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="Blueman-manager"] floating enable
 for_window [class="Nm-connection-editor"] floating enable
-
+for_window [class="jetbrains-toolbox"] floating enable"
 # floating windows settings
 floating_minimum_size 240 x 100
 floating_maximum_size 1280 x 768
