@@ -87,6 +87,9 @@ map <leader>p :Commands<CR>
 map <C-n> :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
 
+map <leader>] :bnext<CR>
+map <leader>[ :bprev<CR>
+
 " toggle quickfix window
 nnoremap <leader>q :call asyncrun#quickfix_toggle(6)<CR>
 
