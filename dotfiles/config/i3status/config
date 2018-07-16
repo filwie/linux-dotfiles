@@ -42,7 +42,7 @@ ethernet _first_ {
 
 battery all {
   format = "%status%percentage (%remaining)"
-  format_down = ""
+  format_down = ""
   last_full_capacity = true
   integer_battery_capacity = true
   low_threshold = 10
@@ -67,8 +67,8 @@ disk "/" {
 }
 
 volume master {
-  format = "墳%volume"
-  format_muted = "婢%volume"
+  format = "墳 %volume"
+  format_muted = "婢 %volume"
   device = "default"
   mixer = "Master"
   mixer_idx = 0
