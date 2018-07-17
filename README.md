@@ -14,7 +14,7 @@ bash -c "$(curl -fsSL https://gitlab.com/filip.wiechec/dotfiles/raw/master/setup
 # arrows etc: ➤ ⮡ ⮠ ✗ 🗴 ✓ ✔             ﰲ
 # hardware:   力 曆 歷 轢 年 憐 戀 撚             
 # OSes, software:               
-# indicators:            直睊             
+# indicators:            直睊               ﱝ
 # batteries:                                               
 # folders:        ﱮ
 # dices:           
