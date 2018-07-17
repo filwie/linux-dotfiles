@@ -178,7 +178,8 @@ client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color       
 bar {
     height 25
 	status_command i3status
-	font pango:Noto Sans Condensed 7
+	# difference
+	font pango:Noto Sans Condensed 13
 
 	position top
 
