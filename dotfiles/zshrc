@@ -59,6 +59,7 @@ function main () {
     start_and_attach_tmux
     gruvbox
     source_fzf
+    [[ -f ~/.zsh_aliases ]] && source ~/.zsh_aliases
     alias ssh='TERM=xterm-256color ssh'
 }
 
