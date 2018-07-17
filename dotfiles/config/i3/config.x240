@@ -22,11 +22,8 @@ font pango:Noto Regular 7
 floating_modifier $mod
 
 # start a terminal
-# x240
-# bindsym $mod+Return exec termite
-
-# workstation
-bindsym $mod+Return exec alacritty
+# difference
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
