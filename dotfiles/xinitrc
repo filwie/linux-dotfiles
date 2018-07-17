@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -23,5 +23,13 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
-xrandr --dpi 196
+
+local i3_config_main=~/.config/i3/config
+local i3_config_x240=~/.config/i3/config.x240
+local i3_config_workstation=~/.config/i3/config.workstation
+
+[[ $(hostname) = *"x240"* ]] \
+    && cat ${i3_config_x240} > ${i3_config_main} \
+    || cat ${i3_config_workstation} > ${i3_config_main}
+
 exec i3
