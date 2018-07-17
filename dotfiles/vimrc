@@ -23,6 +23,7 @@ Plugin 'ekalinin/Dockerfile.vim'     " Dockerfile syntax
 Plugin 'fatih/vim-go'                " golang support. Example: :GoLint, :GoCompile (REQUIRES: :GoInstallBinaries)
 Plugin 'skywind3000/asyncrun.vim'    " Async execute shell comands
 Plugin 'ryanoasis/vim-devicons'      " Filetype icons
+Plugin 'bronson/vim-trailing-whitespace'  " :FixWhitespaces
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'            " fzf in vim
 call vundle#end()                    " required
