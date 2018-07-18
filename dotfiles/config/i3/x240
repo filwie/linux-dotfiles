@@ -1,0 +1,51 @@
+# x240 part of i3 config
+
+# gaps
+gaps inner 4
+gaps outer 0
+
+# window title fonts
+font pango:Noto Regular 8
+
+# start a terminal
+bindsym $mod+Return exec alacritty
+
+# window borders
+for_window [class=".*"] border pixel 1
+
+# launcher, window switcher
+bindsym $mod+d exec "rofi -show drun -modi drun,run,window,ssh -show-icons -sidebar-mode -terminal termite"
+
+bar {
+    height 28
+	status_command SCRIPT_DIR=~/.config/i3blocks/blocklets i3blocks
+	# difference
+	font pango:Noto Sans Condensed 7
+
+	position top
+
+	separator_symbol " "
+	workspace_buttons yes
+	colors {
+		background $bg-color
+	    separator #757575
+	    statusline #ebdbb2
+		#                  border             background         text
+		focused_workspace  $bg-color          $bg-color          $text-color
+		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+	}
+}
+
+# Web browser
+bindsym $mod+w exec --no-startup-id "chromium"
+
+# DPI
+exec xrandr --dpi 120
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightnessc
+
+# Additional autostart apps
+exec --no-startup-id "blueman-applet"

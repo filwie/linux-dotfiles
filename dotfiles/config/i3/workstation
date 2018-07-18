@@ -1,0 +1,48 @@
+# workstation part of i3 config
+
+# gaps
+gaps inner 4
+gaps outer 4
+
+# window title fonts
+font pango:Noto Regular 12
+
+# start a terminal
+bindsym $mod+Return exec alacritty
+
+# window borders
+for_window [class=".*"] border pixel 2
+
+# launcher, window switcher
+bindsym $mod+d exec "rofi -show drun -modi drun,run,window,ssh -show-icons -sidebar-mode -terminal alacritty"
+
+bar {
+    height 24
+	status_command SCRIPT_DIR=~/.config/i3blocks/blocklets i3blocks
+	# difference
+	font pango:Noto Sans Condensed 12
+
+	position top
+
+	separator_symbol " "
+	workspace_buttons yes
+	colors {
+		background $bg-color
+	    separator #757575
+	    statusline #ebdbb2
+		#                  border             background         text
+		focused_workspace  $bg-color          $bg-color          $text-color
+		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+	}
+}
+
+# Web browser
+bindsym $mod+w exec --no-startup-id "firefox"
+
+# DPI
+exec xrandr --dpi 96
+
+
+# Additional autostart apps
+exec --no-startup-id "hp-systray -x"
