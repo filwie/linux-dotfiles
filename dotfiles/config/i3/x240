@@ -8,7 +8,7 @@ gaps outer 0
 font pango:Noto Regular 8
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec "termite"
 
 # window borders
 for_window [class=".*"] border pixel 1
