@@ -129,17 +129,18 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 set $bg-color            #282828
-set $inactive-bg-color   #303030
+set $inactive-bg-color   #1d2021 
 set $text-color          #F2E5BC
 set $inactive-text-color #D5C4A1
 set $urgent-bg-color     #e53935
-set $indicator-color     #a0a0a0
+set $indicator-color     $bg-color
 
-set $active-color        #83a598
+set $active-color        #7E6E65
+set $highlight-color     #318586
 
 # set window colors
 #                       border             background         text                 indicator
-client.focused          $bg-color          $bg-color          $active-color        $indicator-color
+client.focused          $bg-color          $bg-color          $highlight-color     $active-color
 client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color $indicator-color
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $indicator-color
 client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color          $indicator-color

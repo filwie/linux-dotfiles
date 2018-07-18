@@ -11,7 +11,7 @@ font pango:Noto Regular 12
 bindsym $mod+Return exec alacritty
 
 # window borders
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 3
 
 # launcher, window switcher
 bindsym $mod+d exec "rofi -show drun -modi drun,run,window,ssh -show-icons -sidebar-mode -terminal alacritty"
