@@ -1,1 +1,20 @@
+#!/usr/bin/env zsh
+merge_conf () {
+
+    local i3_config=${HOME}/.config/i3/config
+    local i3_config_base=${HOME}/.config/i3/base
+    local i3_config_x240=${HOME}/.config/i3/x240
+    local i3_config_workstation=${HOME}/.config/i3/workstation
+
+
+    [[ $(hostname) = *"x240"* ]] \
+        && cat ${i3_config_base} ${i3_config_x240} > ${i3_config} \
+        || cat ${i3_config_base} ${i3_config_workstation} > ${i3_config}
+
+    }
+
+
+merge_conf
+
+
 i3-with-shmlog

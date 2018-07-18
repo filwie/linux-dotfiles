@@ -26,7 +26,7 @@
 # Each block command defaults to the script name to avoid boilerplate.
 color=#F2E5BC
 command=$SCRIPT_DIR/$BLOCK_NAME
-separator_block_width=30
+separator_block_width=10
 markup=pango
 
 [volume-pulseaudio]
@@ -38,11 +38,11 @@ signal=23
 [memory]
 label=
 interval=10
+separator=
 
 [memory]
 label=
 instance=swap
-color=#9D0006
 separator=true
 interval=30
 
@@ -59,27 +59,22 @@ interval=30
 # If the instance is not specified, use the interface used for default route.
 # The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
 [iface]
-interval=10
-separator=false
-
-[iface]
-instance=wlp3s0
+label=
 interval=10
 separator=false
 
 [bandwidth]
-instance=wlp3s0
+label=飯
+instance=eno1
 interval=5
 
 # CPU usage
 #
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
-[cpu_usage]
-label=CPU
+[load_average]
+label=
 interval=10
-min_width=CPU: 100.00%
-#separator=false
 
 #[load_average]
 #interval=10
@@ -94,7 +89,7 @@ interval=30
 # Date Time
 #
 [time]
-command=date '+%Y-%m-%d %H:%M:%S'
+command=date '+%d/%m %H:%M:%S'
 interval=1
 
 # This displays "ARTIST - SONG" if a music is playing.

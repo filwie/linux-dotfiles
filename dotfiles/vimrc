@@ -188,6 +188,7 @@ set wildmenu
 set autoread
 
 if has('mouse')
+  " try a, r, v
   set mouse=a
 endif
 
