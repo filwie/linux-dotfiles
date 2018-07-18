@@ -24,16 +24,24 @@
 #
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
+align=justify
 color=#F2E5BC
 command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=10
 markup=pango
 
-[volume-pulseaudio]
-label=
-color=#F2E5BC
-interval=once
-signal=23
+[test_blocklet]
+interval=3
+
+[mediaplayer]
+instance=spotify
+interval=5
+signal=10
+
+[temperature]
+label=
+interval=10
+
 
 [memory]
 label=
@@ -63,58 +71,30 @@ label=
 interval=10
 separator=false
 
-[bandwidth]
-label=飯
-instance=eno1
-interval=5
+# [bandwidth]
+# label=飯
+# interval=5
 
-# CPU usage
-#
-# The script may be called with -w and -c switches to specify thresholds,
-# see the script for details.
 [load_average]
 label=
 interval=10
 
-#[load_average]
-#interval=10
-
-# Battery indicator
-#
-# The battery instance defaults to 0.
-[batterybar]
-label=
+[battery2]
+markup=pango
 interval=30
 
-# Date Time
-#
+[volume-pulseaudio]
+label=
+color=#F2E5BC
+interval=once
+signal=23
+
 [time]
-command=date '+%d/%m %H:%M:%S'
+label=
+command=date "+%d/%m"
+interval=30
+
+[time]
+label=
+command=date '+%H:%M:%S'
 interval=1
-
-# This displays "ARTIST - SONG" if a music is playing.
-# Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
-[mediaplayer]
-instance=spotify
-interval=5
-signal=10
-
-[temperature]
-label=
-interval=10
-
-# Key indicators
-#
-# Add the following bindings to i3 config file:
-#
-# bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
-# bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
-#[keyindicator]
-#instance=CAPS
-#interval=once
-#signal=11
-
-#[keyindicator]
-#instance=NUM
-#interval=once
-#signal=11
