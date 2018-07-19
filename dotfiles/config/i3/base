@@ -128,6 +128,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+bindsym $mod+Tab exec "rofi -show window -show-icons"
+
 set $bg-color            #282828
 set $inactive-bg-color   #1d2021
 set $text-color          #F2E5BC
