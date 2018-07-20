@@ -12,6 +12,7 @@ bash -c "$(curl -fsSL https://gitlab.com/filip.wiechec/dotfiles/raw/master/setup
 ###### useful unicode characters
 ```bash
 # arrows etc: ➤ ⮡ ⮠ ✗ 🗴 ✓ ✔             ﰲ
+# arrows up/down: ﰬ ﰵ      
 # hardware:   力 曆 歷 轢 年 憐 戀 撚             
 # OSes, software:               
 # indicators:            直睊               ﱝ
