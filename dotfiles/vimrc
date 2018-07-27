@@ -71,6 +71,7 @@ nmap <leader>0 <Plug>BufTabLine.Go(10)
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ }
+
 set noshowmode
 set laststatus=2
 
@@ -115,7 +116,7 @@ map <leader>v :vsplit $MYVIMRC<CR>
 " map for reloading the config and restarting i3
 map <leader>i3 :AsyncRun !i3-merge-conf && echo "Merged i3 config"; i3-msg reload; i3-msg restart<CR>
 
-" Leave INSERT mode using C-c
+" leave INSERT mode using C-c
 imap <C-c> <Esc><Esc>
 
 " ----- Command mapping -----
@@ -214,6 +215,18 @@ set ruler
 " disable .swp files
 set noswapfile
 
+" enable case insensitive search
+set ignorecase
+
+" enable searching when typing
+set incsearch
+
+" keep cursor this many characters from top/bot when scrolling
+set scrolloff=15
+
+" highlight matching braces/ paranthesis etc.
+set showmatch
+
 set showmode
 set smarttab
 
@@ -261,4 +274,21 @@ if has('gui')
   set autochdir
   set shell=/bin/zsh
 endif
+
+" How many lines of history to save
+set history=200
+
+" Persistent undo
+set undofile                " Save undos after file closes
+set undodir=$HOME/.vim/undo " where to save undo histories
+set undolevels=1000         " How many undos
+set undoreload=10000        " number of lines to save for undo
+
+let undodir='$HOME/.vim/undo'
+
+if has('persistent_undo')
+    call system('mkdir ' . undodir)
+    set undofile
+endif
+
 
