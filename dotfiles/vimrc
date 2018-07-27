@@ -1,3 +1,5 @@
+" vim:fdm=marker:ts=2:sw=2:et:
+
 " Plugins and Vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -102,42 +104,42 @@ map <leader>v :vsplit $MYVIMRC<CR>
 map <leader>i3 :exec '!i3-merge-conf && echo "Merged i3 config"; i3-msg reload; i3-msg restart'<CR>
 
 augroup python
-    autocmd!
-    " Run Python code
-    autocmd FileType python nmap <buffer> <F10> :exec '!clear; python' shellescape(@%, 1)<CR>
-    autocmd FileType python imap <buffer> <F10> <Esc>:exec '!clear; python' shellescape(@%, 1)<CR>
-    " Run pytest
-    autocmd FileType python nmap <buffer> <F9> :exec '!clear;  pytest -v'<CR>
-    autocmd FileType python imap <buffer> <F9> <Esc>:exec '!clear;  pytest -v'<CR>
+  autocmd!
+  " Run Python code
+  autocmd FileType python nmap <buffer> <F10> :exec '!clear; python' shellescape(@%, 1)<CR>
+  autocmd FileType python imap <buffer> <F10> <Esc>:exec '!clear; python' shellescape(@%, 1)<CR>
+  " Run pytest
+  autocmd FileType python nmap <buffer> <F9> :exec '!clear;  pytest -v'<CR>
+  autocmd FileType python imap <buffer> <F9> <Esc>:exec '!clear;  pytest -v'<CR>
 augroup END
 
 augroup ansible
-    autocmd!
-    " Run Ansible playbook
-    autocmd FileType yaml.ansible nmap <buffer> <F10> :exec '!clear; ansible-playbook' shellescape(@%, 1)<CR>
-    autocmd FileType yaml.ansible imap <buffer> <F10> <Esc>:exec '!clear; ansible-playbook' shellescape(@%, 1)<CR>
+  autocmd!
+  " Run Ansible playbook
+  autocmd FileType yaml.ansible nmap <buffer> <F10> :exec '!clear; ansible-playbook' shellescape(@%, 1)<CR>
+  autocmd FileType yaml.ansible imap <buffer> <F10> <Esc>:exec '!clear; ansible-playbook' shellescape(@%, 1)<CR>
 augroup END
 
 augroup ccpp
-    autocmd!
-    " Compile C
-    autocmd FileType c nmap <silent> <F9> :AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
-    autocmd FileType c imap <silent> <F9> <Esc>:AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
-    " Compile
-    autocmd FileType cpp nmap <F9> :AsyncRun g++ -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
-    autocmd FileType cpp imap <F9> <Esc>:AsyncRun g++ -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
-    " Execute
-    autocmd FileType c,cpp nmap <buffer> <F10> :exec '!clear; %:p:h/%:r' <CR>
-    autocmd FileType c,cpp imap <buffer> <F10> <Esc> :exec '!clear; %:p:h/%:r' <CR>
+  autocmd!
+  " Compile C
+  autocmd FileType c nmap <silent> <F9> :AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
+  autocmd FileType c imap <silent> <F9> <Esc>:AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
+  " Compile
+  autocmd FileType cpp nmap <F9> :AsyncRun g++ -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
+  autocmd FileType cpp imap <F9> <Esc>:AsyncRun g++ -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
+  " Execute
+  autocmd FileType c,cpp nmap <buffer> <F10> :exec '!clear; %:p:h/%:r' <CR>
+  autocmd FileType c,cpp imap <buffer> <F10> <Esc> :exec '!clear; %:p:h/%:r' <CR>
 augroup END
 
 augroup vimscript
-    autocmd!
-    " Source .vimrc on write
-    autocmd BufWritePost .vimrc source $MYVIMRC
-    " Run vim script
-    autocmd Filetype vim nmap <buffer> <F10> :exec '!clear' <bar> source % <CR>
-    autocmd Filetype vim imap <buffer> <F10> <Esc> :exec '!clear' <bar> source % <CR>
+  autocmd!
+  " Source .vimrc on write
+  autocmd BufWritePost .vimrc source $MYVIMRC
+  " Run vim script
+  autocmd Filetype vim nmap <buffer> <F10> :exec '!clear' <bar> source % <CR>
+  autocmd Filetype vim imap <buffer> <F10> <Esc> :exec '!clear' <bar> source % <CR>
 augroup END
 
 
@@ -154,7 +156,7 @@ com! FormatPython call Autopep8()
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 if exists('+colorcolumn')
-    set colorcolumn=80
+  set colorcolumn=80
 endif
 
 set hlsearch  " enables highlighting word with *, highlights on search
@@ -218,9 +220,9 @@ highlight Comment cterm=italic
 
 " GUI settings
 if has('gui')
-    set guioptions=
-    set guifont=mononoki\ Nerd\ Font\ 14
-    set autochdir
-    set shell=/bin/zsh
+  set guioptions=
+  set guifont=mononoki\ Nerd\ Font\ 14
+  set autochdir
+  set shell=/bin/zsh
 endif
 
