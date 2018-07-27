@@ -221,17 +221,21 @@ set copyindent
 set autoindent
 autocmd Filetype yaml setlocal ts=2 sw=2 sts=2 expandtab
 set showcmd
-set wildmenu
 
+" enable bottom menu with command completion etc
+set wildmenu
+set wildmode=list:longest,full
+
+" reread file if running external command to change it
 set autoread
 
+" enable mouse in both Vim and gVim
 if has('mouse')
   " try a, r, v
   set mouse=a
 endif
 
-"enable clipboard intergration, copying to clipboard
-
+" enable clipboard intergration, copying to clipboard
 nnoremap y "+y
 vnoremap y "+y
 set clipboard=unnamedplus
