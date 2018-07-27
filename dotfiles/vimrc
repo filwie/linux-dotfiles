@@ -85,6 +85,11 @@ let g:asyncrun_open = 6
 let g:asyncrun_bell = 1
 
 " ----- Key mapping -----
+
+" now Q and W also work - my most common mistype
+command! Q q
+command! W w
+
 " Map familiar C-p to use fzf
 map <C-p> :FZF<CR>
 map <leader>p :Commands<CR>
