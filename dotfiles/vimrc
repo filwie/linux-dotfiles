@@ -116,6 +116,16 @@ map <leader>v :vsplit $MYVIMRC<CR>
 " map for reloading the config and restarting i3
 map <leader>i3 :AsyncRun !i3-merge-conf && echo "Merged i3 config"; i3-msg reload; i3-msg restart<CR>
 
+" Leave INSERT mode using C-c
+imap <C-c> <Esc><Esc>
+
+" ----- Command mapping -----
+" Format and Sort JSON
+com! FormatJSON %!python -m json.tool
+com! FormatPython call Autopep8()
+com! DistractionFree Goyo
+
+" ----- Filetype specific -----
 augroup python
   autocmd!
   " Run Python code
