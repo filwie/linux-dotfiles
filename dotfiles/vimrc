@@ -28,6 +28,8 @@ Plugin 'ryanoasis/vim-devicons'      " Filetype icons
 Plugin 'bronson/vim-trailing-whitespace'  " :FixWhitespaces
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'            " fzf in vim
+Plugin 'junegunn/goyo.vim'           " Distraction free writing
+Plugin 'mhinz/vim-startify'          " fancy start page
 call vundle#end()                    " required
 filetype plugin indent on            " required
 
