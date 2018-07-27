@@ -93,7 +93,6 @@ map <leader>t :Tags<CR>
 map <leader>b :Buffers<CR>
 
 map <C-n> :NERDTreeToggle<CR>
-
 map <F8> :TagbarToggle<CR>
 
 map <leader>] :bnext<CR>
@@ -173,6 +172,7 @@ augroup markdown
 augroup END
 
 " ----- General options -----
+
 " Disable automatic insertion of comment character
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
@@ -180,29 +180,40 @@ if exists('+colorcolumn')
   set colorcolumn=80
 endif
 
-set hlsearch  " enables highlighting word with *, highlights on search
+" enables highlighting word with *, highlights on search
+set hlsearch
+
 " 4 spaces instead of a tab
 set tabstop=4 shiftwidth=4 expandtab
-" 256 terminal colours:
-set t_Co=256
+
+" dont break lines automatically
+set textwidth=0 wrapmargin=0
+
 " colorize sytanx
 if has('syntax') && !exists('g:syntax_on')
   syntax enable
 endif
+
 " show line numbers
 set number
+
 " set text encoding to UTF8
 set termencoding=utf-8
 set fileencoding=utf-8
 set encoding=utf8
+
 " make backspace work like most other apps
 set backspace=2
+
 " vsplit opens second file on the right instead of left
 set splitright
+
 " display line number and location percentage
 set ruler
+
 " disable .swp files
 set noswapfile
+
 set showmode
 set smarttab
 
