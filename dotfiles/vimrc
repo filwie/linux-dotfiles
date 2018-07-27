@@ -134,6 +134,8 @@ augroup python
   " Run pytest
   autocmd FileType python nmap <buffer> <F9> :exec '!clear;  pytest -v'<CR>
   autocmd FileType python imap <buffer> <F9> <Esc>:exec '!clear;  pytest -v'<CR>
+    " Format file
+    autocmd FileType python nmap <leader>8 :Autopep8<CR>
 augroup END
 
 augroup ansible
