@@ -49,7 +49,7 @@ let g:ale_echo_msg_format = '[%linter%] %s %code%'
 " NerdTree
 " Open Nerd tree if opening a directory
 let g:NERDTreeHijackNetrw = 1
-au VimEnter NERD_tree_1 enew | execute 'NERDTree '.argv()[0]
+autocmd VimEnter NERD_tree_1 enew | execute 'NERDTree '.argv()[0]
 
 let NERDTreeDirArrowExpandable = ""
 let NERDTreeDirArrowCollapsible = ""
