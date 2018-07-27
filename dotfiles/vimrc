@@ -77,7 +77,6 @@ set laststatus=2
 "  ansible-vim
 let g:ansible_unindent_after_newline = 1
 
-
 " AsyncRun
 " set the quickfix window 6 lines height.
 let g:asyncrun_open = 6
@@ -89,11 +88,23 @@ let g:asyncrun_bell = 1
 map <C-p> :FZF<CR>
 map <leader>p :Commands<CR>
 
+map <leader>p :Commands<CR>
+map <leader>t :Tags<CR>
+map <leader>b :Buffers<CR>
+
 map <C-n> :NERDTreeToggle<CR>
+
 map <F8> :TagbarToggle<CR>
 
 map <leader>] :bnext<CR>
 map <leader>[ :bprev<CR>
+
+" Enable distraction free mode
+map <leader>df :Goyo<CR>
+
+" you complete me
+" jump to definiton
+map <leader>jd :YcmCompleter GoTo<CR>
 
 " toggle quickfix window
 nnoremap <leader>q :call asyncrun#quickfix_toggle(6)<CR>
