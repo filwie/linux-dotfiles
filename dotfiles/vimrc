@@ -167,14 +167,10 @@ augroup vimscript
   autocmd Filetype vim imap <buffer> <F10> <Esc> :exec '!clear' <bar> source % <CR>
 augroup END
 
-
-" Leave INSERT mode using C-c
-imap <C-c> <Esc><Esc>
-
-" ----- Command mapping -----
-" Format and Sort JSON
-com! FormatJSON %!python -m json.tool
-com! FormatPython call Autopep8()
+augroup markdown
+    autocmd!
+    autocmd FileType markdown nmap <buffer> <F10> :AsyncRun pandoc "${VIM_FILEPATH}" --to html5 --output "/tmp/${VIM_FILENOEXT}.html" --css "${HOME}/.dotfiles/utils/md.css"; ${BROWSER} "/tmp/${VIM_FILENOEXT}.html"<CR>
+augroup END
 
 " ----- General options -----
 " Disable automatic insertion of comment character
