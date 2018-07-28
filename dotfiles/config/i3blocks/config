@@ -24,14 +24,14 @@
 #
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
-align=justify
-color=#F2E5BC
+
 command=$SCRIPT_DIR/$BLOCK_NAME
-separator_block_width=10
+separator_block_width=15
 markup=pango
 
-[test_blocklet]
-interval=3
+[free_disk]
+command=~/.config/i3blocks/blocklets/free_disk
+interval=10
 
 [mediaplayer]
 instance=spotify
