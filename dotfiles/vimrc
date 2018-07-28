@@ -242,8 +242,6 @@ augroup END
 
 augroup vimscript
   autocmd!
-  " Source .vimrc on write
-  autocmd BufWritePost .vimrc source $MYVIMRC
   " Run vim script
   autocmd Filetype vim nmap <buffer> <F10> :exec '!clear' <bar> source % <CR>
   autocmd Filetype vim imap <buffer> <F10> <Esc> :exec '!clear' <bar> source % <CR>
