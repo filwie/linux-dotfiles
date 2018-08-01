@@ -17,7 +17,7 @@ Plug 'morhetz/gruvbox'             " favourite colorscheme
 Plug 'tell-k/vim-autopep8'         " auto pep8 format
 Plug 'w0rp/ale'                    " asynchronous syntax checking (replaced syntastic)
 Plug 'bkad/CamelCaseMotion'        " using b, w, e works better with camelCase
-" Plug 'Valloric/YouCompleteMe'      " code completion
+Plug 'Valloric/YouCompleteMe'      " code completion
 Plug 'ap/vim-buftabline'           " buffers as tabs on top
 Plug 'airblade/vim-gitgutter'      " git indicators
 Plug 'itchyny/lightline.vim'       " light status bar at bottom
