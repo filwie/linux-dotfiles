@@ -363,10 +363,10 @@ set clipboard=unnamedplus
 
 " ----- Theming, visual tweaks -----
 set background=dark
+" for other themes:
+highlight clear SignColumn
 " SignColumn - gitgutter, ale etc.
 " overriden by gruvbox
-" highlight SignColumn ctermbg='red'
-" highlight SignColumn guibg='red'
 let g:gruvbox_sign_column='bg0'
 let g:gruvbox_contrast_light='soft'
 let g:gruvbox_contrast_dark='medium'
