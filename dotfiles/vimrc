@@ -106,15 +106,19 @@ let g:lightline = {
 " Goyo
 " Hide tmux status bar and ALE info
 function! s:goyo_enter()
-  silent !tmux set status off
-  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  if !has('gui')
+    silent !tmux set status off
+    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  endif
   ALEDisable
   " TODO: how about changing colorscheme to gruvbox light while in Goyo?
 endfunction
 
 function! s:goyo_leave()
-  silent !tmux set status on
-  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  if !has('gui')
+    silent !tmux set status on
+    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  endif
   ALEEnable
 endfunction
 
