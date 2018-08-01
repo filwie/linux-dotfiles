@@ -177,8 +177,8 @@ augroup python
   " Run pytest
   autocmd FileType python nmap <buffer> <F9> :exec '!clear;  pytest -v'<CR>
   autocmd FileType python imap <buffer> <F9> <Esc>:exec '!clear;  pytest -v'<CR>
-    " Format file
-    autocmd FileType python nmap <leader>8 :Autopep8<CR>
+  " Format file
+  autocmd FileType python nmap <leader>8 :Autopep8<CR>
 augroup END
 
 augroup ansible
@@ -209,8 +209,8 @@ augroup vimscript
 augroup END
 
 augroup markdown
-    autocmd!
-    autocmd FileType markdown nmap <buffer> <F10> :AsyncRun pandoc "${VIM_FILEPATH}" --to html5 --output "/tmp/${VIM_FILENOEXT}.html" --css "${HOME}/.dotfiles/utils/md.css"; ${BROWSER} "/tmp/${VIM_FILENOEXT}.html"<CR>
+  autocmd!
+  autocmd FileType markdown nmap <buffer> <F10> :AsyncRun pandoc "${VIM_FILEPATH}" --to html5 --output "/tmp/${VIM_FILENOEXT}.html" --css "${HOME}/.dotfiles/utils/md.css"; ${BROWSER} "/tmp/${VIM_FILENOEXT}.html"<CR>
 augroup END
 
 " ----- General options -----
