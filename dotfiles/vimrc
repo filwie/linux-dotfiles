@@ -206,9 +206,10 @@ map <leader>[ :bprev<CR>
 " Enable distraction free mode
 map <leader>df :Goyo<CR>
 
-" you complete me
+" YouCompleteMe
 " jump to definiton
 map <leader>jd :YcmCompleter GoTo<CR>
+let g:ycm_global_ycm_extra_conf = '$HOME/.ycm_extra_conf.py'
 
 " toggle quickfix window
 nnoremap <leader>q :call asyncrun#quickfix_toggle(6)<CR>
