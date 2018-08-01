@@ -37,9 +37,6 @@ bar {
 	}
 }
 
-# Web browser
-bindsym $mod+w exec --no-startup-id "chromium"
-
 # DPI
 exec xrandr --dpi 120
 

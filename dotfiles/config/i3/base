@@ -1,3 +1,6 @@
+# set variable browser to env var or firefox if env var is not set
+set_from_resource $browser echo "${BROWSER:-firefox}"
+
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 # alt
 set $mod Mod1
@@ -195,3 +198,7 @@ exec --no-startup-id "clipit"
 exec --no-startup-id "redshift-gtk"
 exec --no-startup-id "xfce4-notes"
 
+
+
+# Web browser
+bindsym $mod+w exec --no-startup-id $browser
