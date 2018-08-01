@@ -8,31 +8,53 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+let g:ctags_supported_languages = ['assembler', 'awk', 'bash', 'c', 'cpp', 'erlang', 'fortran', 'html', 'java', 'javascript', 'lisp', 'lua', 'make', 'matlab', 'pascal', 'perl', 'php', 'sql', 'python', 'rexx', 'ruby', 'scheme', 'sh', 'tcl', 'tex', 'vim', 'vimscript', 'yacc', 'zsh']
+
 " Plugins
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree'         " file tree
-Plug 'majutsushi/tagbar'           " tags, file structure overview
-Plug 'nathanaelkane/vim-indent-guides'  " indent lines
-Plug 'morhetz/gruvbox'             " favourite colorscheme
-Plug 'tell-k/vim-autopep8'         " auto pep8 format
-Plug 'w0rp/ale'                    " asynchronous syntax checking (replaced syntastic)
-Plug 'bkad/CamelCaseMotion'        " using b, w, e works better with camelCase
-Plug 'Valloric/YouCompleteMe'      " code completion
-Plug 'ap/vim-buftabline'           " buffers as tabs on top
-Plug 'airblade/vim-gitgutter'      " git indicators
-Plug 'itchyny/lightline.vim'       " light status bar at bottom
-Plug 'chase/vim-ansible-yaml'      " ansible
-Plug 'mattn/emmet-vim'             " Example: html:5_ <C-y>, -> generate html (_ is cursor)
-Plug 'glench/vim-jinja2-syntax'    " Jinja2 template syntax
-Plug 'syngan/vim-vimlint'          " Linter for viml
-Plug 'ekalinin/Dockerfile.vim'     " Dockerfile syntax
-Plug 'fatih/vim-go'                " golang support. Example: :GoLint, :GoCompile (REQUIRES: :GoInstallBinaries)
-Plug 'skywind3000/asyncrun.vim'    " Async execute shell comands
-Plug 'ryanoasis/vim-devicons'      " Filetype icons
-Plug 'bronson/vim-trailing-whitespace'  " :FixWhitespaces
+" File tree
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" Tags, file structure overview
+Plug 'majutsushi/tagbar', {'for': g:ctags_supported_languages}
+Plug 'nathanaelkane/vim-indent-guides'
+" Best colorscheme ever
+Plug 'morhetz/gruvbox'
+Plug 'tell-k/vim-autopep8', {'for': 'python'}
+" Asynchronous syntax checking (replaced syntastic)
+Plug 'w0rp/ale', {'for': ['python', 'css', 'html', 'java', 'c', 'cpp', 'ansible', 'markdown', 'vim']}
+" b,w etc. work better with CamelCase
+Plug 'bkad/CamelCaseMotion'
+" Fat code completion
+Plug 'Valloric/YouCompleteMe', { 'do': ':AsyncRun ./install.py --clang-completer --go-completer --js-completer'}
+" Buffers as tab on top
+Plug 'ap/vim-buftabline'
+" Git indicatiors
+Plug 'airblade/vim-gitgutter'
+" Light status line
+Plug 'itchyny/lightline.vim'
+" Some ansible support
+Plug 'chase/vim-ansible-yaml'
+" Example: html:5_ <C-y>, -> generate html (_ is cursor)
+Plug 'mattn/emmet-vim'
+" Jinja2 template syntax
+Plug 'glench/vim-jinja2-syntax'
+" Linter for vimscript
+Plug 'syngan/vim-vimlint'
+" Dockerfile syntax
+Plug 'ekalinin/Dockerfile.vim'
+" golang support. Example: :GoLint, :GoCompile
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+" Execute commands asyncronously
+Plug 'skywind3000/asyncrun.vim'
+" Filetype icons for nerd tree
+Plug 'ryanoasis/vim-devicons', { 'on': 'NERDTreeToggle' }
+" Use :FixWhitespaces to remove trailing whitespace characters
+Plug 'bronson/vim-trailing-whitespace'
+" fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'            " fzf in vim
-Plug 'junegunn/goyo.vim'           " Distraction free writing
+Plug 'junegunn/fzf.vim'
+" Distraction-free mode
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'mhinz/vim-startify'          " fancy start page
 Plug 'tpope/vim-surround'          " handle quotes, parantheses etc.
 call plug#end()
