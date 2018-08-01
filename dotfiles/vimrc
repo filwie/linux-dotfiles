@@ -1,4 +1,4 @@
-" vim:fdm=marker:ts=2:sw=2:et:
+" vim: set fdm=marker ts=2 sw=2 et:
 scriptencoding utf-8
 
 " Install vim-plug if not yet installed
@@ -325,6 +325,10 @@ set wildmode=list:longest,full
 
 " reread file if running external command to change it
 set autoread
+
+" enable modelines
+" WARNING: there have been modeline-based vulnerabilities in the past
+set modeline
 
 " enable mouse in both Vim and gVim
 if has('mouse')
