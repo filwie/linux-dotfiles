@@ -97,6 +97,11 @@ let g:ale_sign_error = ''
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
 
+" vim-ansible-yaml
+let g:ansible_options = {'ignore_blank_lines': 0}
+" open ansible doc for module under cursor
+let g:ansible_options = {'documentation_mapping': '<leader>d'}
+
 " Lightline
 " taken from https://statico.github.io/vim3.html
 let g:lightline = {
