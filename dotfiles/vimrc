@@ -159,6 +159,13 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " now Q and W also work - my most common mistype
 command! Q q
 command! W w
+command! Wq wq
+
+" Move up/down on visual lines (wrapped work like no wrapped)
+noremap  j gj
+noremap  k gk
+noremap <up> gk
+noremap <down> gj
 
 " Map familiar C-p to use fzf
 map <C-p> :FZF<CR>
