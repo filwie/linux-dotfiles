@@ -165,7 +165,7 @@ map <leader>vs :source $MYVIMRC<CR>
 map <leader>v :vsplit $MYVIMRC<CR>
 
 " map for reloading the config and restarting i3
-map <leader>i3 :AsyncRun !i3-merge-conf && echo "Merged i3 config"; i3-msg reload; i3-msg restart<CR>
+map <leader>i3 :AsyncRun link_dotfiles && i3-merge-conf && echo "Merged i3 config"; i3-msg reload; i3-msg restart<CR>
 
 " leave INSERT mode using C-c
 imap <C-c> <Esc><Esc>
@@ -312,6 +312,7 @@ let g:gruvbox_contrast_light='medium'
 let g:gruvbox_contrast_dark='medium'
 silent colorscheme gruvbox
 
+" those quotest have to remain double
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
