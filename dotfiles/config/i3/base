@@ -150,17 +150,16 @@ client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-col
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $indicator-color
 client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color          $indicator-color
 
-
 # floating windows
-for_window [class="Pavucontrol"] floating enable
-for_window [class="nm-applet"] floating enable
-for_window [class="Gpick"] floating enable
-for_window [class="feh"] floating enable
-for_window [class="Blueman-manager"] floating enable
-for_window [class="Nm-connection-editor"] floating enable
-for_window [class="jetbrains-toolbox"] floating enable
-for_window [class="Lxappearance"] floating enable
-for_window [class="Tk"] floating enable
+for_window [class="(?i)pavucontrol"] floating enable
+for_window [class="(?i)nm-applet"] floating enable
+for_window [class="(?i)gpick"] floating enable
+for_window [class="(?i)feh"] floating enable
+for_window [class="(?i)blueman-manager"] floating enable
+for_window [class="(?i)nm-connection-editor"] floating enable
+for_window [class="(?i)jetbrains-toolbox"] floating enable
+for_window [class="(?i)lxappearance"] floating enable
+for_window [class="(?i)tk"] floating enable
 
 # floating windows settings
 floating_minimum_size 240 x 100
