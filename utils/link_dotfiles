@@ -13,7 +13,7 @@ do
     dotfile=${HOME}/".$(basename "${file}")"
     [ -f "${dotfile}" ] && rm "${dotfile}" \
         && echo -e "\t- Removed old ${dotfile}" \
-        || echo -e "$\t- {dotfile} not present"
+        || echo -e "\t- ${dotfile} not present"
 
     ln -s "${dotfile_in_repo}" "${dotfile}" && echo -e "\t -Created a soft link to ${dotfile}"
 
