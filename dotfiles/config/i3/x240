@@ -7,14 +7,8 @@ gaps outer 0
 # window title fonts
 font pango:Noto Regular 8
 
-# start a terminal
-bindsym $mod+Return exec "termite"
-
 # window borders
 for_window [class=".*"] border pixel 1
-
-# launcher, window switcher
-bindsym $mod+d exec "rofi -show drun -modi drun,run,window,ssh -show-icons -sidebar-mode -terminal termite"
 
 bar {
     height 28

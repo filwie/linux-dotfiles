@@ -6,6 +6,12 @@ set_from_resource $browser echo "${BROWSER:-firefox}"
 set $mod Mod1
 set $sup Mod4
 
+# start a terminal
+bindsym $mod+Return exec "termite"
+
+# launcher, window switcher
+bindsym $mod+d exec "rofi -show drun -modi drun,run,window,ssh -show-icons -sidebar-mode -terminal termite"
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 

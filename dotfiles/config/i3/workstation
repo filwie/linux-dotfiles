@@ -7,14 +7,8 @@ gaps outer 2
 # window title fonts
 font pango:Noto Regular 12
 
-# start a terminal
-bindsym $mod+Return exec sakura
-
 # window borders
 for_window [class=".*"] border pixel 3
-
-# launcher, window switcher
-bindsym $mod+d exec "rofi -show drun -modi drun,run,window,ssh -show-icons -sidebar-mode -terminal sakura"
 
 bar {
     height 24
