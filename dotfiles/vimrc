@@ -210,6 +210,7 @@ map <leader>df :Goyo<CR>
 " jump to definiton
 map <leader>jd :YcmCompleter GoTo<CR>
 let g:ycm_global_ycm_extra_conf = '$HOME/.ycm_extra_conf.py'
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " toggle quickfix window
 nnoremap <leader>q :call asyncrun#quickfix_toggle(6)<CR>
