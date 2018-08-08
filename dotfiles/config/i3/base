@@ -166,7 +166,7 @@ for_window [class="(?i)nm-connection-editor"] floating enable
 for_window [class="(?i)jetbrains-toolbox"] floating enable
 for_window [class="(?i)lxappearance"] floating enable
 for_window [class="(?i)tk"] floating enable
-
+for_window [class="(?i)pyxel"] floating enable
 # floating windows settings
 floating_minimum_size 240 x 100
 floating_maximum_size 1280 x 768
