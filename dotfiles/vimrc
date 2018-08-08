@@ -290,7 +290,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set hlsearch
 
 " 4 spaces instead of a tab
-set tabstop=4 shiftwidth=4 expandtab
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab " autoindent copyindent
 
 " dont break lines automatically
 set textwidth=0 wrapmargin=0
@@ -333,10 +333,7 @@ set scrolloff=15
 set showmatch
 
 set showmode
-set smarttab
 
-set copyindent
-set autoindent
 autocmd Filetype yaml setlocal ts=2 sw=2 sts=2 expandtab
 set showcmd
 
