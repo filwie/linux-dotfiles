@@ -250,8 +250,8 @@ augroup END
 augroup ansible
   autocmd!
   " Run Ansible playbook
-  autocmd FileType yaml.ansible,yaml,ansible nmap <buffer> <F10> :exec '!clear; ansible-playbook' shellescape(@%, 1)<CR>
-  autocmd FileType yaml.ansible,yaml,ansible imap <buffer> <F10> <Esc>:exec '!clear; ansible-playbook' shellescape(@%, 1)<CR>
+  autocmd FileType yaml.ansible,yaml,ansible nmap <buffer> <F10> :AsyncRun ansible-playbook "$(VIM_FILEPATH)"<CR>
+  autocmd FileType yaml.ansible,yaml,ansible imap <buffer> <F10> <Esc> :AsyncRun ansible-playbook "$(VIM_FILEPATH)"<CR>
 augroup END
 
 augroup ccpp
