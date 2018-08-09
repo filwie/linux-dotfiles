@@ -225,6 +225,9 @@ map <leader>i3 :AsyncRun link_dotfiles && i3-merge-conf && echo "Merged i3 confi
 " leave INSERT mode using C-c
 imap <C-c> <Esc><Esc>
 
+
+nnoremap <leader>gd :exec '!git diff --word-diff=color' shellescape(@%, 1)<CR>
+
 " ----- Command mapping -----
 " Format and Sort JSON
 com! FormatJSON %!python -m json.tool
