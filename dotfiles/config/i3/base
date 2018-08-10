@@ -170,7 +170,6 @@ for_window [class="(?i)pyxel"] floating enable
 for_window [class="(?i)gsimplecal"] floating enable
 # floating windows settings
 floating_minimum_size 240 x 100
-floating_maximum_size 1280 x 768
 
 # Multimedia Keys
 # volume
