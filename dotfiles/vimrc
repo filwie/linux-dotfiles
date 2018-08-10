@@ -130,7 +130,6 @@ let g:ansible_options = {'ignore_blank_lines': 0}
 let g:ansible_options = {'documentation_mapping': '<leader>d'}
 
 " Lightline
-" taken from https://statico.github.io/vim3.html
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ }
@@ -149,7 +148,7 @@ let g:lightline.component_type = {
       \     'linter_ok': 'left',
       \ }
 
-let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]] }
+let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok'], ['filetype', 'percent', 'lineinfo'  ]] }
 let g:lightline#ale#indicator_checking = ''
 let g:lightline#ale#indicator_warnings = ''
 let g:lightline#ale#indicator_errors = ''
