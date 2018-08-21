@@ -47,8 +47,8 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'skywind3000/asyncrun.vim'
 " Filetype icons for nerd tree
 Plug 'ryanoasis/vim-devicons', { 'on': 'NERDTreeToggle' }
-" Use :FixWhitespaces to remove trailing whitespace characters
-Plug 'bronson/vim-trailing-whitespace'
+" Remove trailing whitespace characters
+Plug 'ntpeters/vim-better-whitespace'
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -196,6 +196,10 @@ map <leader>df :Goyo<CR>
 map <leader>jd :YcmCompleter GoTo<CR>
 let g:ycm_global_ycm_extra_conf = '$HOME/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" Better whitespace
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
 
 " toggle quickfix window
 nnoremap <leader>q :call asyncrun#quickfix_toggle(6)<CR>
