@@ -27,8 +27,6 @@ Plug 'w0rp/ale', {'for': g:languages_to_lint}
 Plug 'bkad/CamelCaseMotion'
 " Fat code completion
 Plug 'Valloric/YouCompleteMe', { 'do': ':AsyncRun ./install.py --clang-completer --go-completer --js-completer'}
-" Buffers as tab on top
-Plug 'ap/vim-buftabline'
 " Git indicatiors
 Plug 'airblade/vim-gitgutter'
 " Light status line
@@ -89,19 +87,6 @@ autocmd VimEnter NERD_tree_1 enew | execute 'NERDTree '.argv()[0]
 
 let NERDTreeDirArrowExpandable = ''
 let NERDTreeDirArrowCollapsible = ''
-
-" Buftabline - set navigation like in firefox
-let g:buftabline_numbers = 2
-nmap <leader>1 <Plug>BufTabLine.Go(1)
-nmap <leader>2 <Plug>BufTabLine.Go(2)
-nmap <leader>3 <Plug>BufTabLine.Go(3)
-nmap <leader>4 <Plug>BufTabLine.Go(4)
-nmap <leader>5 <Plug>BufTabLine.Go(5)
-nmap <leader>6 <Plug>BufTabLine.Go(6)
-nmap <leader>7 <Plug>BufTabLine.Go(7)
-nmap <leader>8 <Plug>BufTabLine.Go(8)
-nmap <leader>9 <Plug>BufTabLine.Go(9)
-nmap <leader>0 <Plug>BufTabLine.Go(10)
 
 set noshowmode
 set laststatus=2
