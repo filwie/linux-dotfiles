@@ -57,6 +57,8 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'mhinz/vim-startify'          " fancy start page
 Plug 'tpope/vim-surround'          " handle quotes, parantheses etc.
 Plug 'maximbaz/lightline-ale', {'for': g:languages_to_lint}
+" Highlight RGB color codes in multiple filetypes
+Plug 'ap/vim-css-color'
 call plug#end()
 
 
