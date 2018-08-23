@@ -299,6 +299,13 @@ endif
 " show line numbers
 set number
 
+" show relative line numbers in normal mode
+augroup relativenumbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 " set text encoding to UTF8
 set termencoding=utf-8
 set fileencoding=utf-8
