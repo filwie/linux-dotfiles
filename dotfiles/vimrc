@@ -62,6 +62,8 @@ Plug 'maximbaz/lightline-ale', {'for': g:languages_to_lint}
 Plug 'ap/vim-css-color'
 " Highlight the encloding html/xml tags
 Plug 'valloric/MatchTagAlways', {'for': g:tag_languages}
+" Tickscript support
+Plug 'nathanielc/vim-tickscript', {'for': 'tick'}
 call plug#end()
 
 
