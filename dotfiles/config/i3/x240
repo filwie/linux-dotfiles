@@ -14,7 +14,7 @@ bar {
     height 28
 	status_command SCRIPT_DIR=~/.config/i3blocks/blocklets i3blocks
 	# difference
-	font pango:Noto Sans Condensed 7
+	font pango:Noto Sans Condensed 12
 
 	position top
 
