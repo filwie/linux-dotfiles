@@ -1,5 +1,5 @@
 # set variable browser to env var or firefox if env var is not set
-set_from_resource $browser echo "${BROWSER:-firefox}"
+set $browser "firefox"
 
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 # alt
