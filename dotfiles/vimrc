@@ -282,10 +282,9 @@ augroup END
 " Disable automatic insertion of comment character
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" Highlight 80th column
-" if exists('+colorcolumn')
-"   set colorcolumn=80
-" endif
+
+highlight ColorColumn term=reverse
+call matchadd('ColorColumn', '\%81v', 100)
 
 " enables highlighting word with *, highlights on search
 set hlsearch
