@@ -366,6 +366,13 @@ nnoremap y "+y
 vnoremap y "+y
 set clipboard=unnamedplus
 
+" display hidden characters
+set listchars=tab:␣
+set listchars+=extends:›,precedes:‹
+set listchars+=trail:ﱡ
+set listchars+=eol:
+set listchars+=nbsp:␣
+
 " ----- Theming, visual tweaks -----
 set background=dark
 " for other themes:
