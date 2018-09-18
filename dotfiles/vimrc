@@ -19,8 +19,6 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Tags, file structure overview
 Plug 'majutsushi/tagbar', {'for': g:ctags_supported_languages}
 Plug 'nathanaelkane/vim-indent-guides'
-" Best colorscheme ever
-Plug 'morhetz/gruvbox'
 Plug 'tell-k/vim-autopep8', {'for': 'python'}
 " Asynchronous syntax checking (replaced syntastic)
 Plug 'w0rp/ale', {'for': g:languages_to_lint}
@@ -64,6 +62,8 @@ Plug 'ap/vim-css-color'
 Plug 'valloric/MatchTagAlways', {'for': g:tag_languages}
 " Tickscript support
 Plug 'nathanielc/vim-tickscript', {'for': 'tick'}
+" Gruvbox spinoff with more contrast
+Plug 'srcery-colors/srcery-vim'
 call plug#end()
 
 
@@ -123,7 +123,7 @@ let g:ansible_options = {'documentation_mapping': '<leader>d'}
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'srcery',
       \ }
 
 let g:lightline.component_expand = {
@@ -383,7 +383,7 @@ let g:gruvbox_sign_column='bg0'
 let g:gruvbox_contrast_light='soft'
 let g:gruvbox_contrast_dark='medium'
 " gruvbox options have to be above below line
-silent colorscheme gruvbox
+silent colorscheme srcery
 
 " those quotest have to remain double
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
