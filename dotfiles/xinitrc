@@ -24,5 +24,7 @@ if [ -f "$usermodmap" ]; then
 fi
 
 ${HOME}/bin/i3-merge-conf
+${HOME}/bin/x-merge-conf
 
 exec i3
+

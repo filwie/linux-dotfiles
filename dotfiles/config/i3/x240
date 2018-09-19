@@ -5,11 +5,12 @@ gaps inner 4
 gaps outer 0
 
 # window title fonts
-font pango:Noto Regular 8
+font pango:Iosevka Nerd Font 12
 
 # window borders
 for_window [class=".*"] border pixel 1
 
+<<<<<<< HEAD
 bar {
     height 28
 	status_command SCRIPT_DIR=~/.config/i3blocks/blocklets i3blocks
@@ -31,6 +32,8 @@ bar {
 	}
 }
 
+=======
+>>>>>>> srcery
 # DPI
 exec xrandr --dpi 120
 
