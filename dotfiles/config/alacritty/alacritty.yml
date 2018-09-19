@@ -61,24 +61,24 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: mononoki Nerd Font # should be "Menlo" or something on macOS.
+    family: Iosevka Nerd Font # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
     style: Regular
 
   # The bold font face
   bold:
-    family: mononoki Nerd Font # should be "Menlo" or something on macOS.
+    family: Iosevka Nerd Font # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
     style: Bold
 
   # The italic font face
   italic:
-    family: mononoki Nerd Font # should be "Menlo" or something on macOS.
+    family: Iosevka Nerd Font # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
     style: Italic
 
-  # Point size of the font
-  size: 13.0
+  # Point size of the fhttps://gitlab.com/filip.wiechec/dotfiles/raw/srcery/dotfiles/config/alacritty/alacritty.ymlont
+  size: 10.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -224,7 +224,7 @@ live_config_reload: true
 # Entries in shell.args are passed unmodified as arguments to the shell.
 #
 shell:
-  program: /bin/bash
+  program: /usr/bin/zsh
   args:
     - --login
 
