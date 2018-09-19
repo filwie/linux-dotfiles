@@ -1,6 +1,6 @@
-rofi.theme: /usr/share/rofi/themes/gruvbox-dark-hard.rasi
+rofi.theme: ~/.dotfiles/dotfiles/config/rofi/my_theme.rasi
 rofi.matching: fuzzy
-rofi.font: Noto Sans 18
+rofi.font: Noto Sans 16
 rofi.modi: combi
 rofi.hide-scrollbar: true
 rofi.levenshtein-sort: false
