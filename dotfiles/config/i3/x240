@@ -5,7 +5,7 @@ gaps inner 4
 gaps outer 0
 
 # window title fonts
-font pango:Noto Regular 8
+font pango:Noto Regular 12
 
 # window borders
 for_window [class=".*"] border pixel 1

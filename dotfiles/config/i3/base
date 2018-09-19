@@ -1,5 +1,6 @@
 # set variable browser to env var or firefox if env var is not set
-set $browser "firefox"
+set $browser firefox
+set $term alacritty
 
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 # alt
@@ -7,10 +8,10 @@ set $mod Mod1
 set $sup Mod4
 
 # start a terminal
-bindsym $mod+Return exec "termite"
+bindsym $mod+Return exec $term
 
 # launcher, window switcher
-bindsym $mod+d exec "rofi -show drun -modi drun,run,window,ssh -show-icons -sidebar-mode -terminal termite"
+bindsym $mod+d exec "rofi -show drun -modi drun,run,window,ssh -show-icons -sidebar-mode -lines 10 -terminal $term"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
