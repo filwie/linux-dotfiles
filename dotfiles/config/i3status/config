@@ -77,7 +77,7 @@ volume master {
 cpu_temperature 0 {
   format = " %degrees°C"
   max_threshold = 60
-  format_above_threshold = " WARN: %degrees°C" 
+  format_above_threshold = " WARN: %degrees°C"
 }
 
 

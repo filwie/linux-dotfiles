@@ -64,8 +64,11 @@ Plug 'valloric/MatchTagAlways', {'for': g:tag_languages}
 Plug 'nathanielc/vim-tickscript', {'for': 'tick'}
 " Gruvbox spinoff with more contrast
 Plug 'srcery-colors/srcery-vim'
+" i3 config files syntax
+Plug 'mboughaba/i3config.vim'
+" tab completion
+Plug 'ervandew/supertab'
 call plug#end()
-
 
 " ----- Plugin settings -----
 " Autopep8 - formatting python code
