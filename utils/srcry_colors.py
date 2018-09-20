@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from colr import color
+from colr import color, hex2rgb
 
 gruvbox_colors = dict(
     black='#1C1B19',
@@ -27,4 +27,4 @@ gruvbox_colors = dict(
     xgrey5='#4E4E4E',
 )
 for name, code in gruvbox_colors.items():
-    print(f'{color(code, fore=code)}\t{name}')
+    print(f'{color(code, back=hex2rgb(code))}\t{name}')
