@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 merge_conf () {
 
-    local xresources=${HOME}/.config/i3/config
-    local xresources_base=${HOME}/.config/i3/base
+    local xresources=${HOME}/.Xresources
+    local xresources_base=${HOME}/.Xresources_base
     local xresources_hidpi=${HOME}/.Xresources_hidpi
 
 
