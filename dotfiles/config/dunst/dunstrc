@@ -9,7 +9,7 @@
     word_wrap = yes
     ignore_newline = no
 	# {{ width }}x{{ height }}(+/-){{ pos_x }}(+/-){{ pos_y }}
-    geometry = "340x10-20+40"
+    geometry = "320x10-10+38"
     transparency = 10
     idle_threshold = 120
     monitor = 0
@@ -32,19 +32,21 @@
 
 [frame]
     width = 2
-    color = "#282828"
+    color = "#2D2C29"
 
 [urgency_low]
-    background = "#d5c4a1"
-    foreground = "#282828"
+    background = "#FCE8C3"
+    foreground = "#1C1B19"
     timeout = 10
 
 [urgency_normal]
-    background = "#83a598"
-    foreground = "#282828"
+    background = "#2C78BF"
+    foreground = "#FCE8C3"
     timeout = 10
 
 [urgency_critical]
-    background = "#9d0006"
-    foreground = "#fbf1c7"
+    background = "#EF2F27"
+    foreground = "#FCE8C3"
 	timeout = 0
+
+# vim: set ft=dosini:

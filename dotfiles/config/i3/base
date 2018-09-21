@@ -171,14 +171,14 @@ set $xgrey5        #4E4E4E
 
 # set window colors
 #                       border          background    text           indicator
-client.focused          $brightblack    $black        $brightwhite   $orange
+client.focused          $black          $black        $yellow        $brightyellow
 client.unfocused        $black          $black        $brightwhite   $orange
-client.focused_inactive $brightblack    $black        $brightwhite   $orange
+client.focused_inactive $black          $black        $brightyellow  $orange
 client.urgent           $yellow         $black        $brightwhite   $orange
 
 # status bar
 bar {
-    height 30
+    height 28
 	status_command SCRIPT_DIR=~/.config/i3blocks/blocklets i3blocks
 
     font pango:Iosevka Nerd Font 12
@@ -212,6 +212,9 @@ for_window [class="(?i)pyxel"] floating enable
 for_window [class="(?i)gsimplecal"] floating enable
 # floating windows settings
 floating_minimum_size 240 x 100
+
+# disable window titlebars
+for_window [class="^.*"] border pixel 2
 
 # Multimedia Keys
 # volume
