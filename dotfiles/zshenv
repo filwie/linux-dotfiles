@@ -1,7 +1,6 @@
 path=(
     "$HOME/.cargo/bin"
     $path
-    "$(go env GOPATH)/bin"
     "$HOME/bin"
 )
 export path
