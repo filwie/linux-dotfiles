@@ -27,4 +27,7 @@ gruvbox_colors = dict(
     xgrey5='#4E4E4E',
 )
 for name, code in gruvbox_colors.items():
-    print(f'{color(code, back=hex2rgb(code))}\t{name}')
+    rgb_code = '"{}"'.format(
+            ';'.join([str(v) for v in hex2rgb(code)])
+            )
+    print(f'{color(rgb_code, back=hex2rgb(code))}\t{color(code, back=hex2rgb(code))}\t{name}')
