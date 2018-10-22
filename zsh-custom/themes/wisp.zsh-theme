@@ -5,11 +5,11 @@ local start_italics=$'%{\x1b[3m%}'
 local end_italics=$'%{\x1b[0m%}'
 
 # Colors
-local git_info_color=${rgb_prefix}"213;196;161"${rgb_suffix}
-local path_color=${rgb_prefix}"124;111;100"${rgb_suffix}
-local distinct_color=${rgb_prefix}"7;102;120"${rgb_suffix}
-local warning_color=${rgb_prefix}"225;148;59"${rgb_suffix}
-local critical_color=${rgb_prefix}"177;63;32"${rgb_suffix}
+local git_info_color=${rgb_prefix}"252;232;195"${rgb_suffix}
+local path_color=${rgb_prefix}"145;129;117"${rgb_suffix}
+local distinct_color=${rgb_prefix}"255;135;0"${rgb_suffix}
+local warning_color=${rgb_prefix}"251;184;41"${rgb_suffix}
+local critical_color=${rgb_prefix}"239;47;39"${rgb_suffix}
 
 ZSH_THEME_SCM_PROMPT_PREFIX=${git_info_color}" "${start_italics}
 ZSH_THEME_GIT_PROMPT_PREFIX=$ZSH_THEME_SCM_PROMPT_PREFIX
