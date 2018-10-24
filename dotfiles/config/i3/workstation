@@ -1,18 +1,14 @@
 # workstation part of i3 config
 
 # gaps
-gaps inner 8
+gaps inner 10
 gaps outer 2
 
 # window title fonts
 font pango:Iosevka Nerd Font 13
 
-# window borders
-for_window [class=".*"] pixel 1
-
 # DPI
 exec xrandr --dpi 96
-
 
 # Additional autostart apps
 exec --no-startup-id "hp-systray -x"
