@@ -24,7 +24,9 @@ function gruvbox () {
 
 function set_plugins_for_os () {
     if [[ `uname` == "Darwin" ]]; then
-        plugins=(git osx brew brew-cask)
+        plugins=(git osx brew brew-cask dotenv emoji fzf gitignore sudo)
+    else
+        plugins=(git dotenv emoji fzf gitignore sudo)
     fi
 }
 
