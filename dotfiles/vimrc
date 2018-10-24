@@ -28,6 +28,8 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'Valloric/YouCompleteMe', { 'do': ':AsyncRun ./install.py --clang-completer --go-completer --js-completer'}
 " Git indicatiors
 Plug 'airblade/vim-gitgutter'
+" Git wrapper
+Plug 'tpope/vim-fugitive'
 " Light status line
 Plug 'itchyny/lightline.vim'
 " Some ansible support
