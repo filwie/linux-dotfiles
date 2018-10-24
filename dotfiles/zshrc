@@ -57,9 +57,10 @@ function main () {
     [[ "$(hostname)" = *"x240"* ]] && export GDK_SCALE=1.25
 
     set_plugins_for_os
+
     ZSH_THEME="wisp"
     source ${ZSH}/oh-my-zsh.sh
-    start_and_attach_tmux
+    (( $(id -u) == 0 )) || start_and_attach_tmux
     gruvbox
     source_fzf
     [[ -f ${HOME}/.zsh_aliases ]] && source ${HOME}/.zsh_aliases
