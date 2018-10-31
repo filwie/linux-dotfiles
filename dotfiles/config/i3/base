@@ -168,13 +168,14 @@ set $xgrey2        #303030
 set $xgrey3        #3A3A3A
 set $xgrey4        #444444
 set $xgrey5        #4E4E4E
+set $gtk_theme_main #383838
 
 # set window colors
-#                       border          background    text           indicator
-client.focused          $black          $black        $yellow        $brightyellow
-client.unfocused        $black          $black        $brightwhite   $orange
-client.focused_inactive $black          $black        $brightyellow  $orange
-client.urgent           $yellow         $black        $brightwhite   $orange
+#                       border          background       text           indicator
+client.focused          $gtk_theme_main $gtk_theme_main  $yellow        $brightyellow
+client.unfocused        $black          $black           $brightwhite   $orange
+client.focused_inactive $black          $black           $brightyellow  $orange
+client.urgent           $yellow         $black           $brightwhite   $orange
 
 # status bar
 bar {
