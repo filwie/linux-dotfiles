@@ -365,7 +365,11 @@ set modeline
 " enable mouse in both Vim and gVim
 if has('mouse')
   " try a, r, v
-  set mouse=a
+  set mouse+=a
+  if &term =~ '^screen' || &term =~ '^tmux'
+    " Enable extended mouse while using tmux
+    set ttymouse=xterm2
+  endif
 endif
 
 " enable clipboard intergration, copying to clipboard
