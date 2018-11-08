@@ -191,7 +191,6 @@ noremap <down> gj
 map <C-p> :FZF<CR>
 map <leader>p :Commands<CR>
 
-map <leader>p :Commands<CR>
 map <leader>t :Tags<CR>
 map <leader>b :Buffers<CR>
 
