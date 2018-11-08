@@ -283,7 +283,7 @@ augroup END
 
 augroup markdown
   autocmd!
-  autocmd FileType markdown nmap <buffer> <F10> :AsyncRun  pandoc "${VIM_FILEPATH}" --to html5 --output "/tmp/${VIM_FILENOEXT}.html" --css "${HOME}/.dotfiles/utils/md.css"; ${BROWSER} "/tmp/${VIM_FILENOEXT}.html" <CR>
+  autocmd FileType markdown nmap <buffer> <F10> :AsyncRun  pandoc "${VIM_FILEPATH}" --to html5 --output "/tmp/${VIM_FILENOEXT}.html" --css "${HOME}/.dotfiles/utils/md.css";chmod a+r "/tmp/${VIM_FILENOEXT}.html";  ${BROWSER} "/tmp/${VIM_FILENOEXT}.html" && sleep 5 && rm "/tmp/${VIM_FILENOEXT}.html"<CR>
 augroup END
 
 
