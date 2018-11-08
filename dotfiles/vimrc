@@ -213,6 +213,10 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 
+" toggle terminal emulator
+nnoremap <F12> :term<CR>
+inoremap <F12> <Esc>:term<CR>
+
 " toggle quickfix window
 nnoremap <leader>q :call asyncrun#quickfix_toggle(6)<CR>
 
