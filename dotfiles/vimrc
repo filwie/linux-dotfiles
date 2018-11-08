@@ -70,6 +70,8 @@ Plug 'srcery-colors/srcery-vim'
 Plug 'mboughaba/i3config.vim'
 " tab completion
 Plug 'ervandew/supertab'
+" Ranger file explorer
+Plug 'francoiscabrol/ranger.vim'
 call plug#end()
 
 " ----- Plugin settings -----
