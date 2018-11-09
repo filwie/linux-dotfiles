@@ -1,0 +1,3 @@
+for_window [class="(?i)Xfce4-settings-manager"] floating disable
+
+# vim: set ft=i3config:
