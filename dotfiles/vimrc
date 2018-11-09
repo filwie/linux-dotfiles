@@ -95,9 +95,16 @@ highlight link ALEErrorSign Title
 let g:gitgutter_override_sign_column_highlight = 0
 
 " NerdTree
-" Open Nerd tree if opening a directory
-let g:NERDTreeHijackNetrw = 1
-autocmd VimEnter NERD_tree_1 enew | execute 'NERDTree '.argv()[0]
+" open Nerd tree if opening a directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
+" close Nerd tree if it is the last open window
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
+" Enable opening directories/ files with single click in mouse mode
+let g:NERDTreeMouseMode=3
 
 let NERDTreeDirArrowExpandable = ''
 let NERDTreeDirArrowCollapsible = ''
