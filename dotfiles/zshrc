@@ -52,6 +52,7 @@ function main () {
     export BROWSER="firefox"
     export GOPATH=$(go env GOPATH)
     path+=("$(go env GOPATH)/bin")
+    path+=("/home/fw/.local/bin")
 
     [[ "$(uname -a)" = *"ARCH"* ]] && export TERMINAL=termite
     [[ "$(hostname)" = *"x240"* ]] && export GDK_SCALE=1.25
