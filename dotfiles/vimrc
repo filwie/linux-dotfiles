@@ -325,7 +325,7 @@ set number
 " show relative line numbers in normal mode
 augroup relativenumbertoggle
   autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufEnter,FocusGained,InsertLeave * if &modifiable | set relativenumber | endif
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
