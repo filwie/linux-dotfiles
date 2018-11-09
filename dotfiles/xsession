@@ -1,6 +1,0 @@
-#!/usr/bin/env zsh
-
-${HOME}/bin/i3-merge-conf
-${HOME}/bin/x-merge-conf
-
-i3-with-shmlog
