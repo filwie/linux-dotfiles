@@ -11,19 +11,7 @@ function start_and_attach_tmux () {
     fi
 }
 
-function gruvbox () {
-    local path_linux=${HOME}/.vim/bundle/gruvbox/gruvbox_256palette.sh
-    local path_mac=${HOME}/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh
-
-    if [[ `uname` == "Linux" && -f ${path_linux} ]]; then
-       . ${path_linux}
-    elif [[ `uname` == "Darwin" && -f ${path_mac} ]]; then
-       . ${path_mac}
-    fi
-}
-
-
-function set_plugins_for_os () {
+function set_zsh_plugins () {
     plugins=(git dotenv emoji fzf gitignore sudo docker-compose)
     if [[ `uname` == "Darwin" ]]; then
         plugins+=(osx brew brew-cask)
@@ -37,38 +25,41 @@ function spectrum_ls () {
   done
 }
 
-function source_fzf () {
+function source_other_files () {
     local fzf_paths=(${HOME}/.fzf.zsh /usr/share/fzf/key-bindings.zsh /usr/share/completion.zsh)
     for fzf_path in "${fzf_paths[@]}"; do
         [[ -f "${fzf_path}" ]] && source ${fzf_path}
     done
+    [[ -f "${ZSH}/oh-my-zsh.sh" ]] && source "${ZSH}/oh-my-zsh.sh"
+    [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+    [[ -f "${HOME}/.zsh_aliases" ]] && source ${HOME}/.zsh_aliases
+    [[ -f "${HOME}/.zsh_functions" ]] && source ${HOME}/.zsh_functions
 }
 
-function main () {
+function set_env_vars() {
     export ZSH=${HOME}/.oh-my-zsh
     export ZSH_CUSTOM=${HOME}/.dotfiles/zsh-custom/themes
     export VISUAL=vim
     export EDITOR="${VISUAL}"
     export BROWSER="firefox"
     export GOPATH=$(go env GOPATH)
+    export ZSH_THEME="wisp"
+    [[ "$(hostname)" = *"x240"* ]] && export GDK_SCALE=1.25
+}
+
+function set_path() {
     path+=("$(go env GOPATH)/bin")
     path+=("/home/fw/.local/bin")
-
-    [[ "$(uname -a)" = *"ARCH"* ]] && export TERMINAL=termite
-    [[ "$(hostname)" = *"x240"* ]] && export GDK_SCALE=1.25
-
-    set_plugins_for_os
-
-    ZSH_THEME="wisp"
-    source ${ZSH}/oh-my-zsh.sh
-    (( $(id -u) == 0 )) || start_and_attach_tmux
-    gruvbox
-    source_fzf
-    [[ -f ${HOME}/.zsh_aliases ]] && source ${HOME}/.zsh_aliases
-    alias ssh='TERM=xterm-256color ssh'
     export PATH
+}
+function main () {
+    set_env_vars
+    set_path
+    set_zsh_plugins
+
+    source_other_files
+
+    (( $(id -u) == 0 )) || start_and_attach_tmux
 }
 
 main
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

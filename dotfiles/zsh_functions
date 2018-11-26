@@ -1,0 +1,10 @@
+function dockertop () {
+    watch --color "grc docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Mounts}}'"
+}
+
+function unfreeze_tmux () {
+    kill -CONT $(pidof tmux)
+    tmux attach
+}
+
+

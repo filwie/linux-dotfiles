@@ -1,0 +1,10 @@
+# My term terminfo entry might not be recognized on remote hosts, so:
+alias ssh='TERM=xterm-256color ssh'
+
+# Enable color codes parsing in watch
+alias watch='watch --color'
+
+
+# Color output aliases. Keep those in mind when redirecting the output.
+# Aliases might also be set in /etc/grc.zsh
+alias ls='grc ls -la --color=always'
