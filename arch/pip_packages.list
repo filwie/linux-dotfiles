@@ -1,0 +1,10 @@
+colr
+requests
+
+flake8
+pylint
+vim-vint
+gitlint
+
+
+# vim: set ft=sh:

@@ -1,0 +1,95 @@
+# basics
+vim
+zsh
+tmux
+git
+
+# cli security
+ufw
+
+# cli utilities
+ripgrep
+ranger
+multitail
+grc
+
+# cli media
+mutt
+cmus
+playerctl
+imagemagick
+exfat-utils
+udiskie
+
+# cli monitoring
+htop
+iotop
+iftop
+
+# programming
+go
+python2
+python3
+python-pip
+cmake
+clang
+
+# programming - style
+cppcheck
+shellcheck
+
+
+
+# graphical, drivers
+xorg-xdm
+xf86-video-intel
+xorg-xbacklight
+xorg-server
+xorg-xinit
+xf86-input-evdev
+arandr
+xautolock
+parcellite
+
+networkmanager
+network-manager-applet
+networkmanager-openvpn
+gnome-keyring
+
+noto-fonts
+noto-fonts-emoji
+
+i3-gaps
+i3blocks
+rofi
+dunst
+compton
+alacritty
+
+pcmanfm
+lxappearance
+
+pinta
+feh
+nitrogen
+
+darktable
+
+firefox
+vlc
+
+# sound
+alsa-utils
+pulseaudio-alsa
+pulseaudio-bluetooth
+pasystray
+
+bluez
+blueman
+redshift
+
+
+papirus-icon-theme
+materia-gtk-theme
+
+# vim: set ft=sh:
