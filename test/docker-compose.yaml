@@ -1,0 +1,18 @@
+# Generated: 2018-11-29 15:21:16
+version: '3'
+services:
+  opensuse:
+    build:
+      context: opensuse/
+    image: opensuse
+    container_name: opensuse
+  ubuntu:
+    build:
+      context: ubuntu/
+    image: ubuntu
+    container_name: ubuntu
+  arch:
+    build:
+      context: arch/
+    image: arch
+    container_name: arch
