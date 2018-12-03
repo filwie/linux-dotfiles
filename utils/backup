@@ -92,7 +92,7 @@ function backup_the_things () {
     do
         local target="${backup_dir}/$(basename ${dir})_${filename_suffix}.tar.gz"
         local excluded="--exclude='.tox' --exclude='*.pyc' --exclude='*.pyo'"
-        local cmd="tar "${excluded}" -hcf "${target}" -C "${dir}/.." "$(basename ${dir})""
+        local cmd="tar "${excluded}" -hczf "${target}" -C "${dir}/.." "$(basename ${dir})""
         info_msg "Running: ${cmd}"
         eval "${cmd}" && info_msg "Done" || error_msg "Something went wrong"
     done
