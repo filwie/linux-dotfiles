@@ -1,3 +1,4 @@
+export PURE_I3=true
 path=(
     "$HOME/.cargo/bin"
     $path
