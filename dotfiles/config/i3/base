@@ -1,6 +1,7 @@
 # set variable browser to env var or firefox if env var is not set
 set $browser firefox
 set $term alacritty
+set $lock_command i3flock-fancy
 
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 # alt
@@ -8,10 +9,10 @@ set $mod Mod1
 set $sup Mod4
 
 # start a terminal
-bindsym $mod+Return exec $term
+bindsym $mod+Return exec --no-startup-id $term
 
 # launcher, window switcher
-bindsym $mod+d exec "rofi -show drun -modi drun,run,window,ssh -show-icons -sidebar-mode -lines 8 -terminal $term"
+bindsym $mod+d exec --no-startup-id "rofi -show drun -modi drun,run,window,ssh -show-icons -sidebar-mode -lines 8 -terminal $term"
 
 # Web browser
 bindsym $mod+w exec --no-startup-id $browser
@@ -110,10 +111,10 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+F10 exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+F10 exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # lock
-bindsym $mod+Ctrl+l exec "xscreensaver-command -lock"
+bindsym $mod+Ctrl+l exec --no-startup-id $lock_command
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -198,16 +199,44 @@ for_window [class="^.*"] border pixel 1
 # Ctrl instead of CapsLock
 exec --no-startup-id setxkbmap -option ctrl:nocaps
 
+# status bar
+bar {
+    height 28
+       status_command py3status
+
+    font pango:Iosevka Nerd Font 12
+
+       position top
+
+       separator_symbol " "
+       workspace_buttons yes
+       colors {
+               background $black
+           separator $brightwhite
+           statusline $brightwhite
+               #                  border             background      text
+               focused_workspace  $black             $black          $brightwhite
+               inactive_workspace $black             $black          $brightblack
+               urgent_workspace   $orange            $black          $brightwhite
+       }
+}
+
+
+
+
 # Autostart apps
 exec --no-startup-id "compton --config ~/.compton.conf -b"
 exec --no-startup-id "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 # exec --no-startup-id "dropbox"
-# exec --no-startup-id "nm-applet"
+exec --no-startup-id "nm-applet"
 # exec --no-startup-id "xscreensaver"
-# exec --no-startup-id "xfce4-power-manager"
-# exec --no-startup-id "feh --bg-scale ~/Dropbox/Pictures/Wallpapers/creative_hand_surrealism_car_clock_pineapple_cat_96125_1920x1080.jpg"
-# exec --no-startup-id "clipit"
-# exec --no-startup-id "redshift-gtk"
-# exec --no-startup-id "xfce4-notes"
-# exec --no-startup-id "nitrogen --restore"
-# vim: set ft=i3config:
+
+# turn screen off after specified time (seconds)
+exec --no-startup-id "xset dpms 600"
+# lock screen after given time (minutes) using i3lock fork
+exec --no-startup-id "xautolock -time 5 -locker i3lock-fancy"
+# blue light filter (uses geoclue for location - intensity depends on daylight)
+exec --no-startup-id "redshift-gtk"
+exec --no-startup-id "nitrogen --restore"
+exec --no-startup-id "udiskie"
+
