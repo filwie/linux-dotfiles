@@ -17,9 +17,9 @@ merge_conf () {
         && configs_to_merge+="${i3_config_x240}" \
         || configs_to_merge+="${i3_config_workstation}"
 
-    ps aux | grep "xfce4-session" > /dev/null \
-        && configs_to_merge+="${i3_config_xfce4_integration}" \
-        || configs_to_merge+="${i3_config_pure_i3}"
+    [[ "${PURE_I3}" == "true" ]] \
+        || configs_to_merge+="${i3_config_xfce4_integration}" \
+        && configs_to_merge+="${i3_config_pure_i3}"
 
     cat ${configs_to_merge[@]} > ${i3_config} \
         && echo "Config files: ${configs_to_merge[@]} succesfully merged."
