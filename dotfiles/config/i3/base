@@ -222,21 +222,24 @@ bar {
 }
 
 
-
-
-# Autostart apps
+#TODO: I could probably write python script that could template the config using Jinja2... with distro detection etc!
+# compositor - transparency, shadows and such
 exec --no-startup-id "compton --config ~/.compton.conf -b"
-exec --no-startup-id "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
-# exec --no-startup-id "dropbox"
-exec --no-startup-id "nm-applet"
-# exec --no-startup-id "xscreensaver"
-
+# simple notification daemon
+exec --no-startup-id "dunst"
+# secrets handler for network manager applet to store passwords in
+exec --no-startup-id "gnome-keyring-daemon -d"
 # turn screen off after specified time (seconds)
 exec --no-startup-id "xset dpms 600"
 # lock screen after given time (minutes) using i3lock fork
 exec --no-startup-id "xautolock -time 5 -locker i3lock-fancy"
 # blue light filter (uses geoclue for location - intensity depends on daylight)
 exec --no-startup-id "redshift-gtk"
+# handle wallpaper
 exec --no-startup-id "nitrogen --restore"
+# automount external drives etc
 exec --no-startup-id "udiskie"
-
+# gui for network manager
+exec --no-startup-id "nm-applet"
+# gui for bluetooth devices management
+exec --no-startup-id "blueman-applet"

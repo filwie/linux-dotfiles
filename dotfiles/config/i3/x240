@@ -9,6 +9,3 @@ font pango:Iosevka Nerd Font 12
 
 # DPI
 exec xrandr --dpi 120
-
-# Additional autostart apps
-# exec --no-startup-id "blueman-applet"
