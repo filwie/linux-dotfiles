@@ -20,7 +20,7 @@ function dockertop () {
     local format_template="{{${(j:"}}\t{{":)display_columns}}}"  # '}}\t{{'.join(display_columns) equivalent
     format_template=${format_template:gs/\"/}  # gets rid of the unnecessary quote
 
-    watch --color "grc docker ps --no-trunc --format 'table ${format_template}'"
+    watch --color --no-title --interval 1 --differences "grc docker ps --no-trunc --format 'table ${format_template}'"
 }
 
 function unfreeze_tmux () {
