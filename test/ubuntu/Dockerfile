@@ -4,11 +4,10 @@ ARG packages="sudo"
 
 ENV TERM xterm-256color
 
-RUN apt update
-RUN DEBIAN_FRONTEND=noninteractive apt install --yes ${packages} > /dev/null
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install --yes ${packages} > /dev/null
 
-WORKDIR /tmp
+ADD . /repo
+WORKDIR /repo
 
-ADD https://gitlab.com/filip.wiechec/dotfiles/raw/master/setup.sh .
-
-RUN bash setup.sh
+RUN ./setup.sh

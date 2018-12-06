@@ -119,4 +119,3 @@ function main () {
 
 
 main
-#tar -vhcf "work_${filename_suffix}.tar.gz" work
