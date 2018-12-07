@@ -390,9 +390,11 @@ if has('mouse')
 endif
 
 " enable clipboard intergration, copying to clipboard
-nnoremap y "+y
-vnoremap y "+y
-set clipboard=unnamedplus
+if has('clipboard')
+  nnoremap y "+y
+  vnoremap y "+y
+  set clipboard=unnamedplus
+endif
 
 " display hidden characters
 set listchars=tab:␣
