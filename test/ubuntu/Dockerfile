@@ -1,6 +1,6 @@
 FROM ubuntu:bionic
 
-ARG packages="sudo"
+ARG packages="sudo apt-utils"
 
 ENV TERM xterm-256color
 
