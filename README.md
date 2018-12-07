@@ -1,4 +1,4 @@
-#TODO:
+# #TODO:
 - [x] reorganize project structure - increase readability
 - [ ] refactor `setup.sh` and `link_dotfiles.sh` (and adjust to new directory tree)
 

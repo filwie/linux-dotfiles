@@ -1,9 +1,8 @@
 #!/usr/bin/env zsh
 
-ROOT_DIR="${0:a:h}"
-REPO_DIR="$(dirname ${0:a:h})"
-TEST_DIR="test"
-COMPOSE_FILE="${ROOT_DIR}/docker-compose.yaml"
+TEST_DIR="${0:a:h}"  # where the script resides
+REPO_DIR="$(dirname ${0:a:h})"  # directory in which the script resides
+COMPOSE_FILE="${TEST_DIR}/docker-compose.yaml"
 
 declare -aU test_images
 
@@ -23,7 +22,7 @@ services:
 "  ${image_dir}:
     build:
       context: ${REPO_DIR}/
-      dockerfile: ./${TEST_DIR}/${image_dir}/Dockerfile
+      dockerfile: ./$(basename ${TEST_DIR})/${image_dir}/Dockerfile
     image: ${image_name}
     container_name: ${image_name}
     volumes:
@@ -35,12 +34,15 @@ services:
     docker-compose build
 
     rm "${COMPOSE_FILE}"
-
 }
 
 function main () {
+
+    pushd "${TEST_DIR}"
     build_images
+    popd
 }
+
 
 
 main

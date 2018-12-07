@@ -8,30 +8,39 @@ dotfiles_repo="https://gitlab.com/filip.wiechec/dotfiles.git"
 destination=~/.dotfiles
 
 bold="$(tput bold)"
-green="$(tput setaf 2)"
-yellow="$(tput setaf 3)"
-blue="$(tput setaf 4)"
-red="$(tput setaf 1)"
+green="$(tput setaf 10)"
+yellow="$(tput setaf 11)"
+blue="$(tput setaf 12)"
+red="$(tput setaf 9)"
 reset="$(tput sgr0)"
 
 
 function display_usage () {
-    echo -e "\nUSAGE:\t${0} [-i/--interactive]\n"
+    echo -e "\nUSAGE:\t${0} [-i/--interactive] [-l/--link-only]\n"
+}
+
+function ok () {
+    echo -e "${green}${bold}\tOK${reset}"
+}
+
+function fail () {
+    echo -e "${red}${bold}\tFAIL${reset}" > /dev/stderr
+    return 1
 }
 
 function debug_msg () {
-    (( ${verbosity} >= 3 )) && {
+    if [[ ${verbosity} -ge 3 ]]; then
         local msg="${blue}${bold}[$(date +'%T')] [${BASH_LINENO[0]}] DEBUG: "
         echo -e "${msg}${1}${reset}"
-        (exit "${2:-0}")
-    }
+        return "${2:-0}"
+    fi
 }
 
 function info_msg () {
-    (( ${verbosity} >= 2 )) && {
+    if [[ ${verbosity} -ge 2 ]]; then
         local msg="${green}[$(date +'%T')] [${BASH_LINENO[0]}] INFO: "
-        echo -e "${msg}${1}${reset}"
-    }
+        echo -e -n "${msg}${1}${reset}"
+    fi
 }
 
 function warn_msg () {
@@ -42,11 +51,26 @@ function warn_msg () {
 function error_msg () {
     local msg="${red}[$(date +'%T')] [${BASH_LINENO[0]}] ERROR: "
     echo -e "${msg}${1}${reset}" > /dev/stderr
-    (exit "${2:-0}")
+    return "${2:-0}"
 }
 
 function sigint_handler() {
     error_msg "Got SIGINT. Aborting..." 1
+}
+
+function run_log_cmd () {
+    if [[ "${#}" -eq 1 ]]; then
+        cmd="${1}"
+    elif [[ "${#}" -eq 2 ]] && [[ "${1}" =~ -q|--quiet ]]; then
+        cmd="${2} > /dev/null"
+    elif [[ "${#}" -eq 2 ]] && [[ "${1}" =~ -s|--silent ]]; then
+        cmd="${2} &> /dev/null"
+    else
+        error_msg "${FUNCNAME[0]} invalid arguments. Specify: [-q/--quiet/-s/--silent] CMD_TO_RUN" 1
+    fi
+    local msg="${blue}${bold}[$(date +'%T')] [${BASH_LINENO[0]}] EXECUTING: "
+    echo -e -n "${msg}${cmd}${reset}"
+    eval "${cmd}" && ok || fail
 }
 
 function install_packages () {
@@ -54,16 +78,20 @@ function install_packages () {
     local pkg_manager="none"
     local install_cmd=""
 
-    [[ "${#}" -lt 1 ]] && error_msg "No package specified for installation. Aborting..." 1
+    [[ "${#}" -lt 1 ]] \
+        && error_msg "${FUNCNAME[0]} invalid arguments. Specify: PACKAGE { PACKAGE }" 1
 
     for pm in "${pkg_managers[@]}"; do
         info_msg "Checking ${pm}..."
-        which "${pm}" &> /dev/null && pkg_manager="${pm}" && info_msg "\t${pm} confirmed" && break
+        which "${pm}" &> /dev/null \
+            && pkg_manager="${pm}" \
+            && echo -e "\t${green}${bold}DETECTED${reset}" \
+            && break || echo ""
     done
 
     case "${pkg_manager}" in
         apt)
-            pkg_manager="DEBIAN_FRONTEND=noninteractive apt"
+            pkg_manager="DEBIAN_FRONTEND=noninteractive apt-get"
             install_cmd="install --yes" ;;
         zypper)
             install_cmd="--non-interactive in" ;;
@@ -74,41 +102,41 @@ function install_packages () {
     local install_pkg_cmd="sudo ${pkg_manager} ${install_cmd}"
     debug_msg "${install_pkg_cmd}"
 
-    if [ "${pkg_manager}" = "none" ] || [ "${install_cmd}" = "" ]; then
+    if [[ "${pkg_manager}" == "none" ]] || [[ "${install_cmd}" == "" ]]; then
         error_msg "Could not identify package manager. Aborting..." 1
-    else
-        info_msg "Identified package manager: ${pkg_manager}."
-        info_msg "Install command set to: ${install_pkg_cmd}"
     fi
+    debug_msg "Identified package manager: ${pkg_manager}"
+    debug_msg "Install command set to: ${install_pkg_cmd}"
 
-    warn_msg "Running: \`${install_pkg_cmd} ${@}\` (sudo pass might be required)"
-    eval "${install_pkg_cmd} ${@}"
+    run_log_cmd -q "${install_pkg_cmd} ${@}"
 }
 
 function configure_shell () {
-    [[ -d ${HOME}/.oh-my-zsh ]] \
-        && info_msg "Oh-My-Zsh found. Continuing..." \
-        || { warn_msg "Oh-My-Zsh not found. Attempting to install..."
-             git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
-        }
+    if [[ -d ${HOME}/.oh-my-zsh ]]; then
+        info_msg "Oh-My-Zsh found. Continuing...\n"
+    else
+        warn_msg "Oh-My-Zsh not found. Attempting to install..."
+        run_log_cmd -s "git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ${HOME}/.oh-my-zsh"
+    fi
 
-    [[ -d "${HOME}/.fzf" ]] \
-        && info_msg "fzf found. Continuing..." \
-        || { warn_msg "fzf not found. Attempting to install..."
-             git clone --depth 1 https://github.com/junegunn/fzf.git "${HOME}/.fzf"
-        }
-    [[ -d "${HOME}/.tmux/plugins/tpm" ]] \
-        && info_msg "Tmux plugin manager found" \
-        || { warn_msg "Tmux plugin manager not found. Attempting to install..."
-            git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
-        }
+    if [[ -d "${HOME}/.fzf" ]]; then
+        info_msg "fzf found. Continuing...\n"
+    else
+        warn_msg "fzf not found. Attempting to install..."
+        run_log_cmd -s "git clone --depth 1 https://github.com/junegunn/fzf.git ${HOME}/.fzf"
+    fi
 
-    info_msg "${bold}Press \`<C-a>I\` to install tmux plugins!"
+    if [[ -d "${HOME}/.tmux/plugins/tpm" ]]; then
+        info_msg "Tmux plugin manager found\n"
+    else
+        warn_msg "Tmux plugin manager not found. Attempting to install..."
+        run_log_cmd -s "git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm"
+    fi
+
+    info_msg "${bold}Press \`<C-a>I\` to install tmux plugins!\n"
 }
 
 function obtain_dotfiles () {
-    info_msg "Going '$HOME'"
-    cd "${HOME}"
     if [[ -d ${destination} ]]; then
         if [ "${interactive}" = "y" ]; then
             warn_msg "Existing .dotfiles directory found. Prompting..."
@@ -152,13 +180,13 @@ function apply_dotfiles (){
     ${destination}/utils/link_dotfiles
 
     local shell_msg="Currently used shell is ${SHELL}."
-    [[ "${SHELL}" == *"zsh"* ]] \
-        && info_msg "${shell_msg} Continuing..." \
-        || { warn_msg "${shell_msg} Changing to Zsh..."
-             sudo chsh -s $(which zsh) ${USER} && info_msg "Shell changed."
-           }
+    if [[ "${SHELL}" == *"zsh"* ]]; then
+        info_msg "${shell_msg} Continuing..."
+    else
+        warn_msg "${shell_msg} Changing to $(which zsh)..."
+        run_log_cmd -s "sudo chsh -s $(which zsh) ${USER}"
+    fi
 }
-
 
 function handle_args () {
     if [[ "${#}" -eq 1 ]]; then
@@ -175,12 +203,14 @@ function handle_args () {
 }
 
 function main () {
+    pushd "${HOME}" > /dev/null
     trap sigint_handler SIGINT
     handle_args ${@}
     install_packages "${packages}"
     configure_shell
     obtain_dotfiles
     apply_dotfiles
+    popd > /dev/null
 }
 
 
