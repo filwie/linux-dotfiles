@@ -7,4 +7,4 @@ alias watch='watch --color'
 
 # Color output aliases. Keep those in mind when redirecting the output.
 # Aliases might also be set in /etc/grc.zsh
-alias ls='grc ls -la --color=always'
+alias ls='grc ls --color=always'

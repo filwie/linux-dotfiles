@@ -38,7 +38,7 @@ function source_other_files () {
 
 function set_env_vars() {
     export ZSH=${HOME}/.oh-my-zsh
-    export ZSH_CUSTOM=${HOME}/.dotfiles/zsh-custom/themes
+    export ZSH_CUSTOM=${HOME}/.zsh-custom/themes
     export VISUAL=vim
     export EDITOR="${VISUAL}"
     export BROWSER="firefox"

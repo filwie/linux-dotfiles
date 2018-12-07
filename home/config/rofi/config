@@ -1,4 +1,4 @@
-rofi.theme: ~/.dotfiles/dotfiles/config/rofi/my_theme.rasi
+rofi.theme: ~/.config/rofi/my_theme.rasi
 rofi.matching: fuzzy
 rofi.font: Iosevka Nerd Font 24
 rofi.modi: combi

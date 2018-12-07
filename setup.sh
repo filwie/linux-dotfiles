@@ -3,7 +3,7 @@ set -e
 interactive="n"
 verbosity=3  # 3 - debug; 2 - info; 1 - warn
 
-packages="git zsh tmux grc vim curl"
+packages="git zsh tmux grc curl vim"
 dotfiles_repo="https://gitlab.com/filip.wiechec/dotfiles.git"
 dotfiles_dir="${HOME}/.dotfiles"
 dotfiles_branch="development"
@@ -16,6 +16,8 @@ yellow="$(tput setaf 11)"
 blue="$(tput setaf 12)"
 red="$(tput setaf 9)"
 reset="$(tput sgr0)"
+
+declare -a processess_to_kill_on_exit
 
 
 function display_usage () {
@@ -57,16 +59,34 @@ function error_msg () {
     return "${2:-0}"
 }
 
-function sigint_handler() {
-    error_msg "Got SIGINT. Aborting..." 1
+function evil_blink_blink () {
+    tput civis
+    for i in $(seq 1 1 2); do
+        printf "${green}:)${reset}"
+        sleep 1
+        tput cub 2
+        printf "${red};)${reset}"
+        tput cub 2
+        sleep .5
+    done
+    tput cvvis
 }
 
-function progress_bar() {
-    while true; do
-        dot_color=$(shuf -i 1-255 -n 1)
-        printf "$(tput setaf ${dot_color})."
-        sleep 1
-    done
+function early_sudo() {
+    echo \
+'
+     _       _    __ _ _
+    | |     | |  / _(_) |
+  __| | ___ | |_| |_ _| | ___  ___
+ / _` |/ _ \| __|  _| | |/ _ \/ __|
+| (_| | (_) | |_| | | | |  __/\__ \
+ \__,_|\___/ \__|_| |_|_|\___||___/
+
+You will be prompted for sudo password...
+'
+    sudo printf "That was rather unwise... "
+    evil_blink_blink
+    echo
 }
 
 function run_log_cmd () {
@@ -79,14 +99,10 @@ function run_log_cmd () {
     else
         error_msg "${FUNCNAME[0]} invalid arguments. Specify: [-q/--quiet/-s/--silent] CMD_TO_RUN" 1
     fi
-    local msg="${green}${bold}[$(date +'%T')] [${BASH_LINENO[0]}] EXECUTING: "
+    local msg="${green}[$(date +'%T')] [${BASH_LINENO[0]}] EXECUTING: "
     echo -e -n "${msg}${cmd}${reset} "
 
-    progress_bar &
-
     eval "${cmd}" && ok || fail
-    kill $(jobs -rp) || (exit 0)
-    wait $(jobs -rp) 2>/dev/null || (exit 0)
 }
 
 function install_packages () {
@@ -99,10 +115,13 @@ function install_packages () {
 
     for pm in "${pkg_managers[@]}"; do
         info_msg "Checking ${pm}..."
-        which "${pm}" &> /dev/null \
-            && pkg_manager="${pm}" \
-            && echo -e "\t${green}${bold}DETECTED${reset}" \
-            && break || echo ""
+        if which "${pm}" &> /dev/null; then
+            pkg_manager="${pm}"
+            echo -e "\t${green}${bold}DETECTED${reset}"
+            break
+        else
+            echo ""
+        fi
     done
 
     case "${pkg_manager}" in
@@ -148,8 +167,8 @@ function install_utilities () {
         warn_msg "Tmux plugin manager not found. Attempting to install..."
         run_log_cmd -s "git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm"
     fi
-    info_msg "Attempting to install Tmux plugins"
-    run_log_cmd "${HOME}/.tmux/plugins/tpm/bin/install_plugins"
+    info_msg "Attempting to install Tmux plugins\n"
+    run_log_cmd -s "${HOME}/.tmux/plugins/tpm/bin/install_plugins"
 
     if [[ -f "${HOME}/.vim/autoload/plug.vim" ]]; then
         info_msg "Vim plug found. Continuing...\n"
@@ -157,8 +176,6 @@ function install_utilities () {
         warn_msg "Vim plug not found. Attempting to install..."
         run_log_cmd -s "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
     fi
-
-    info_msg "${bold}Press \`<C-a>I\` to install tmux plugins!\n"
 }
 
 function obtain_dotfiles () {
@@ -197,7 +214,7 @@ function add_terminfo_profiles () {
 
 function apply_dotfiles (){
     info_msg "Running script to create appropriate symbolic links\n"
-    run_log_cmd -q "${link_dotfiles_script}"
+    ${link_dotfiles_script}
 
     local shell_msg="Currently used shell is ${SHELL}."
     if [[ "${SHELL}" == *"zsh"* ]]; then
@@ -209,6 +226,10 @@ function apply_dotfiles (){
 }
 
 function handle_args () {
+    if [[ "${@}" =~ -l|--link-only ]]; then
+        ${link_dotfiles_script}
+        exit 0
+    fi
     if [[ "${#}" -eq 1 ]]; then
         case "${1}" in
             --interactive|-i)
@@ -223,13 +244,13 @@ function handle_args () {
 }
 
 function main () {
-    pushd "${HOME}" > /dev/null
-    trap sigint_handler SIGINT
     handle_args ${@}
+    early_sudo
+    pushd "${HOME}" > /dev/null
     install_packages "${packages}"
-    install_utilities
     obtain_dotfiles
     apply_dotfiles
+    install_utilities
     popd > /dev/null
 }
 

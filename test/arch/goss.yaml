@@ -1,0 +1,20 @@
+command:
+  which zsh:
+    exit-status: 0
+  which tmux:
+    exit-status: 0
+  which vim:
+    exit-status: 0
+command:
+  which zsh:
+    exit-status: 0
+file:
+  /root/.zshrc:
+    exists: true
+    filetype: symlink
+  /root/.vimrc:
+    exists: true
+    filetype: symlink
+  /root/.tmux.conf:
+    exists: true
+    filetype: symlink
