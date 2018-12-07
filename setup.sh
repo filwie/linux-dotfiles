@@ -3,9 +3,12 @@ set -e
 interactive="n"
 verbosity=3  # 3 - debug; 2 - info; 1 - warn
 
-packages="git zsh tmux grc vim"
+packages="git zsh tmux grc vim curl"
 dotfiles_repo="https://gitlab.com/filip.wiechec/dotfiles.git"
-destination=~/.dotfiles
+dotfiles_dir="${HOME}/.dotfiles"
+dotfiles_branch="development"
+
+link_dotfiles_script="${dotfiles_dir}/bin/link_dotfiles.sh"
 
 bold="$(tput bold)"
 green="$(tput setaf 10)"
@@ -20,11 +23,11 @@ function display_usage () {
 }
 
 function ok () {
-    echo -e "${green}${bold}\tOK${reset}"
+    echo "${green}${bold} OK${reset}"
 }
 
 function fail () {
-    echo -e "${red}${bold}\tFAIL${reset}" > /dev/stderr
+    echo "${red}${bold} FAIL${reset}" > /dev/stderr
     return 1
 }
 
@@ -58,6 +61,14 @@ function sigint_handler() {
     error_msg "Got SIGINT. Aborting..." 1
 }
 
+function progress_bar() {
+    while true; do
+        dot_color=$(shuf -i 1-255 -n 1)
+        printf "$(tput setaf ${dot_color})."
+        sleep 1
+    done
+}
+
 function run_log_cmd () {
     if [[ "${#}" -eq 1 ]]; then
         cmd="${1}"
@@ -68,9 +79,14 @@ function run_log_cmd () {
     else
         error_msg "${FUNCNAME[0]} invalid arguments. Specify: [-q/--quiet/-s/--silent] CMD_TO_RUN" 1
     fi
-    local msg="${blue}${bold}[$(date +'%T')] [${BASH_LINENO[0]}] EXECUTING: "
-    echo -e -n "${msg}${cmd}${reset}"
+    local msg="${green}${bold}[$(date +'%T')] [${BASH_LINENO[0]}] EXECUTING: "
+    echo -e -n "${msg}${cmd}${reset} "
+
+    progress_bar &
+
     eval "${cmd}" && ok || fail
+    kill $(jobs -rp) || (exit 0)
+    wait $(jobs -rp) 2>/dev/null || (exit 0)
 }
 
 function install_packages () {
@@ -108,10 +124,10 @@ function install_packages () {
     debug_msg "Identified package manager: ${pkg_manager}"
     debug_msg "Install command set to: ${install_pkg_cmd}"
 
-    run_log_cmd -q "${install_pkg_cmd} ${@}"
+    run_log_cmd -s "${install_pkg_cmd} ${@}"
 }
 
-function configure_shell () {
+function install_utilities () {
     if [[ -d ${HOME}/.oh-my-zsh ]]; then
         info_msg "Oh-My-Zsh found. Continuing...\n"
     else
@@ -132,15 +148,24 @@ function configure_shell () {
         warn_msg "Tmux plugin manager not found. Attempting to install..."
         run_log_cmd -s "git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm"
     fi
+    info_msg "Attempting to install Tmux plugins"
+    run_log_cmd "${HOME}/.tmux/plugins/tpm/bin/install_plugins"
+
+    if [[ -f "${HOME}/.vim/autoload/plug.vim" ]]; then
+        info_msg "Vim plug found. Continuing...\n"
+    else
+        warn_msg "Vim plug not found. Attempting to install..."
+        run_log_cmd -s "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    fi
 
     info_msg "${bold}Press \`<C-a>I\` to install tmux plugins!\n"
 }
 
 function obtain_dotfiles () {
-    if [[ -d ${destination} ]]; then
+    if [[ -d ${dotfiles_dir} ]]; then
         if [ "${interactive}" = "y" ]; then
             warn_msg "Existing .dotfiles directory found. Prompting..."
-            read -p "Remove existing directory (${destination})? [y/N] " choice
+            read -p "Remove existing directory (${dotfiles_dir})? [y/N] " choice
         else
             warn_msg "Existing .dotfiles directory found. Leaving it be..."
             choice="n"
@@ -148,36 +173,31 @@ function obtain_dotfiles () {
         case $choice in
             Y|y|yes)
                 warn_msg "Removing..."
-                rm -rf "${destination}"
-                git clone ${dotfiles_repo} ${destination}
+                rm -rf "${dotfiles_dir}"
                 ;;
             N|n|no|""|"\n")
-                info_msg "Not removing existing destination."
+                info_msg "Not removing existing dotfiles_dir.\n"
                 ;;
             * )
                 error_msg "Unknown option. Aborting..." 1
                 ;;
         esac
-    else
-        info_msg -e "\nCloning dotfiles repo..."
-        git clone ${dotfiles_repo} ${destination}
     fi
+    info_msg "Cloning dotfiles repo...\n"
+    run_log_cmd -s "git clone -b ${dotfiles_branch:-master} ${dotfiles_repo} ${dotfiles_dir}"
 }
 
 function add_terminfo_profiles () {
     error_msg "TODO: add terminfo"
      echo -e "\nAdding terminfo profiles..."
-     tic -x ${destination}/utils/xterm-256color-italic.terminfo \
-         && tic -x ${destination}/utils/tmux-256color.terminfo \
-         || echo -e "\eUnable to load .terminfo files - do it manually\n\ttic -x ${destination}/utils/xterm-256color-italic.terminfo\n\ttic -x ${destination}/utils/tmux-256color.terminfo \n"
+     tic -x ${dotfiles_dir}/utils/xterm-256color-italic.terminfo \
+         && tic -x ${dotfiles_dir}/utils/tmux-256color.terminfo \
+         || echo -e "\eUnable to load .terminfo files - do it manually\n\ttic -x ${dotfiles_dir}/utils/xterm-256color-italic.terminfo\n\ttic -x ${dotfiles_dir}/utils/tmux-256color.terminfo \n"
 }
 
 function apply_dotfiles (){
-    info_msg "Making sure \`${HOME}/bin\` exists"
-    [[ -d "${HOME}/bin" ]] || mkdir "${HOME}/bin"
-
-    info_msg "Running script to create appropriate symbolic links"
-    ${destination}/utils/link_dotfiles
+    info_msg "Running script to create appropriate symbolic links\n"
+    run_log_cmd -q "${link_dotfiles_script}"
 
     local shell_msg="Currently used shell is ${SHELL}."
     if [[ "${SHELL}" == *"zsh"* ]]; then
@@ -207,7 +227,7 @@ function main () {
     trap sigint_handler SIGINT
     handle_args ${@}
     install_packages "${packages}"
-    configure_shell
+    install_utilities
     obtain_dotfiles
     apply_dotfiles
     popd > /dev/null
