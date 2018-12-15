@@ -223,6 +223,7 @@ bar {
 
 
 #TODO: I could probably write python script that could template the config using Jinja2... with distro detection etc!
+exec --no-startup-id "localectl setxkbmap"
 # compositor - transparency, shadows and such
 exec --no-startup-id "compton --config ~/.compton.conf -b"
 # simple notification daemon
