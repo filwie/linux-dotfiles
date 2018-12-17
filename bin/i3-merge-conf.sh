@@ -5,13 +5,13 @@ merge_conf () {
 
     local i3_config=${i3_config_dir}/config
     local i3_config_base=${i3_config_dir}/base
+    local i3_config_status=${i3_config_dir}/status_bar
     local i3_config_x240=${i3_config_dir}/x240
     local i3_config_workstation=${i3_config_dir}/workstation
 
-    local i3_config_xfce4_integration="${i3_config_dir}/xfce4_i3"
     local i3_config_pure_i3="${i3_config_dir}/pure_i3"
 
-    local configs_to_merge=("${i3_config_base}")
+    local configs_to_merge=("${i3_config_base}" "${i3_config_status}")
 
     [[ $(hostname) = *"x240"* ]] \
         && configs_to_merge+="${i3_config_x240}" \

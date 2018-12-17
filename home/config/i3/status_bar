@@ -1,0 +1,22 @@
+# status bar
+bar {
+    height 28
+       status_command py3status
+
+    font pango:Iosevka Nerd Font 12
+
+       position top
+
+       separator_symbol " "
+       workspace_buttons yes
+       colors {
+               background $black
+           separator $brightwhite
+           statusline $brightwhite
+               #                  border             background      text
+               focused_workspace  $black             $black          $brightwhite
+               inactive_workspace $black             $black          $brightblack
+               urgent_workspace   $orange            $black          $brightwhite
+       }
+}
+
