@@ -22,3 +22,4 @@ wheels/
 *.egg
 MANIFEST
 test/docker-compose.yaml
+home/config/i3/config
