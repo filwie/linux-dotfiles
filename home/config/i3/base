@@ -7,6 +7,7 @@ set $sup Mod4
 set $browser firefox
 set $term alacritty
 set $lock_command ~/bin/lock_command.sh
+set $bar_command ~/bin/polybar.sh
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id "$term"
@@ -221,5 +222,6 @@ exec --no-startup-id "blueman-applet"
 exec --no-startup-id "clipit"
 # pulseaudio sys tray
 exec --no-startup-id "pasystray"
-
+# tray and status bar
+exec_always --no-startup-id "$bar_comand"
 # vim: set ft=i3config:

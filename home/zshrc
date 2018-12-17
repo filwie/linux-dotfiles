@@ -44,7 +44,12 @@ function set_env_vars() {
     export BROWSER="firefox"
     export GOPATH=$(go env GOPATH)
     export ZSH_THEME="wisp"
-    [[ "$(hostname)" = *"x240"* ]] && export GDK_SCALE=1.25
+    if [[ "$(hostname)" = *"x240"* ]]; then
+        export GDK_SCALE=1.25
+        export MONITOR="eDP1"
+    else
+        export MONITOR="HDMI-2"
+    fi
 }
 
 function set_path() {
@@ -63,3 +68,5 @@ function main () {
 }
 
 main
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
