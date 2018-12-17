@@ -4,18 +4,18 @@ set $mod Mod1
 set $sup Mod4
 
 # set variable browser to env var or firefox if env var is not set
-set $browser "firefox"
-set $term "alacritty"
-set $lock_command "lock_command.sh"
+set $browser firefox
+set $term alacritty
+set $lock_command ~/bin/lock_command.sh
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id $term
+bindsym $mod+Return exec --no-startup-id "$term"
 
 # launcher, window switcher
 bindsym $mod+d exec --no-startup-id "rofi -show drun -modi drun,run,window,ssh -show-icons -sidebar-mode -lines 8 -terminal $term"
 
 # Web browser
-bindsym $mod+w exec --no-startup-id $browser
+bindsym $mod+w exec --no-startup-id "$browser"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -110,9 +110,6 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+F10 exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
 # lock
 bindsym $mod+Ctrl+l exec --no-startup-id $lock_command
 
@@ -196,34 +193,10 @@ floating_minimum_size 240 x 100
 # disable window titlebars, set border size
 for_window [class="^.*"] border pixel 1
 
+
+exec --no-startup-id "setxkbmap"
 # Ctrl instead of CapsLock
-exec --no-startup-id setxkbmap -option ctrl:nocaps
-
-# status bar
-bar {
-    height 28
-       status_command py3status
-
-    font pango:Iosevka Nerd Font 12
-
-       position top
-
-       separator_symbol " "
-       workspace_buttons yes
-       colors {
-               background $black
-           separator $brightwhite
-           statusline $brightwhite
-               #                  border             background      text
-               focused_workspace  $black             $black          $brightwhite
-               inactive_workspace $black             $black          $brightblack
-               urgent_workspace   $orange            $black          $brightwhite
-       }
-}
-
-
-#TODO: I could probably write python script that could template the config using Jinja2... with distro detection etc!
-exec --no-startup-id "localectl setxkbmap"
+exec --no-startup-id "setxkbmap -option ctrl:nocaps"
 # compositor - transparency, shadows and such
 exec --no-startup-id "compton --config ~/.compton.conf -b"
 # simple notification daemon
@@ -231,9 +204,9 @@ exec --no-startup-id "dunst"
 # secrets handler for network manager applet to store passwords in
 exec --no-startup-id "gnome-keyring-daemon -d"
 # turn screen off after specified time (seconds)
-exec --no-startup-id "xset dpms 600"
+# exec --no-startup-id "xset dpms 600"
 # lock screen after given time (minutes) using i3lock fork
-exec --no-startup-id "xautolock -time 5 -locker i3lock-fancy"
+exec --no-startup-id "xautolock -time 5 -locker $lock_command"
 # blue light filter (uses geoclue for location - intensity depends on daylight)
 exec --no-startup-id "redshift-gtk"
 # handle wallpaper
@@ -244,3 +217,9 @@ exec --no-startup-id "udiskie"
 exec --no-startup-id "nm-applet"
 # gui for bluetooth devices management
 exec --no-startup-id "blueman-applet"
+# clipboard manager
+exec --no-startup-id "clipit"
+# pulseaudio sys tray
+exec --no-startup-id "pasystray"
+
+# vim: set ft=i3config:

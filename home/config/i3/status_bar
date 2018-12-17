@@ -1,7 +1,7 @@
 # status bar
 bar {
     height 28
-       status_command py3status
+       status_command i3status
 
     font pango:Iosevka Nerd Font 12
 
