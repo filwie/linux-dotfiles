@@ -1,12 +1,12 @@
-# set variable browser to env var or firefox if env var is not set
-set $browser firefox
-set $term alacritty
-set $lock_command i3flock-fancy
-
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 # alt
 set $mod Mod1
 set $sup Mod4
+
+# set variable browser to env var or firefox if env var is not set
+set $browser "firefox"
+set $term "alacritty"
+set $lock_command "lock_command.sh"
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id $term
