@@ -223,5 +223,5 @@ exec --no-startup-id "clipit"
 # pulseaudio sys tray
 exec --no-startup-id "pasystray"
 # tray and status bar
-exec_always --no-startup-id "$bar_comand"
+exec_always --no-startup-id "$bar_command"
 # vim: set ft=i3config:

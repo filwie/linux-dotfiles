@@ -1,4 +1,16 @@
-export PURE_I3=true
+export ZSH_THEME="wisp"
+export ZSH=${HOME}/.oh-my-zsh
+export ZSH_CUSTOM=${HOME}/.zsh-custom/themes
+export VISUAL=vim
+export EDITOR="${VISUAL}"
+export BROWSER="firefox"
+
+if [[ "${HOSTNAME}" == "x240" ]]; then
+    export GDK_SCALE=1.25
+    export MONITOR="eDP1"
+else
+    export MONITOR="HDMI-2"
+fi
 path=(
     "$HOME/.cargo/bin"
     $path
