@@ -5,16 +5,28 @@ export VISUAL=vim
 export EDITOR="${VISUAL}"
 export BROWSER="firefox"
 
-if [[ "${HOSTNAME}" == "x240" ]]; then
-    export GDK_SCALE=1.25
-    export MONITOR="eDP1"
-else
-    export MONITOR="HDMI-2"
-fi
 path=(
     "$HOME/.cargo/bin"
     $path
     "$HOME/bin"
 )
+
 export path
 export PATH
+
+
+if [[ "${HOSTNAME}" == "x240" ]]; then
+    export GDK_SCALE=1.25
+    export HIDPI=true
+    export MONITOR="eDP1"
+    export BAR_HEIGHT="32"
+    export BAR_FONT_0="IosevkaNerdFont:size=16;2"
+    export BAR_FONT_1="IosevkaNerdFont:size=18;2"
+    export BAR_FONT_2="MaterialIcons:size=18;2"
+else
+    export MONITOR="HDMI-2"
+    export BAR_HEIGHT="28"
+    export BAR_FONT_0="IosevkaNerdFont:size=12;2"
+    export BAR_FONT_1="IosevkaNerdFont:size=14;2"
+    export BAR_FONT_2="MaterialIcons:size=14;2"
+fi
