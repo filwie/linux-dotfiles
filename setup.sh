@@ -11,7 +11,8 @@ dotfiles_branch="development"
 link_dotfiles_script="${dotfiles_dir}/bin/link_dotfiles.sh"
 
 bold="$(tput bold)"
-green="$(tput setaf 10)"
+green="$(tput setaf 2)"
+bright_green="$(tput setaf 10)"
 yellow="$(tput setaf 11)"
 blue="$(tput setaf 12)"
 red="$(tput setaf 9)"
@@ -25,7 +26,7 @@ function display_usage () {
 }
 
 function ok () {
-    echo "${green}${bold} OK${reset}"
+    echo "${bright_green}${bold} OK${reset}"
 }
 
 function fail () {
