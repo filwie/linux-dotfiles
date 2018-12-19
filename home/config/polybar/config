@@ -6,16 +6,71 @@ foreground-alt = ${xrdb:color7:#918175}
 primary = ${xrdb:color3:#fbb829}
 secondary = ${xrdb:color4:#2c78bf}
 alert = ${xrdb:color9:#f75341}
+
+black = #1C1B19
+brightblack = #2D2C29
+red = #EF2F27
+brightred = #F75341
+green = #519F50
+brightgreen = #98BC37
+yellow = #FBB829
+brightyellow = #FED06E
+blue = #2C78BF
+brightblue = #68A8E4
+magenta = #E02C6D
+brightmagenta = #FF5C8F
+cyan = #0AAEB3
+brightcyan = #53FDE9
+white = #918175
+brightwhite = #FCE8C3
+orange = #D75F00
+brightorange = #FF8700
+
 cpu-underline =
 memory-underline =
 filesystem-underline =
 wlan-connected-underline =
 eth-connected-underline =
 date-underline =
+temperature-underline =
+battery-underline =
+
+[gradient]
+1 = #519F50
+2 = #519F50
+3 = #98BC37
+4 = #98BC37
+5 = #FED06E
+6 = #FBB829
+7 = #F75341
+8 = #EF2F27
 
 [characters]
 bar-fill = ━
 bar-indicator = ╋
+disk = 
+cpu = 
+ram = 
+battery-10 = %{T2}%{T-}
+battery-20 = %{T2}%{T-}
+battery-30 = %{T2}%{T-}
+battery-40 = %{T2}%{T-}
+battery-50 = %{T2}%{T-}
+battery-60 = %{T2}%{T-}
+battery-70 = %{T2}%{T-}
+battery-80 = %{T2}%{T-}
+battery-90 = %{T2}%{T-}
+battery-100 = %{T2}%{T-}
+battery-10-charging = %{T2}%{T-}
+battery-20-charging = %{T2}%{T-}
+battery-30-charging = %{T2}%{T-}
+battery-40-charging = %{T2}%{T-}
+battery-50-charging = %{T2}%{T-}
+battery-60-charging = %{T2}%{T-}
+battery-70-charging = %{T2}%{T-}
+battery-80-charging = %{T2}%{T-}
+battery-90-charging = %{T2}%{T-}
+battery-100-charging = %{T2}%{T-}
 
 [ramp]
 0 = %{F#519F50}▁%{F-}
@@ -54,7 +109,7 @@ border-size = 0
 border-color = #00000000
 
 padding-left = 0
-padding-right = 6
+padding-right = 0
 
 module-margin-left = 0
 module-margin-right = 1
@@ -83,13 +138,6 @@ format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 
-; Only show workspaces on the same output as the bar
-;pin-workspaces = true
-
-#label-mode-padding = 1
-#label-mode-foreground = #000
-#label-mode-background = ${colors.primary}
-
 label-focused = %{F#fbb829}%index%%{F-}
 label-focused-background = ${colors.background-alt}
 label-focused-underline = ${colors.primary}
@@ -113,7 +161,7 @@ interval = 30
 mount-0 = /
 label-mounted = %{T2}%{F#918175} %{F-}%{T-}%percentage_used%%
 
-format-mounted = <label-mounted> <ramp-capacity>
+format-mounted = <label-mounted>
 format-mounted-underline = ${colors.filesystem-underline}
 
 ramp-capacity-0 = ${ramp-reverse.0}
@@ -129,9 +177,9 @@ ramp-capacity-7 = ${ramp-reverse.7}
 type = internal/memory
 interval = 5
 
-format = <label> <ramp-used>
-format-underline = "${colors.memory-underline}"
-label = %{F#918175}%{T2}%{T-}%{F-} %gb_used%/%gb_total%
+format = <label>
+format-underline = ${colors.memory-underline}
+label = %{F#918175}%{T2}%{T-}%{F-} %gb_used%/%gb_total%
 
 ramp-used-0 = ${ramp.0}
 ramp-used-1 = ${ramp.1}
@@ -145,7 +193,7 @@ ramp-used-7 = ${ramp.7}
 [module/cpu]
 type = internal/cpu
 interval = 2
-format = <label> <ramp-load>
+format = <label>
 
 ramp-load-0 = ${ramp.0}
 ramp-load-1 = ${ramp.1}
@@ -156,7 +204,7 @@ ramp-load-5 = ${ramp.5}
 ramp-load-6 = ${ramp.6}
 ramp-load-7 = ${ramp.7}
 
-format-prefix = %{T2}%{T-}
+format-prefix = %{T2}%{T-}
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.cpu-underline}
 label = %percentage:2%%
@@ -165,7 +213,7 @@ label = %percentage:2%%
 type = internal/xbacklight
 
 format = <label> <bar>
-label = %{F#918175}%{F-}
+label = %{T2}%{F#918175}%{F-}%{T-}
 
 bar-width = 10
 bar-indicator = ${characters.bar-indicator}
@@ -180,7 +228,7 @@ type = internal/network
 interface = wlp3s0
 interval = 3.0
 
-format-connected = <label-connected> <ramp-signal>
+format-connected = <label-connected>
 format-connected-underline = ${colors.wlan-connected-underline}
 label-connected = %{F#918175}%{T2}直%{T-}%{F-} %essid% (%local_ip%)
 
@@ -252,31 +300,40 @@ adapter = AC
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+format-charging-underline = ${colors.battery-underline}
 
-format-discharging = <animation-discharging> <label-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = " "
+format-full-prefix = %{T2} %{T-}
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
+ramp-capacity-0 = ${characters.battery-10}
+ramp-capacity-1 = ${characters.battery-20}
+ramp-capacity-2 = ${characters.battery-30}
+ramp-capacity-3 = ${characters.battery-40}
+ramp-capacity-4 = ${characters.battery-50}
+ramp-capacity-5 = ${characters.battery-60}
+ramp-capacity-6 = ${characters.battery-70}
+ramp-capacity-7 = ${characters.battery-80}
+ramp-capacity-8 = ${characters.battery-90}
+ramp-capacity-9 = ${characters.battery-100}
 ramp-capacity-foreground = ${colors.foreground-alt}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
+animation-charging-0 = ${characters.battery-10-charging}
+animation-charging-1 = ${characters.battery-20-charging}
+animation-charging-2 = ${characters.battery-30-charging}
+animation-charging-3 = ${characters.battery-40-charging}
+animation-charging-4 = ${characters.battery-50-charging}
+animation-charging-5 = ${characters.battery-60-charging}
+animation-charging-6 = ${characters.battery-70-charging}
+animation-charging-7 = ${characters.battery-80-charging}
+animation-charging-8 = ${characters.battery-90-charging}
+animation-charging-9 = ${characters.battery-100-charging}
 
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 100
 
 [module/battery2]
 inherit = module/battery1
@@ -288,18 +345,18 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f50a4d
+format-underline = ${colors.temperature-underline}
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-0 = %{T2}%{F#519F50}%{F-}%{T-}
+ramp-1 = %{T2}%{F#98BC37}%{F-}%{T-}
+ramp-2 = %{T2}%{F#FED06E}%{F-}%{T-}
+ramp-3 = %{T2}%{F#FBB829}%{F-}%{T-}
+ramp-4 = %{T2}%{F#F75341}%{F-}%{T-}
 
 [module/powermenu]
 type = custom/menu
