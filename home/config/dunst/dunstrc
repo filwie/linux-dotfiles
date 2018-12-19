@@ -23,6 +23,7 @@
     startup_notification = false
     dmenu = /usr/bin/dmenu -p dunst
     browser = /usr/bin/firefox -new-tab
+    icon_path = /usr/share/icons/Paper/16x16
 
 [shortcuts]
     close = ctrl+space

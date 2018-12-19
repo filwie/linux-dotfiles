@@ -65,7 +65,7 @@ font-1 = ${env:BAR_FONT_1}
 
 modules-left = i3
 modules-center =
-modules-right = filesystem memory cpu xbacklight pulseaudio wlan eth battery1 battery2 temperature date powermenu
+modules-right = filesystem memory cpu xbacklight pulseaudio wlan eth1 eth2 battery1 battery2 temperature date powermenu
 
 tray-position = right
 tray-padding = 0
@@ -86,9 +86,9 @@ wrapping-scroll = false
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
 
-label-mode-padding = 1
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
+#label-mode-padding = 1
+#label-mode-foreground = #000
+#label-mode-background = ${colors.primary}
 
 label-focused = %{F#fbb829}%index%%{F-}
 label-focused-background = ${colors.background-alt}
@@ -195,7 +195,7 @@ ramp-signal-2 = ${ramp-reverse.5}
 ramp-signal-3 = ${ramp-reverse.6}
 ramp-signal-4 = ${ramp-reverse.7}
 
-[module/eth]
+[module/eth1]
 type = internal/network
 interface = enp0s25
 interval = 3.0
@@ -203,12 +203,16 @@ interval = 3.0
 format-connected = <label-connected>
 format-connected-underline = ${colors.eth-connected-underline}
 format-connected-prefix = %{F#918175}%{T2}%{T-}%{F-}
-label-connected = " %local_ip%"
+label-connected = " %ifname% (%local_ip%)"
 
 format-disconnected = <label-disconnected>
 format-disconnected-prefix = %{F#918175}%{T2}%{T-}%{F-}
 format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = " unplugged"
+
+[module/eth2]
+inherit = module/eth1
+interface = eno1
 
 [module/date]
 type = internal/date
@@ -228,10 +232,10 @@ label = %date% %time%
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
-label-volume = 墳
+label-volume = %{F#918175}%{T2}墳%{T-}%{F-}
 label-volume-foreground = ${colors.foreground}
 
-label-muted = 婢 ━━━━━━━━━━
+label-muted = %{F#918175}%{T2}婢%{T-} ━━━━━━━━━━%{F-}
 label-muted-foreground = ${colors.foreground-alt}
 
 bar-volume-width = 10

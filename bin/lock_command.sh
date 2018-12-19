@@ -8,7 +8,7 @@ lock_icons=("/usr/share/icons/Paper/512x512/actions/lock.png")
 num_of_displays=$(xrandr -q | grep ' connected' | wc -l)
 
 function create_background_image () {
-    scrot "${tmp_image}" -quality "1"
+    scrot "${tmp_image}" --quality 5
     local convert_cmd="convert -scale 5% -blur 0x2.5 -resize 2000%"
 
     eval "${convert_cmd} ${tmp_image} ${background_image}"
