@@ -1,8 +1,8 @@
 # workstation part of i3 config
 
 # gaps
-gaps inner 10
-gaps outer 2
+gaps inner 0
+gaps outer 0
 
 # window title fonts
 font pango:Iosevka Nerd Font 13
@@ -11,6 +11,7 @@ font pango:Iosevka Nerd Font 13
 exec xrandr --dpi 96
 
 # Additional autostart apps
-exec --no-startup-id "hp-systray -x"
+exec --no-startup-id "synergy"
+exec --no-startup-id "slack"
 
 # vim: set ft=i3config:

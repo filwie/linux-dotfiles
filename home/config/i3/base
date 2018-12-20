@@ -172,9 +172,9 @@ set $gtk_theme_main #383838
 # set window colors
 #                       border          background       text           indicator
 client.focused          $gtk_theme_main $white           $yellow        $brightwhite
-client.unfocused        $gtk_theme_main $gtk_theme_main  $brightwhite   $gtk_theme_main
-client.focused_inactive $gtk_theme_main $gtk_theme_main  $brightyellow  $gtk_theme_main
-client.urgent           $gtk_theme_main $gtk_theme_main  $brightwhite   $gtk_theme_main
+client.unfocused        $gtk_theme_main $brightblack     $brightwhite   $gtk_theme_main
+client.focused_inactive $gtk_theme_main $brightblack     $brightyellow  $gtk_theme_main
+client.urgent           $gtk_theme_main $brightblack     $brightwhite   $gtk_theme_main
 
 # floating windows
 for_window [class="(?i)pavucontrol"] floating enable
