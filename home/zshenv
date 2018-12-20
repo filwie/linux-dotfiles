@@ -1,32 +1,49 @@
-export ZSH_THEME="wisp"
-export ZSH=${HOME}/.oh-my-zsh
-export ZSH_CUSTOM=${HOME}/.zsh-custom/themes
-export VISUAL=vim
-export EDITOR="${VISUAL}"
-export BROWSER="firefox"
+function set_env_common () {
+    export ZSH_THEME="wisp"
+    export ZSH=${HOME}/.oh-my-zsh
+    export ZSH_CUSTOM=${HOME}/.zsh-custom/themes
+    export VISUAL=vim
+    export EDITOR="${VISUAL}"
+    export BROWSER="firefox"
+}
 
-path=(
-    "$HOME/.cargo/bin"
-    $path
-    "$HOME/bin"
-)
+function set_env_hostname_specific () {
+    if [[ "${HOSTNAME}" == "x240" ]]; then
+        export GDK_SCALE=1.25
+        export HIDPI=true
+        export MONITOR="eDP1"
+        export BAR_HEIGHT="32"
+        export BAR_FONT_0="IosevkaNerdFont:size=16;2"
+        export BAR_FONT_1="IosevkaNerdFont:size=18;2"
+        export BAR_FONT_2="MaterialIcons:size=18;2"
+    else
+        export MONITOR="HDMI-2"
+        export BAR_HEIGHT="26"
+        export BAR_FONT_0="IosevkaNerdFont:size=12;2"
+        export BAR_FONT_1="IosevkaNerdFont:size=14;2"
+        export BAR_FONT_2="MaterialIcons:size=14;2"
+    fi
+}
 
-export path
-export PATH
+function set_path () {
+    [[ "$(uname -a)" =~ '.*Ubuntu.*|.*ubuntu.*' ]] \
+        && path=("/home/linuxbrew/.linuxbrew/bin" $path)
+    path+=("/usr/local/go/bin")
+    export path
+    export PATH
+    if which go > /dev/null 2>&1; then
+        path+=("$(go env GOPATH)/bin")
+        export GOPATH=$(go env GOPATH)
+    fi
+    export path
+    export PATH
+}
+
+function main () {
+    set_env_common
+    set_env_hostname_specific
+    set_path
+}
 
 
-if [[ "${HOSTNAME}" == "x240" ]]; then
-    export GDK_SCALE=1.25
-    export HIDPI=true
-    export MONITOR="eDP1"
-    export BAR_HEIGHT="32"
-    export BAR_FONT_0="IosevkaNerdFont:size=16;2"
-    export BAR_FONT_1="IosevkaNerdFont:size=18;2"
-    export BAR_FONT_2="MaterialIcons:size=18;2"
-else
-    export MONITOR="HDMI-2"
-    export BAR_HEIGHT="26"
-    export BAR_FONT_0="IosevkaNerdFont:size=12;2"
-    export BAR_FONT_1="IosevkaNerdFont:size=14;2"
-    export BAR_FONT_2="MaterialIcons:size=14;2"
-fi
+main

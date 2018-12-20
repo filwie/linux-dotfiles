@@ -18,13 +18,6 @@ function set_zsh_plugins () {
     fi
 }
 
-# Show all 256 colors with color number
-function spectrum_ls () {
-  for code in {000..255}; do
-      print -P -- "$code: %{$FG[$code]%}$ZSH_SPECTRUM_TEXT%{$reset_color%}"
-  done
-}
-
 function source_other_files () {
     local fzf_paths=(${HOME}/.fzf.zsh /usr/share/fzf/key-bindings.zsh /usr/share/completion.zsh)
     for fzf_path in "${fzf_paths[@]}"; do
@@ -36,27 +29,20 @@ function source_other_files () {
     [[ -f "${HOME}/.zsh_functions" ]] && source ${HOME}/.zsh_functions
 }
 
-function set_env_vars() {
-    export GOPATH=$(go env GOPATH)
-}
-
-function set_path() {
-    [[ "$(uname -a)" =~ '.*Ubuntu.*|.*ubuntu.*' ]] \
-        && path=("/home/linuxbrew/.linuxbrew/bin/" $path)
-    path+=("$(go env GOPATH)/bin")
-    path+=("/home/fw/.local/bin")
+function set_user_path () {
+    path+=("${HOME}/.cargo/bin"
+    "${HOME}/.local/bin"
+    "${HOME}/bin")
+    export path
     export PATH
 }
-function main () {
-    set_env_vars
-    set_path
-    set_zsh_plugins
 
+function main () {
+    set_zsh_plugins
     source_other_files
 
     (( $(id -u) == 0 )) || start_and_attach_tmux
 }
 
-main
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+main
