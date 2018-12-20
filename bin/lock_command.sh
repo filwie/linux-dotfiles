@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-background_image="${HOME}/Pictures/lock.png"
+background_image="/tmp/lock.png"
 tmp_image="/tmp/screen_capture.png"
 lock_icons=("/usr/share/icons/Paper/512x512/actions/lock.png")
 
