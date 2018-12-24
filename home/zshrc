@@ -38,9 +38,9 @@ function set_user_path () {
 }
 
 function main () {
+    set_user_path
     set_zsh_plugins
     source_other_files
-
     (( $(id -u) == 0 )) || start_and_attach_tmux
 }
 

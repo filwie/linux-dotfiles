@@ -5,6 +5,7 @@ function set_env_common () {
     export VISUAL=vim
     export EDITOR="${VISUAL}"
     export BROWSER="firefox"
+    export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 }
 
 function set_env_hostname_specific () {
