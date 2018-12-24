@@ -9,3 +9,23 @@ function spectrum_ls () {
   done
 }
 
+function remove_tags_files () {
+    if [[ "${#}" == 1 ]]; then
+        if [[ -d "${1}" ]]; then
+            local dir="${1}"
+        else
+            echo "$(tput setaf 1)${1} is not a directory!${RESET}" > /dev/stderr
+            return 1
+        fi
+    else
+        local dir="."
+    fi
+
+    find . -name "tags" -not -path "**/.git/*" -exec rm {} \;
+}
+
+function grg () {
+    # Ripgrep in git repo root
+    rg "${@}" $(git rev-parse --show-toplevel)
+}
+
