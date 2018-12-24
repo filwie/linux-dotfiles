@@ -16,6 +16,8 @@ let g:tag_languages = ['html', 'xml', 'xhtml', 'jinja']
 call plug#begin('~/.vim/plugged')
 " File tree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" Tags
+Plug 'ludovicchabant/vim-gutentags'
 " Tags, file structure overview
 Plug 'majutsushi/tagbar', {'for': g:ctags_supported_languages}
 Plug 'nathanaelkane/vim-indent-guides'
@@ -55,8 +57,10 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Distraction-free mode
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
-Plug 'mhinz/vim-startify'          " fancy start page
-Plug 'tpope/vim-surround'          " handle quotes, parantheses etc.
+" fancy start page
+Plug 'mhinz/vim-startify'
+" handle quotes, parantheses etc.
+Plug 'tpope/vim-surround'
 Plug 'maximbaz/lightline-ale', {'for': g:languages_to_lint}
 " Highlight RGB color codes in multiple filetypes
 Plug 'ap/vim-css-color'
@@ -200,6 +204,7 @@ noremap <down> gj
 
 " Map familiar C-p to use fzf
 map <C-p> :FZF<CR>
+map <C-t> :GFiles<CR>
 map <leader>p :Commands<CR>
 
 map <leader>t :Tags<CR>
