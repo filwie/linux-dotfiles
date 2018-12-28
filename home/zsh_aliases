@@ -10,3 +10,5 @@ alias cdr='cd $(git rev-parse --show-toplevel)'
 # Color output aliases. Keep those in mind when redirecting the output.
 # Aliases might also be set in /etc/grc.zsh
 alias ls='grc ls --color=always'
+
+alias svirsh='virsh --connect qemu:///system'

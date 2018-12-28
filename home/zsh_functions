@@ -29,3 +29,6 @@ function grg () {
     rg "${@}" $(git rev-parse --show-toplevel)
 }
 
+function vagrant_remove_all_boxes () {
+    vagrant box list | cut -f 1 -d ' ' | xargs -L 1 vagrant box remove -f
+}

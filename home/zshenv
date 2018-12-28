@@ -6,6 +6,8 @@ function set_env_common () {
     export EDITOR="${VISUAL}"
     export BROWSER="firefox"
     export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+    export VIRSH_DEFAULT_CONNECT_URI="qemu:///system"
+    export LIBVIRT_DEFAULT_URI="qemu:///system"
 }
 
 function set_env_hostname_specific () {
@@ -15,13 +17,13 @@ function set_env_hostname_specific () {
         export MONITOR="eDP1"
         export BAR_HEIGHT="32"
         export BAR_FONT_0="IosevkaNerdFont:size=16;2"
-        export BAR_FONT_1="IosevkaNerdFont:size=18;2"
+        export BAR_FONT_1="Material\-Design\-Iconic\-Font:size=18;2"
         export BAR_FONT_2="MaterialIcons:size=18;2"
     else
         export MONITOR="HDMI-2"
         export BAR_HEIGHT="26"
         export BAR_FONT_0="IosevkaNerdFont:size=12;2"
-        export BAR_FONT_1="IosevkaNerdFont:size=14;2"
+        export BAR_FONT_1="Material\-Design\-Iconic\-Font:size=14;2"
         export BAR_FONT_2="MaterialIcons:size=14;2"
     fi
 }

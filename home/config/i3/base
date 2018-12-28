@@ -191,6 +191,9 @@ for_window [class="(?i)gsimplecal"] floating enable
 # floating windows settings
 floating_minimum_size 240 x 100
 
+# fullscreen windows
+for_window [class="(?i)alacritty"] fullscreen enable
+
 # disable window titlebars, set border size
 for_window [class="^.*"] border pixel 1
 

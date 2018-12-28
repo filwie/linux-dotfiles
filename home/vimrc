@@ -432,7 +432,7 @@ highlight Comment cterm=italic
 " GUI settings
 if has('gui')
   set guioptions=
-  set guifont=Iosevka\ Nerd\ Font\ 13
+  set guifont=Iosevka\ 13
   set autochdir
   set shell=/bin/zsh
 endif

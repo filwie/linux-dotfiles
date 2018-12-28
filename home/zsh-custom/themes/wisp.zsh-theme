@@ -27,6 +27,11 @@ function precmd {
     else
         zle_highlight=( default:fg=brightwhite )
     fi
+    if [[ -f "/.dockerenv" ]]; then
+        docker_status=""
+    else
+        docker_status=""
+    fi
 }
 
 local regular_glyph=""

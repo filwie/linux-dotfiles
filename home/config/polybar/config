@@ -51,26 +51,26 @@ bar-indicator = ╋
 disk = 
 cpu = 
 ram = 
-battery-10 = %{T2}%{T-}
-battery-20 = %{T2}%{T-}
-battery-30 = %{T2}%{T-}
-battery-40 = %{T2}%{T-}
-battery-50 = %{T2}%{T-}
-battery-60 = %{T2}%{T-}
-battery-70 = %{T2}%{T-}
-battery-80 = %{T2}%{T-}
-battery-90 = %{T2}%{T-}
-battery-100 = %{T2}%{T-}
-battery-10-charging = %{T2}%{T-}
-battery-20-charging = %{T2}%{T-}
-battery-30-charging = %{T2}%{T-}
-battery-40-charging = %{T2}%{T-}
-battery-50-charging = %{T2}%{T-}
-battery-60-charging = %{T2}%{T-}
-battery-70-charging = %{T2}%{T-}
-battery-80-charging = %{T2}%{T-}
-battery-90-charging = %{T2}%{T-}
-battery-100-charging = %{T2}%{T-}
+battery-10 = %{T1}%{T-}
+battery-20 = %{T1}%{T-}
+battery-30 = %{T1}%{T-}
+battery-40 = %{T1}%{T-}
+battery-50 = %{T1}%{T-}
+battery-60 = %{T1}%{T-}
+battery-70 = %{T1}%{T-}
+battery-80 = %{T1}%{T-}
+battery-90 = %{T1}%{T-}
+battery-100 = %{T1}%{T-}
+battery-10-charging = %{T1}%{T-}
+battery-20-charging = %{T1}%{T-}
+battery-30-charging = %{T1}%{T-}
+battery-40-charging = %{T1}%{T-}
+battery-50-charging = %{T1}%{T-}
+battery-60-charging = %{T1}%{T-}
+battery-70-charging = %{T1}%{T-}
+battery-80-charging = %{T1}%{T-}
+battery-90-charging = %{T1}%{T-}
+battery-100-charging = %{T1}%{T-}
 
 [ramp]
 0 = %{F#519F50}▁%{F-}
@@ -117,6 +117,7 @@ module-margin-right = 1
 ; font-N = <fontconfig pattern>;<vertical offset>
 font-0 = ${env:BAR_FONT_0}
 font-1 = ${env:BAR_FONT_1}
+font-2 = ${env:BAR_FONT_2}
 
 modules-left = i3
 modules-center =
@@ -159,7 +160,7 @@ label-urgent-padding = 1
 type = internal/fs
 interval = 30
 mount-0 = /
-label-mounted = %{T2}%{F#918175} %{F-}%{T-}%percentage_used%%
+label-mounted = %{T1}%{F#918175} %{F-}%{T-}%percentage_used%%
 
 format-mounted = <label-mounted>
 format-mounted-underline = ${colors.filesystem-underline}
@@ -179,7 +180,7 @@ interval = 5
 
 format = <label>
 format-underline = ${colors.memory-underline}
-label = %{F#918175}%{T2}%{T-}%{F-} %gb_used%/%gb_total%
+label = %{F#918175}%{T1}%{T-}%{F-} %gb_used%/%gb_total%
 
 ramp-used-0 = ${ramp.0}
 ramp-used-1 = ${ramp.1}
@@ -204,7 +205,7 @@ ramp-load-5 = ${ramp.5}
 ramp-load-6 = ${ramp.6}
 ramp-load-7 = ${ramp.7}
 
-format-prefix = %{T2}%{T-}
+format-prefix = %{T1}%{T-}
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.cpu-underline}
 label = %percentage:2%%
@@ -213,7 +214,7 @@ label = %percentage:2%%
 type = internal/xbacklight
 
 format = <label> <bar>
-label = %{T2}%{F#918175}%{F-}%{T-}
+label = %{T1}%{F#918175}%{F-}%{T-}
 
 bar-width = 10
 bar-indicator = ${characters.bar-indicator}
@@ -230,7 +231,7 @@ interval = 3.0
 
 format-connected = <label-connected>
 format-connected-underline = ${colors.wlan-connected-underline}
-label-connected = %{F#918175}%{T2}直%{T-}%{F-} %essid% (%local_ip%)
+label-connected = %{F#918175}%{T1}直%{T-}%{F-} %essid% (%local_ip%)
 
 format-disconnected = <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
@@ -250,11 +251,11 @@ interval = 3.0
 
 format-connected = <label-connected>
 format-connected-underline = ${colors.eth-connected-underline}
-format-connected-prefix = %{F#918175}%{T2}%{T-}%{F-}
+format-connected-prefix = %{F#918175}%{T1}%{T-}%{F-}
 label-connected = " %ifname% (%local_ip%)"
 
 format-disconnected = <label-disconnected>
-format-disconnected-prefix = %{F#918175}%{T2}%{T-}%{F-}
+format-disconnected-prefix = %{F#918175}%{T1}%{T-}%{F-}
 format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = " unplugged"
 
@@ -280,10 +281,10 @@ label = %date% %time%
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
-label-volume = %{F#918175}%{T2}墳%{T-}%{F-}
+label-volume = %{F#918175}%{T1}墳%{T-}%{F-}
 label-volume-foreground = ${colors.foreground}
 
-label-muted = %{F#918175}%{T2}婢%{T-} ━━━━━━━━━━%{F-}
+label-muted = %{F#918175}%{T1}婢%{T-} ━━━━━━━━━━%{F-}
 label-muted-foreground = ${colors.foreground-alt}
 
 bar-volume-width = 10
@@ -305,7 +306,7 @@ format-charging-underline = ${colors.battery-underline}
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = %{T2} %{T-}
+format-full-prefix = %{T1} %{T-}
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
@@ -352,11 +353,11 @@ format-warn-underline = ${self.format-underline}
 label = %temperature-c%
 label-warn = %temperature-c%
 
-ramp-0 = %{T2}%{F#519F50}%{F-}%{T-}
-ramp-1 = %{T2}%{F#98BC37}%{F-}%{T-}
-ramp-2 = %{T2}%{F#FED06E}%{F-}%{T-}
-ramp-3 = %{T2}%{F#FBB829}%{F-}%{T-}
-ramp-4 = %{T2}%{F#F75341}%{F-}%{T-}
+ramp-0 = %{T1}%{F#519F50}%{F-}%{T-}
+ramp-1 = %{T1}%{F#98BC37}%{F-}%{T-}
+ramp-2 = %{T1}%{F#FED06E}%{F-}%{T-}
+ramp-3 = %{T1}%{F#FBB829}%{F-}%{T-}
+ramp-4 = %{T1}%{F#F75341}%{F-}%{T-}
 
 [module/powermenu]
 type = custom/menu

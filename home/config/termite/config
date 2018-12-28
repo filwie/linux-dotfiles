@@ -1,12 +1,17 @@
 [options]
-font = Mononoki Nerd Font 16
+font = Iosevka Nerd Font 14
 allow_bold = true
 
 fullscreen = true
 
+clickable_url = true
+
 scrollback_lines = -1
 
 hyperlinks = true
+
+browser = xdg-open
+scrollbar = off
 
 [colors]
 
