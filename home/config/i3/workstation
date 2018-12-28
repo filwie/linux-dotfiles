@@ -14,4 +14,4 @@ exec xrandr --dpi 96
 exec --no-startup-id "synergy"
 exec --no-startup-id "slack"
 
-# vim: set ft=i3config:
+# vim: set ft=ruby:

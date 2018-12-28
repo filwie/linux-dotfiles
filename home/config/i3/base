@@ -227,4 +227,4 @@ exec --no-startup-id "clipit"
 exec --no-startup-id "pasystray"
 # tray and status bar
 exec_always --no-startup-id "$bar_command"
-# vim: set ft=i3config:
+# vim: set ft=ruby:

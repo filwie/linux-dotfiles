@@ -20,28 +20,19 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'ludovicchabant/vim-gutentags'
 " Tags, file structure overview
 Plug 'majutsushi/tagbar', {'for': g:ctags_supported_languages}
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tell-k/vim-autopep8', {'for': 'python'}
 " Asynchronous syntax checking (replaced syntastic)
 Plug 'w0rp/ale', {'for': g:languages_to_lint}
-" b,w etc. work better with CamelCase
-Plug 'bkad/CamelCaseMotion'
 " Fat code completion
 Plug 'Valloric/YouCompleteMe', { 'do': ':AsyncRun ./install.py --clang-completer --go-completer --js-completer'}
 " Git indicatiors
 Plug 'airblade/vim-gitgutter'
 " Git wrapper
 Plug 'tpope/vim-fugitive'
-" Light status line
-Plug 'itchyny/lightline.vim'
 " Some ansible support
 Plug 'chase/vim-ansible-yaml'
-" Example: html:5_ <C-y>, -> generate html (_ is cursor)
-Plug 'mattn/emmet-vim'
 " Jinja2 template syntax
 Plug 'glench/vim-jinja2-syntax'
-" Linter for vimscript
-Plug 'syngan/vim-vimlint'
 " Dockerfile syntax
 Plug 'ekalinin/Dockerfile.vim'
 " golang support. Example: :GoLint, :GoCompile
@@ -57,11 +48,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Distraction-free mode
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
-" fancy start page
-Plug 'mhinz/vim-startify'
 " handle quotes, parantheses etc.
 Plug 'tpope/vim-surround'
-Plug 'maximbaz/lightline-ale', {'for': g:languages_to_lint}
 " Highlight RGB color codes in multiple filetypes
 Plug 'ap/vim-css-color'
 " Highlight the encloding html/xml tags
@@ -70,8 +58,8 @@ Plug 'valloric/MatchTagAlways', {'for': g:tag_languages}
 Plug 'nathanielc/vim-tickscript', {'for': 'tick'}
 " Gruvbox spinoff with more contrast
 Plug 'srcery-colors/srcery-vim'
-" i3 config files syntax
-Plug 'mboughaba/i3config.vim'
+" One of the best color schemes
+Plug 'morhetz/gruvbox'
 " tab completion
 Plug 'ervandew/supertab'
 " Ranger file explorer
@@ -117,8 +105,8 @@ let g:NERDTreeMouseMode=3
 let NERDTreeDirArrowExpandable = ''
 let NERDTreeDirArrowCollapsible = ''
 
-set noshowmode
-set laststatus=2
+" set noshowmode
+set laststatus=0
 
 " AsyncRun
 " set the quickfix window 6 lines height.
@@ -142,31 +130,6 @@ highlight link ALEErrorSign Title
 let g:ansible_options = {'ignore_blank_lines': 0}
 " open ansible doc for module under cursor
 let g:ansible_options = {'documentation_mapping': '<leader>d'}
-
-" Lightline
-let g:lightline = {
-      \ 'colorscheme': 'srcery',
-      \ }
-
-let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
-
-let g:lightline.component_type = {
-      \     'linter_checking': 'left',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'left',
-      \ }
-
-let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok'], ['filetype', 'percent', 'lineinfo'  ]] }
-let g:lightline#ale#indicator_checking = ' '
-let g:lightline#ale#indicator_warnings = ' '
-let g:lightline#ale#indicator_errors = ' '
-let g:lightline#ale#indicator_ok = ' '
 
 " Goyo
 " Hide tmux status bar and ALE info
@@ -406,7 +369,7 @@ set listchars+=eol:
 set listchars+=nbsp:␣
 
 " ----- Theming, visual tweaks -----
-set background=dark
+set background=light
 " for other themes:
 highlight clear SignColumn
 " SignColumn - gitgutter, ale etc.
@@ -415,7 +378,8 @@ let g:gruvbox_sign_column='bg0'
 let g:gruvbox_contrast_light='soft'
 let g:gruvbox_contrast_dark='medium'
 " gruvbox options have to be above below line
-silent colorscheme srcery
+"silent colorscheme srcery
+silent colorscheme gruvbox
 
 " those quotest have to remain double
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -432,7 +396,7 @@ highlight Comment cterm=italic
 " GUI settings
 if has('gui')
   set guioptions=
-  set guifont=Iosevka\ 13
+  set guifont=Iosevka\ 18
   set autochdir
   set shell=/bin/zsh
 endif

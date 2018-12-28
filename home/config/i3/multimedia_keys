@@ -18,4 +18,4 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightnessc
 
-# vim: set ft=i3config:
+# vim: set ft=ruby:
