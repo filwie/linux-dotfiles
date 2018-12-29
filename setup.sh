@@ -132,7 +132,7 @@ function install_packages () {
         zypper)
             install_cmd="--non-interactive in" ;;
         pacman)
-            install_cmd="--noconfirm -S" ;;
+            install_cmd="--needed --noconfirm -S" ;;
     esac
 
     local install_pkg_cmd="sudo ${pkg_manager} ${install_cmd}"

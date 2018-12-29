@@ -1,7 +1,7 @@
 # #TODO:
 - [x] reorganize project structure - increase readability
 - [x] refactor `setup.sh` and `link_dotfiles.sh` (and adjust to new directory tree)
-- [ ] handle locales in test containers otherwise tmux plugins won't install causing tests to fail
+- [x] handle locales in test containers otherwise tmux plugins won't install causing tests to fail
 
 ## Quickstart
 Execute command below:

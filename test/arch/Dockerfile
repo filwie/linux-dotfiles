@@ -9,8 +9,7 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN pacman -Syu --noconfirm \
-        && pacman -Sy --noconfirm ${packages} > /dev/null
+RUN pacman -Sy --needed --noconfirm ${packages} > /dev/null
 
 ADD . /repo
 WORKDIR /repo
