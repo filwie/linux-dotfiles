@@ -22,7 +22,7 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
-${HOME}/bin/i3-merge-conf
-${HOME}/bin/x-merge-conf
+${HOME}/bin/i3-merge-conf.sh
+${HOME}/bin/x-merge-conf.sh
 
 exec i3-with-shmlog

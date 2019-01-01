@@ -35,19 +35,11 @@ Plug 'chase/vim-ansible-yaml'
 Plug 'glench/vim-jinja2-syntax'
 " Dockerfile syntax
 Plug 'ekalinin/Dockerfile.vim'
-" golang support. Example: :GoLint, :GoCompile
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 " Execute commands asyncronously
 Plug 'skywind3000/asyncrun.vim'
-" Filetype icons for nerd tree
-Plug 'ryanoasis/vim-devicons', { 'on': 'NERDTreeToggle' }
-" Remove trailing whitespace characters
-Plug 'ntpeters/vim-better-whitespace'
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" Distraction-free mode
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 " handle quotes, parantheses etc.
 Plug 'tpope/vim-surround'
 " Highlight RGB color codes in multiple filetypes
@@ -62,12 +54,12 @@ Plug 'srcery-colors/srcery-vim'
 Plug 'morhetz/gruvbox'
 " tab completion
 Plug 'ervandew/supertab'
-" Ranger file explorer
-Plug 'francoiscabrol/ranger.vim'
 " Navigation similar to Vimium
 Plug 'justinmk/vim-sneak'
 " Multiple cursors similar to Sublime
 Plug 'terryma/vim-multiple-cursors'
+" Filetype icons for nerd tree
+Plug 'ryanoasis/vim-devicons', { 'on': 'NERDTreeToggle' }
 call plug#end()
 
 " ----- Plugin settings -----
@@ -91,19 +83,14 @@ highlight link ALEErrorSign Title
 let g:gitgutter_override_sign_column_highlight = 0
 
 " NerdTree
-" open Nerd tree if opening a directory
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-
-" close Nerd tree if it is the last open window
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-
-" Enable opening directories/ files with single click in mouse mode
 let g:NERDTreeMouseMode=3
+"let NERDTreeDirArrowExpandable = ''
+"let NERDTreeDirArrowCollapsible = ''
 
-let NERDTreeDirArrowExpandable = ''
-let NERDTreeDirArrowCollapsible = ''
+" DevIcons
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
+let g:DevIconsDefaultFolderOpenSymbol = ''
 
 " set noshowmode
 set laststatus=0
@@ -126,32 +113,6 @@ let g:ale_sign_error = ''
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
 
-" vim-ansible-yaml
-let g:ansible_options = {'ignore_blank_lines': 0}
-" open ansible doc for module under cursor
-let g:ansible_options = {'documentation_mapping': '<leader>d'}
-
-" Goyo
-" Hide tmux status bar and ALE info
-function! s:goyo_enter()
-  if !has('gui_running')
-    silent !tmux set status off
-    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-  endif
-endfunction
-
-function! s:goyo_leave()
-  if !has('gui_running')
-    silent !tmux set status on
-    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-  endif
-  " force redraw - get rid of some artifacts
-  redraw!
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
 " ----- Key mapping -----
 
 " now Q and W also work - my most common mistype
@@ -173,29 +134,14 @@ map <leader>p :Commands<CR>
 map <leader>t :Tags<CR>
 map <leader>b :Buffers<CR>
 
-" map <C-n> :NERDTreeToggle<CR>
 map <leader>nt :NERDTreeToggle<CR>
 map <F8> :TagbarToggle<CR>
-
-map <leader>] :bnext<CR>
-map <leader>[ :bprev<CR>
-
-" Enable distraction free mode
-map <leader>df :Goyo<CR>
 
 " YouCompleteMe
 " jump to definiton
 map <leader>jd :YcmCompleter GoTo<CR>
 let g:ycm_global_ycm_extra_conf = '$HOME/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_insertion = 1
-
-" Better whitespace
-let g:better_whitespace_enabled=1
-let g:strip_whitespace_on_save=1
-
-" toggle terminal emulator
-nnoremap <F12> :term<CR>
-inoremap <F12> <Esc>:term<CR>
 
 " toggle quickfix window
 nnoremap <leader>q :call asyncrun#quickfix_toggle(6)<CR>
@@ -208,59 +154,44 @@ map <leader>v :vsplit $MYVIMRC<CR>
 map <leader>i3 :!link_dotfiles.sh<CR> <bar> :!i3-merge-conf.sh<CR> <bar> :AsyncRun i3-msg reload; i3-msg restart<CR>
 
 " leave INSERT mode using C-c
-imap <C-c> <Esc><Esc>
+inoremap <C-c> <Esc><Esc>
 
 " ----- Command mapping -----
 " Format and Sort JSON
 com! FormatJSON %!python -m json.tool
-com! FormatPython call Autopep8()
-com! DistractionFree Goyo
 
 " ----- Filetype specific -----
 augroup python
   autocmd!
   " Run Python code
-  autocmd FileType python nmap <buffer> <F10> :exec '!clear; python' shellescape(@%, 1)<CR>
-  autocmd FileType python imap <buffer> <F10> <Esc>:exec '!clear; python' shellescape(@%, 1)<CR>
+  autocmd FileType python nnoremap <buffer> <F10> :exec '!clear; python' shellescape(@%, 1)<CR>
   " Run pytest
-  autocmd FileType python nmap <buffer> <F9> :exec '!clear;  pytest -v'<CR>
-  autocmd FileType python imap <buffer> <F9> <Esc>:exec '!clear;  pytest -v'<CR>
+  autocmd FileType python nnoremap <buffer> <F9> :exec '!clear;  pytest -v'<CR>
   " Format file
-  autocmd FileType python nmap <leader>8 :Autopep8<CR>
+  autocmd FileType python nnoremap <leader>8 :Autopep8<CR>
 augroup END
 
 augroup ansible
   autocmd!
-  " Run Ansible playbook
-  autocmd FileType yaml.ansible,yaml,ansible nmap <buffer> <F10> :AsyncRun ansible-playbook "$(VIM_FILEPATH)"<CR>
-  autocmd FileType yaml.ansible,yaml,ansible imap <buffer> <F10> <Esc> :AsyncRun ansible-playbook "$(VIM_FILEPATH)"<CR>
-  autocmd FileType yaml.ansible,yaml,ansible nmap <buffer> <F9> :exec '!clear; ansible-playbook' shellescape(@%, 1)<CR>
-  autocmd FileType yaml.ansible,yaml,ansible imap <buffer> <F9> <Esc> :exec '!clear; ansible-playbook' shellescape(@%, 1)<CR>
+  autocmd FileType yaml.ansible,yaml,ansible nnoremap <buffer> <F9> :exec '!clear; ansible-playbook' shellescape(@%, 1)<CR>
+  autocmd Filetype yaml setlocal ts=2 sw=2 sts=2 expandtab
 augroup END
 
 augroup ccpp
   autocmd!
-  " Compile C
-  autocmd FileType c nmap <silent> <F9> :AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
-  autocmd FileType c imap <silent> <F9> <Esc>:AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
-  " Compile
-  autocmd FileType cpp nmap <F9> :AsyncRun g++ -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
-  autocmd FileType cpp imap <F9> <Esc>:AsyncRun g++ -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
-  " Execute
-  autocmd FileType c,cpp nmap <buffer> <F10> :exec '!clear; %:p:h/%:r' <CR>
-  autocmd FileType c,cpp imap <buffer> <F10> <Esc> :exec '!clear; %:p:h/%:r' <CR>
+  autocmd FileType c nnoremap <silent> <F9> :AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
+  autocmd FileType cpp nnoremap <F9> :AsyncRun g++ -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <CR>
+  autocmd FileType c,cpp nnoremap <buffer> <F10> :exec '!clear; %:p:h/%:r' <CR>
 augroup END
 
 augroup vimscript
   autocmd!
-  " Run vim script
-  autocmd Filetype vim nmap <buffer> <F10> :exec '!clear' <bar> source % <CR>
-  autocmd Filetype vim imap <buffer> <F10> <Esc> :exec '!clear' <bar> source % <CR>
+  autocmd Filetype vim nnoremap <buffer> <F10> :exec '!clear' <bar> source % <CR>
 augroup END
 
 augroup markdown
   autocmd!
-  autocmd FileType markdown nmap <buffer> <F10> :AsyncRun  grip "${VIM_FILEPATH}" --export "/tmp/${VIM_FILENOEXT}.html" && ${BROWSER} "/tmp/${VIM_FILENOEXT}.html"<CR>
+  autocmd FileType markdown nnoremap <buffer> <F10> :AsyncRun  grip "${VIM_FILEPATH}" --export "/tmp/${VIM_FILENOEXT}.html" && ${BROWSER} "/tmp/${VIM_FILENOEXT}.html"<CR>
 augroup END
 
 
@@ -271,8 +202,7 @@ let g:markdown_fenced_languages = ['make', 'zsh', 'sh', 'json', 'tex', 'sql', 'r
 " Disable automatic insertion of comment character
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-
-highlight ColorColumn term=reverse
+highlight ColorColumn term=standout
 call matchadd('ColorColumn', '\%81v', 100)
 
 " enables highlighting word with *, highlights on search
@@ -284,20 +214,13 @@ set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab " autoindent copyind
 " dont break lines automatically
 set textwidth=0 wrapmargin=0
 
-" colorize sytanx
-if has('syntax') && !exists('g:syntax_on')
-  syntax enable
-endif
+" " colorize sytanx
+" if has('syntax') && !exists('g:syntax_on')
+"   syntax enable
+" endif
 
 " show line numbers
 set number
-
-" show relative line numbers in normal mode
-augroup relativenumbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * if &modifiable | set relativenumber | endif
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
 
 " set text encoding to UTF8
 set termencoding=utf-8
@@ -330,7 +253,6 @@ set showmatch
 
 set showmode
 
-autocmd Filetype yaml setlocal ts=2 sw=2 sts=2 expandtab
 set showcmd
 
 " enable bottom menu with command completion etc
@@ -361,25 +283,11 @@ if has('clipboard')
   set clipboard=unnamedplus
 endif
 
-" display hidden characters
-set listchars=tab:␣
-set listchars+=extends:›,precedes:‹
-set listchars+=trail:ﱡ
-set listchars+=eol:
-set listchars+=nbsp:␣
-
 " ----- Theming, visual tweaks -----
-set background=light
-" for other themes:
-highlight clear SignColumn
-" SignColumn - gitgutter, ale etc.
-" overriden by gruvbox
-let g:gruvbox_sign_column='bg0'
-let g:gruvbox_contrast_light='soft'
-let g:gruvbox_contrast_dark='medium'
-" gruvbox options have to be above below line
-"silent colorscheme srcery
-silent colorscheme gruvbox
+silent colorscheme srcery
+" opaque background (set AFTER theme)
+highlight Normal guibg=NONE ctermbg=NONE
+highlight SignColumn guibg=NONE ctermbg=NONE
 
 " those quotest have to remain double
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -387,19 +295,11 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 set termguicolors
 
-set fillchars+=vert:\▎
-" https://en.wikipedia.org/wiki/Block_Elements
+set fillchars+=vert:\  " set to space
+highlight VertSplit guibg=NONE ctermbg=NONE
 
 " Enable italics in comments (important - put after colorscheme)
 highlight Comment cterm=italic
-
-" GUI settings
-if has('gui')
-  set guioptions=
-  set guifont=Iosevka\ 18
-  set autochdir
-  set shell=/bin/zsh
-endif
 
 " How many lines of history to save
 set history=200

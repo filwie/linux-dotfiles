@@ -1,5 +1,7 @@
 [colors]
-background = ${xrdb:background:#1c1b19}
+transparent = #0000000
+semi-transparent = #E61C1B19
+background = ${xrdb:background:#1C1B19}
 background-alt = ${xrdb:color8:#2D2C29}
 foreground = ${xrdb:foreground:#fce8c3}
 foreground-alt = ${xrdb:color7:#918175}
@@ -7,121 +9,52 @@ primary = ${xrdb:color3:#fbb829}
 secondary = ${xrdb:color4:#2c78bf}
 alert = ${xrdb:color9:#f75341}
 
-black = #1C1B19
-brightblack = #2D2C29
-red = #EF2F27
-brightred = #F75341
-green = #519F50
-brightgreen = #98BC37
-yellow = #FBB829
-brightyellow = #FED06E
-blue = #2C78BF
-brightblue = #68A8E4
-magenta = #E02C6D
-brightmagenta = #FF5C8F
-cyan = #0AAEB3
-brightcyan = #53FDE9
-white = #918175
-brightwhite = #FCE8C3
-orange = #D75F00
-brightorange = #FF8700
-
-cpu-underline =
-memory-underline =
-filesystem-underline =
-wlan-connected-underline =
-eth-connected-underline =
-date-underline =
-temperature-underline =
-battery-underline =
-
-[gradient]
-1 = #519F50
-2 = #519F50
-3 = #98BC37
-4 = #98BC37
-5 = #FED06E
-6 = #FBB829
-7 = #F75341
-8 = #EF2F27
-
-[characters]
-bar-fill = ━
-bar-indicator = ╋
-disk = 
-cpu = 
-ram = 
-battery-10 = %{T1}%{T-}
-battery-20 = %{T1}%{T-}
-battery-30 = %{T1}%{T-}
-battery-40 = %{T1}%{T-}
-battery-50 = %{T1}%{T-}
-battery-60 = %{T1}%{T-}
-battery-70 = %{T1}%{T-}
-battery-80 = %{T1}%{T-}
-battery-90 = %{T1}%{T-}
-battery-100 = %{T1}%{T-}
-battery-10-charging = %{T1}%{T-}
-battery-20-charging = %{T1}%{T-}
-battery-30-charging = %{T1}%{T-}
-battery-40-charging = %{T1}%{T-}
-battery-50-charging = %{T1}%{T-}
-battery-60-charging = %{T1}%{T-}
-battery-70-charging = %{T1}%{T-}
-battery-80-charging = %{T1}%{T-}
-battery-90-charging = %{T1}%{T-}
-battery-100-charging = %{T1}%{T-}
-
-[ramp]
-0 = %{F#519F50}▁%{F-}
-1 = %{F#519F50}▂%{F-}
-2 = %{F#98BC37}▃%{F-}
-3 = %{F#98BC37}▄%{F-}
-4 = %{F#FED06E}▅%{F-}
-5 = %{F#FBB829}▆%{F-}
-6 = %{F#F75341}▇%{F-}
-7 = %{F#EF2F27}█%{F-}
-
-[ramp-reverse]
-7 = %{F#98BC37}█%{F-}
-6 = %{F#98BC37}▇%{F-}
-5 = %{F#98BC37}▆%{F-}
-4 = %{F#98BC37}▅%{F-}
-3 = %{F#FED06E}▄%{F-}
-2 = %{F#FBB829}▃%{F-}
-1 = %{F#F75341}▂%{F-}
-0 = %{F#EF2F27}▁%{F-}
+black = ${xrdb:color0:#1C1B19}
+red = ${xrdb:color1:#EF2F27}
+green = ${xrdb:color2:#519F50}
+yellow = ${xrdb:color3:#FBB829}
+blue = ${xrdb:color4:#2C78BF}
+magenta = ${xrdb:color5:#E02C6D}
+cyan = ${xrdb:color6:#0AAEB3}
+white = ${xrdb:color7:#918175}
+brightblack = ${xrdb:color8:#2D2B28}
+brightred = ${xrdb:color9:#F75341}
+brightgreen = ${xrdb:color10:#98BC37}
+brightyellow = ${xrdb:color11:#FED06E}
+brightblue = ${xrdb:color12:#529CE0}
+brightmagenta = ${xrdb:color13:#FF5C8F}
+brightcyan = ${xrdb:color14:#53FDE9}
+brightwhite = ${xrdb:color15:#FCE8C3}
 
 [bar/status]
 monitor = ${env:MONITOR:HDMI-1}
 monitor-fallback = eDP1
 width = 100%
 height = ${env:BAR_HEIGHT}
-fixed-center = false
+fixed-center = true
 
-background = ${colors.background}
+background = ${colors.semi-transparent}
 foreground = ${colors.foreground}
 
-line-size = 3
+line-size = 0
 line-color = ${colors.secondary}
 
 border-size = 0
 border-color = #00000000
 
 padding-left = 0
-padding-right = 0
+padding-right = 2
 
 module-margin-left = 0
-module-margin-right = 1
+module-margin-right = 4
 
 ; font-N = <fontconfig pattern>;<vertical offset>
 font-0 = ${env:BAR_FONT_0}
 font-1 = ${env:BAR_FONT_1}
-font-2 = ${env:BAR_FONT_2}
 
 modules-left = i3
-modules-center =
-modules-right = filesystem memory cpu xbacklight pulseaudio wlan eth1 eth2 battery1 battery2 temperature date powermenu
+modules-center = date
+modules-right =
 
 tray-position = right
 tray-padding = 0
@@ -139,7 +72,8 @@ format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 
-label-focused = %{F#fbb829}%index%%{F-}
+label-focused = %index%
+label-focused-foreground = ${colors.primary}
 label-focused-background = ${colors.background-alt}
 label-focused-underline = ${colors.primary}
 label-focused-padding = 1
@@ -156,116 +90,9 @@ label-urgent = %index%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
 
-[module/filesystem]
-type = internal/fs
-interval = 30
-mount-0 = /
-label-mounted = %{T1}%{F#918175} %{F-}%{T-}%percentage_used%%
-
-format-mounted = <label-mounted>
-format-mounted-underline = ${colors.filesystem-underline}
-
-ramp-capacity-0 = ${ramp-reverse.0}
-ramp-capacity-1 = ${ramp-reverse.1}
-ramp-capacity-2 = ${ramp-reverse.2}
-ramp-capacity-3 = ${ramp-reverse.3}
-ramp-capacity-4 = ${ramp-reverse.4}
-ramp-capacity-5 = ${ramp-reverse.5}
-ramp-capacity-6 = ${ramp-reverse.6}
-ramp-capacity-7 = ${ramp-reverse.7}
-
-[module/memory]
-type = internal/memory
-interval = 5
-
-format = <label>
-format-underline = ${colors.memory-underline}
-label = %{F#918175}%{T1}%{T-}%{F-} %gb_used%/%gb_total%
-
-ramp-used-0 = ${ramp.0}
-ramp-used-1 = ${ramp.1}
-ramp-used-2 = ${ramp.2}
-ramp-used-3 = ${ramp.3}
-ramp-used-4 = ${ramp.4}
-ramp-used-5 = ${ramp.5}
-ramp-used-6 = ${ramp.6}
-ramp-used-7 = ${ramp.7}
-
-[module/cpu]
-type = internal/cpu
-interval = 2
-format = <label>
-
-ramp-load-0 = ${ramp.0}
-ramp-load-1 = ${ramp.1}
-ramp-load-2 = ${ramp.2}
-ramp-load-3 = ${ramp.3}
-ramp-load-4 = ${ramp.4}
-ramp-load-5 = ${ramp.5}
-ramp-load-6 = ${ramp.6}
-ramp-load-7 = ${ramp.7}
-
-format-prefix = %{T1}%{T-}
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.cpu-underline}
-label = %percentage:2%%
-
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = %{T1}%{F#918175}%{F-}%{T-}
-
-bar-width = 10
-bar-indicator = ${characters.bar-indicator}
-bar-indicator-foreground = ${colors.foreground}
-bar-fill = ${characters.bar-fill}
-bar-fill-foreground = ${colors.foreground}
-bar-empty = ${self.bar-fill}
-bar-empty-foreground = ${colors.foreground-alt}
-
-[module/wlan]
-type = internal/network
-interface = wlp3s0
-interval = 3.0
-
-format-connected = <label-connected>
-format-connected-underline = ${colors.wlan-connected-underline}
-label-connected = %{F#918175}%{T1}直%{T-}%{F-} %essid% (%local_ip%)
-
-format-disconnected = <label-disconnected>
-format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected =  %ifname% disconnected
-label-disconnected-foreground = ${colors.foreground-alt}
-
-ramp-signal-0 = ${ramp-reverse.0}
-ramp-signal-1 = ${ramp-reverse.3}
-ramp-signal-2 = ${ramp-reverse.5}
-ramp-signal-3 = ${ramp-reverse.6}
-ramp-signal-4 = ${ramp-reverse.7}
-
-[module/eth1]
-type = internal/network
-interface = enp0s25
-interval = 3.0
-
-format-connected = <label-connected>
-format-connected-underline = ${colors.eth-connected-underline}
-format-connected-prefix = %{F#918175}%{T1}%{T-}%{F-}
-label-connected = " %ifname% (%local_ip%)"
-
-format-disconnected = <label-disconnected>
-format-disconnected-prefix = %{F#918175}%{T1}%{T-}%{F-}
-format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected = " unplugged"
-
-[module/eth2]
-inherit = module/eth1
-interface = eno1
-
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
 
 date =
 date-alt = " %Y-%m-%d"
@@ -273,127 +100,10 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-underline = ${colors.date-underline}
-
 label = %date% %time%
-
-[module/pulseaudio]
-type = internal/pulseaudio
-
-format-volume = <label-volume> <bar-volume>
-label-volume = %{F#918175}%{T1}墳%{T-}%{F-}
-label-volume-foreground = ${colors.foreground}
-
-label-muted = %{F#918175}%{T1}婢%{T-} ━━━━━━━━━━%{F-}
-label-muted-foreground = ${colors.foreground-alt}
-
-bar-volume-width = 10
-bar-volume-gradient = true
-bar-volume-indicator = ${characters.bar-indicator}
-bar-volume-fill = ${characters.bar-fill}
-bar-volume-empty = ${self.bar-volume-fill}
-bar-volume-empty-foreground = ${colors.foreground-alt}
-
-[module/battery1]
-type = internal/battery
-battery = BAT0
-adapter = AC
-full-at = 98
-
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.battery-underline}
-
-format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
-
-format-full-prefix = %{T1} %{T-}
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
-
-ramp-capacity-0 = ${characters.battery-10}
-ramp-capacity-1 = ${characters.battery-20}
-ramp-capacity-2 = ${characters.battery-30}
-ramp-capacity-3 = ${characters.battery-40}
-ramp-capacity-4 = ${characters.battery-50}
-ramp-capacity-5 = ${characters.battery-60}
-ramp-capacity-6 = ${characters.battery-70}
-ramp-capacity-7 = ${characters.battery-80}
-ramp-capacity-8 = ${characters.battery-90}
-ramp-capacity-9 = ${characters.battery-100}
-ramp-capacity-foreground = ${colors.foreground-alt}
-
-animation-charging-0 = ${characters.battery-10-charging}
-animation-charging-1 = ${characters.battery-20-charging}
-animation-charging-2 = ${characters.battery-30-charging}
-animation-charging-3 = ${characters.battery-40-charging}
-animation-charging-4 = ${characters.battery-50-charging}
-animation-charging-5 = ${characters.battery-60-charging}
-animation-charging-6 = ${characters.battery-70-charging}
-animation-charging-7 = ${characters.battery-80-charging}
-animation-charging-8 = ${characters.battery-90-charging}
-animation-charging-9 = ${characters.battery-100-charging}
-
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 100
-
-[module/battery2]
-inherit = module/battery1
-battery = BAT1
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
-
-format = <ramp> <label>
-format-underline = ${colors.temperature-underline}
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
-
-label = %temperature-c%
-label-warn = %temperature-c%
-
-ramp-0 = %{T1}%{F#519F50}%{F-}%{T-}
-ramp-1 = %{T1}%{F#98BC37}%{F-}%{T-}
-ramp-2 = %{T1}%{F#FED06E}%{F-}%{T-}
-ramp-3 = %{T1}%{F#FBB829}%{F-}%{T-}
-ramp-4 = %{T1}%{F#F75341}%{F-}%{T-}
-
-[module/powermenu]
-type = custom/menu
-
-expand-right = true
-
-format-spacing = 1
-
-label-open = 
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
 
 [settings]
 screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
 
 [global/wm]
 margin-top = 5

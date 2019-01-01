@@ -191,9 +191,6 @@ for_window [class="(?i)gsimplecal"] floating enable
 # floating windows settings
 floating_minimum_size 240 x 100
 
-# fullscreen windows
-for_window [class="(?i)alacritty"] fullscreen enable
-
 # disable window titlebars, set border size
 for_window [class="^.*"] border pixel 1
 
@@ -203,8 +200,11 @@ exec --no-startup-id "setxkbmap"
 exec --no-startup-id "setxkbmap -option ctrl:nocaps"
 # compositor - transparency, shadows and such
 exec --no-startup-id "compton --config ~/.compton.conf -b"
-# simple notification daemon
-exec --no-startup-id "dunst"
+# notification daemon
+exec --no-startup-id "/usr/lib/xfce4/notifyd/xfce4-notifyd"
+# power management
+exec --no-startup-id "xss-lock -- i3lock"
+exec --no-startup-id "mate-power-manager"
 # secrets handler for network manager applet to store passwords in
 exec --no-startup-id "gnome-keyring-daemon -d"
 # turn screen off after specified time (seconds)

@@ -7,11 +7,12 @@ configuration {
 }
 
 * {
-  font-normal: "Iosevka Nerd Font 18";
-  font-smaller: "Iosevka Nerd Font 16";
+  font-normal: "Noto Sans 18";
+  font-smaller: "Noto Sans 16";
 
   /* srcery palette */
   black:         #1C1B19;
+  black-transparent: #E61C1B19;
   brightblack:   #2D2C29;
   red:           #EF2F27;
   brightred:     #F75341;
