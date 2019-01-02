@@ -59,7 +59,7 @@ modules-right =
 tray-position = right
 tray-padding = 0
 tray-transparent = false
-tray-background = ${colors.background}
+tray-background = ${colors.semi-transparent}
 
 wm-restack = i3
 

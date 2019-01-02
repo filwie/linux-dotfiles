@@ -137,7 +137,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bindsym $mod+Tab exec "$window_toggler"
+bindsym $mod+Tab exec $window_toggler
 
 # }}}
 
