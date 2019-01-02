@@ -1,0 +1,6 @@
+# vim: set ft=ruby:
+
+set $gaps_inner 0
+set $gaps_outer 0
+
+set $border_size 0

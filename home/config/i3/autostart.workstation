@@ -1,0 +1,4 @@
+# vim: set ft=ruby:
+
+exec --no-startup-id "synergy"
+exec --no-startup-id "slack"

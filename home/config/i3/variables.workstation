@@ -1,0 +1,7 @@
+# vim: set ft=ruby:
+font pango:Iosevka Nerd Font 12
+
+set $gaps_inner 6
+set $gaps_outer 0
+
+set $border_size 0
