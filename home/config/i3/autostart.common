@@ -4,7 +4,7 @@ exec --no-startup-id "setxkbmap"
 # Ctrl instead of CapsLock
 exec --no-startup-id "setxkbmap -option ctrl:nocaps"
 # compositor - transparency, shadows and such
-exec --no-startup-id "compton --config ~/.compton.conf -b"
+exec --no-startup-id "compton --config ~/.config/compton.conf -b"
 # notification daemon
 exec --no-startup-id "/usr/lib/xfce4/notifyd/xfce4-notifyd"
 # power management
