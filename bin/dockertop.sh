@@ -24,4 +24,4 @@ function dockertop () {
     watch --color --no-title --interval 1 --differences "grc docker ps --no-trunc --format 'table ${format_template}'"
 }
 
-dockertop
+dockertop ${@}
