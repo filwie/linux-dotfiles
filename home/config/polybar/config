@@ -1,8 +1,8 @@
 ; COLORS {{{
 [colors]
-transparent = #0000000
+transparent = #00FFFFFF
 semi-transparent = #F21C1B19
-background = ${xrdb:background:#1C1B19}
+background = ${self.semi-transparent}
 background-alt = ${xrdb:color8:#2D2C29}
 foreground = ${xrdb:foreground:#fce8c3}
 foreground-alt = ${xrdb:color7:#918175}
@@ -35,7 +35,7 @@ width = 100%
 height = ${env:BAR_HEIGHT}
 fixed-center = true
 
-background = ${colors.semi-transparent}
+background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 0
@@ -61,7 +61,7 @@ modules-right =
 tray-position = right
 tray-padding = 0
 tray-transparent = false
-tray-background = ${colors.semi-transparent}
+tray-background = ${colors.background}
 
 wm-restack = i3
 
