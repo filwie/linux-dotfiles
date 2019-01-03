@@ -1,3 +1,6 @@
+LOG_FILE="${HOME}/.log"
+echo "[$(date --iso-8601=seconds)] ${0} sourced." >> ${LOG_FILE}
+
 function set_env_common () {
     export ZSH_THEME="wisp"
     export ZSH=${HOME}/.oh-my-zsh
@@ -30,6 +33,7 @@ function set_env_hostname_specific () {
 function set_path () {
     [[ "$(uname -a)" =~ '.*Ubuntu.*|.*ubuntu.*' ]] \
         && path=("/home/linuxbrew/.linuxbrew/bin" $path)
+
     path+=("/usr/local/go/bin")
     export path
     export PATH

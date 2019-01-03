@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-source "${HOME}/.zshenv"
+LOG_FILE="${HOME}/.log"
+echo "[$(date --iso-8601=seconds)] ${0} sourced." >> ${LOG_FILE}
 
 kill $(pidof polybar) 2> /dev/null
 while pgrep -x polybar >/dev/null;

@@ -1,6 +1,7 @@
+; COLORS {{{
 [colors]
 transparent = #0000000
-semi-transparent = #E61C1B19
+semi-transparent = #F21C1B19
 background = ${xrdb:background:#1C1B19}
 background-alt = ${xrdb:color8:#2D2C29}
 foreground = ${xrdb:foreground:#fce8c3}
@@ -25,6 +26,7 @@ brightblue = ${xrdb:color12:#529CE0}
 brightmagenta = ${xrdb:color13:#FF5C8F}
 brightcyan = ${xrdb:color14:#53FDE9}
 brightwhite = ${xrdb:color15:#FCE8C3}
+; }}}
 
 [bar/status]
 monitor = ${env:MONITOR:HDMI-1}
