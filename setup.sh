@@ -160,6 +160,7 @@ function install_utilities () {
     else
         warn_msg "fzf not found. Attempting to install..."
         run_log_cmd -s "git clone --depth 1 https://github.com/junegunn/fzf.git ${HOME}/.fzf"
+        run_log_cmd -s "${HOME}/.fzf/install --all --no-update-rc"
     fi
 
     if [[ -d "${HOME}/.tmux/plugins/tpm" ]]; then
