@@ -1,16 +1,13 @@
+! vim: set ft=xdefaults:
+
+! COLORS {{{
+
 ! srcery.xresources
 ! https://github.com/roosta/vim-srcery
-
-! special colors {{{
 
 *.foreground:   #fce8c3
 *.background:   #1c1b19
 *.cursorColor:  #fce8c3
-
-! }}}
-
-
-! main colors {{{
 
 ! black
 *.color0:       #1c1b19
@@ -46,22 +43,11 @@
 
 ! }}}
 
+! FONTCONFIG {{{
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
-
-
-xscreensaver.splash: false
-
-!font settings
-xscreensaver.Dialog.headingFont:        -*-roboto-bold-r-*-*-24-*-*-*-*-*-*-*
-xscreensaver.Dialog.bodyFont:           -*-roboto-medium-r-*-*-24-*-*-*-*-*-*-*
-xscreensaver.Dialog.labelFont:          -*-roboto-medium-r-*-*-24-*-*-*-*-*-*-*
-xscreensaver.Dialog.unameFont:          -*-roboto-medium-r-*-*-24-*-*-*-*-*-*-*
-xscreensaver.Dialog.buttonFont:         -*-roboto-bold-r-*-*-24-*-*-*-*-*-*-*
-xscreensaver.Dialog.dateFont:           -*-roboto-medium-r-*-*-24-*-*-*-*-*-*-*
-xscreensaver.passwd.passwdFont:         -*-roboto-bold-r-*-*-24-*-*-*-*-*-*-*
-
+! }}}
