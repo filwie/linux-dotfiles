@@ -159,7 +159,8 @@ augroup END
 " }}}
 
 " GENERAL {{{
-set laststatus=0
+set diffopt+=vertical
+set laststatus=1
 set foldmethod=marker
 set hlsearch
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab " autoindent copyindent
@@ -249,6 +250,13 @@ highlight Normal ctermbg=NONE
 highlight SignColumn guibg=NONE ctermbg=NONE
 highligh ColorColumn ctermbg=NONE ctermfg=1 cterm=bold
 highligh Folded ctermbg=NONE ctermfg=3
+
+highlight DiffAdd      ctermbg=NONE guibg=NONE
+highlight DiffChange   ctermbg=NONE guibg=NONE
+highlight DiffDelete   ctermbg=NONE guibg=NONE
+highlight DiffText     ctermbg=NONE guibg=NONE
+highlight CursorLineNr ctermbg=NONE guibg=NONE
+
 
 " those quotest have to remain double
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
