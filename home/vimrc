@@ -225,7 +225,7 @@ let g:markdown_fenced_languages = ['make', 'zsh', 'sh', 'json', 'tex', 'sql', 'r
 " MOUSE {{{
 if has('mouse')
   " try a, r, v
-  set ttymouse=xterm2
+  " set ttymouse=xterm2
   set mouse+=a
   if &term =~ '^screen' || &term =~ '^tmux'
     " Enable extended mouse while using tmux
@@ -246,17 +246,12 @@ augroup END
 
 " THEMING, VISUAL TWEAKS {{{
 silent colorscheme srcery
-highlight Normal ctermbg=NONE
-highlight SignColumn guibg=NONE ctermbg=NONE
-highligh ColorColumn ctermbg=NONE ctermfg=1 cterm=bold
-highligh Folded ctermbg=NONE ctermfg=3
+" highlight Normal ctermbg=NONE
+" highlight SignColumn guibg=NONE ctermbg=NONE
+highligh ColorColumn ctermbg=black ctermfg=1 cterm=bold
+highligh Folded ctermfg=3
 
-highlight DiffAdd      ctermbg=NONE guibg=NONE
-highlight DiffChange   ctermbg=NONE guibg=NONE
-highlight DiffDelete   ctermbg=NONE guibg=NONE
-highlight DiffText     ctermbg=NONE guibg=NONE
-highlight CursorLineNr ctermbg=NONE guibg=NONE
-
+highlight EndOfBuffer ctermfg=black ctermbg=black
 
 " those quotest have to remain double
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
