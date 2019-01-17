@@ -262,8 +262,8 @@ let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
-set fillchars+=vert:\  " vert split character set to ' '
-highlight VertSplit guibg=NONE ctermbg=NONE
+set fillchars+=vert:\│  " vert split character set to ' '
+highlight VertSplit guibg=NONE ctermbg=NONE ctermfg=8
 
 " Enable italics in comments (important - put after colorscheme)
 highlight Comment cterm=italic
