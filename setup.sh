@@ -4,7 +4,7 @@ interactive="n"
 verbosity=3  # 3 - debug; 2 - info; 1 - warn
 
 packages="git zsh tmux grc curl vim"
-dotfiles_repo="https://gitlab.com/filip.wiechec/dotfiles.git"
+dotfiles_repo="git@github.com:filwie/dotfiles.git"
 dotfiles_dir="${HOME}/.dotfiles"
 dotfiles_branch="development"
 
