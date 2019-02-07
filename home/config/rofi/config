@@ -1,5 +1,5 @@
 # vim: set ft=yaml:
-rofi.theme:                 ~/.config/rofi/my_theme.rasi
+rofi.theme:                 ~/.config/rofi/wisp.rasi
 rofi.matching:              fuzzy
 rofi.font:                  Noto Sans 24
 rofi.modi:                  combi
