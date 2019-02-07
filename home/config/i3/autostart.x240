@@ -1,4 +1,0 @@
-# vim: set ft=ruby:
-
-# hidpi
-exec "xrandr --dpi 120"
