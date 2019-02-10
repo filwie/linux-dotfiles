@@ -1,7 +1,6 @@
-#!/usr/bin/env bash
-set -e
+#!/usr/bin/env zsh
 
-repo_dir="${HOME}/.dotfiles"
+repo_dir="${0:h:A}"
 setup_script="${repo_dir}/setup.sh"
 tmp_setup="/tmp/setup.sh"
 
