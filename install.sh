@@ -1,98 +1,89 @@
 #!/usr/bin/env zsh
 
-repo_dir="${0:h:A}"
-setup_script="${repo_dir}/setup.sh"
-tmp_setup="/tmp/setup.sh"
+DOTFILES="${0:A:h}"
 
-# source the setup script but do not call main function (last line)
-cat ${setup_script} | head -n -1 > "${tmp_setup}"
-source "${tmp_setup}"
+XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+SCRIPTS_DIR="${HOME}/bin"
 
-verbosity=3
+NEEDED_DIRS=("${XDG_CONFIG_HOME}"
+             "${SCRIPTS_DIR}")
 
-dotfiles_dir_repo="${repo_dir}/home"
-config_dir_repo="${repo_dir}/home/config"
-bin_dir_repo="${repo_dir}/bin"
-bin_dir="${HOME}/bin"
+EXISTING_FILE_BACKUPS=()
 
-old_dotfiles_dir="/tmp/old_dotfiles"
+function info_msg () {
+  echo -e "$(tput setaf 3)${1}$(tput sgr0)"
+}
 
-dirs_that_should_exist=("${HOME}/bin" "${HOME}/.config")
+function error_msg () {
+  echo -e "$(tput setaf 3)${1}$(tput sgr0)" > /dev/stderr
+  return "${1:-1}"
+}
 
-function skip () {
-    echo "${bright_green}${bold}Skipping...${reset}"
+function run_log_cmd () {
+  echo -e "$(tput setaf 12)[$(date +'%H:%M:%S')] RUNNING: ${1}$(tput sgr0)"
+  eval "${1}"
 }
 
 function create_dirs () {
-    for dir in ${dirs_that_should_exist[@]}; do
-        run_log_cmd "[[ -d ${dir} ]] || mkdir ${dir}"
-    done
+  echo "${@}"
+  for _dir in "${@}"; do
+    run_log_cmd "[[ -d ${_dir} ]] || mkdir ${_dir}"
+  done
 }
 
-function compare_checksums () {
-    first="$(realpath -s ${1})"
-    second="$(realpath -s ${2})"
+function _link_dotfile () {
+  [[ -e "${1}" ]] || return
+  [[ -n "${2}" ]] || return
 
-    if [[ -e "${first}" ]] && [[ -e "${second}" ]]; then
-        if [[ -f "${second}" ]]; then
-            first_sum="$(shasum ${first} | cut -d' ' -f1)"
-            second_sum="$(shasum ${second} | cut -d' ' -f1)"
-            if [[ "${first_sum}" == "${second_sum}" ]]; then
-                return 0
-            fi
-        elif [[ -d "${second}" ]]; then
-            diff -qr ${first} ${second}
-            return $?
-        fi
-    fi
-    return 1
-}
+  local src dest
+  src="${1:A}"
+  dest="${2:A}"
 
-function link_dotfile () {
-    if [[ "${#}" -ne 2 ]]; then
-        error_msg "${FUNCNAME[0]} invalid arguments. Specify: FILE DESTINATION" 1
-    fi
-    src_path="$(realpath -s ${1})"
-    dest_path="$(realpath -s ${2})"
-
-    if compare_checksums "${src_path}" "${dest_path}"; then
-        info_msg "$(basename ${second}) is up to date. " && skip
-        return 0
-    fi
-    [[ -e "${dest_path}" ]] && run_log_cmd "mv ${dest_path} ${dest_path}.bak"
-    run_log_cmd "ln -s ${src_path} ${dest_path}"
+  if [[ "${src}" == "${dest}" ]]; then
+    info_msg "${dest:t} is up to date. "
+    return 0
+  fi
+  if [[ -e "${dest}" ]]; then
+    run_log_cmd "mv ${dest} ${dest}.bak"
+    EXISTING_FILE_BACKUPS+=("${dest}.bak")
+  fi
+  run_log_cmd "ln -s ${src} ${dest}"
 }
 
 function link_all_dotfiles () {
-    pushd "${dotfiles_dir_repo}" > /dev/null
-    for dir_or_file in *; do
-        if [[ "$(basename ${dir_or_file})" == "config" ]]; then
-            local config_dir_repo="${dir_or_file}"
-            pushd "${config_dir_repo}" > /dev/null
-            for config_dir_or_file in *; do
-                link_dotfile \
-                    "${config_dir_or_file}" \
-                    "${HOME}/.config/$(basename ${config_dir_or_file})"
-            done
-            popd > /dev/null
-        else
-            link_dotfile \
-                "${dir_or_file}" \
-                "${HOME}/.$(basename ${dir_or_file})"
-        fi
-    done
-    pushd "${bin_dir_repo}" > /dev/null
-    for script in *; do
-        link_dotfile "${script}" "${bin_dir}/$(basename ${script})"
-    done
-        popd > /dev/null
-    popd > /dev/null
+  pushd "${DOTFILES}"
+  for dotfile in home/*(.); do
+    _link_dotfile "${dotfile:A}" "${HOME}/.${dotfile:t}"
+  done
+  for script in bin/*; do
+    _link_dotfile "${script:A}" "${SCRIPTS_DIR}/${script:t}"
+  done
+  for config in **/config/*; do
+    _link_dotfile "${config:A}" "${XDG_CONFIG_HOME}/${config:t}"
+  done
+  popd > /dev/null
 }
+
+function remove_backed_up_oldies () {
+  [[ -n "${(j..)EXISTING_FILE_BACKUPS[@]}" ]] || return
+  local choice
+  echo -e "Backed up files:\n${(j.\n.)EXISTING_FILE_BACKUPS[@]}"
+  vared -p 'Delete backed up files? [y/yes/n/no]: ' -c choice
+  case "${choice}" in
+    y|yes|Y|YES)
+      run_log_cmd "rm -rf ${(j. .)EXISTING_FILE_BACKUPS[@]}" ;;
+    n|no|N|NO)
+      info_msg "Leaving files untouched." ;;
+    *)
+      error_msg "Wrong input. Assuming 'no'" 0 ;;
+  esac
+  }
 
 function main () {
-    create_dirs
-    link_all_dotfiles
+  create_dirs "${NEEDED_DIRS[@]}"
+  link_all_dotfiles
+  remove_backed_up_oldies
 }
 
-
 main
+# vim: ft=zsh sw=2 ts=2:
