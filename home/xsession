@@ -1,6 +1,0 @@
-#!/usr/bin/env zsh
-LOG_FILE="${HOME}/.log"
-echo "[$(date --iso-8601=seconds)] ${0} sourced." >> ${LOG_FILE}
-
-. ~/.zshenv
-. ~/.xinitrc
