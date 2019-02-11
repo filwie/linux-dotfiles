@@ -1,15 +1,25 @@
 #!/usr/bin/env zsh
 
 function usage () {
-    echo -e "USAGE:\t${0} -n/--name NAME -e/--email EMAIL" > /dev/stderr
+    echo -e "USAGE:\t${0} [-h/--help] -n/--name NAME -e/--email EMAIL" > /dev/stderr
     exit 1
 }
 
+function _warn () {
+    echo "$(tput setaf 3)${1}$(tput sgr0)"
+}
+
 function parse_args () {
-    zparseopts -D -E n:=NAME -name:=NAME e:=EMAIL -email:=EMAIL
+    local help
+    zparseopts -D -E h=help -help=help n:=NAME -name:=NAME e:=EMAIL -email:=EMAIL
+    [[ -n "${help}" ]] && usage
     NAME="${${${NAME#-n }#--name }#=}"
     EMAIL="${${${EMAIL#-e }#--email }#=}"
-    { [[ -z "${NAME}" ]] || [[ -z "${EMAIL}" ]] } && usage
+    if [[ -z "${NAME}" ]] || [[ -z "${EMAIL}" ]]; then
+        NAME="$(git config user.name)"
+        EMAIL="$(git config user.email)"
+        _warn "No arguments specified. Falling back to git config. (${NAME}, ${EMAIL})"
+    fi
 }
 
 function git_filter_name_email () {
