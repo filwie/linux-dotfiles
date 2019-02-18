@@ -61,6 +61,9 @@ function link_all_dotfiles () {
   for config in **/config/*; do
     _link_dotfile "${config:A}" "${XDG_CONFIG_HOME}/${config:t}"
   done
+  for vim_file in **/vim/*; do
+    _link_dotfile "${vim_file:A}" "${HOME}/.vim/${vim_file:t}"
+  done
   popd > /dev/null
 }
 
